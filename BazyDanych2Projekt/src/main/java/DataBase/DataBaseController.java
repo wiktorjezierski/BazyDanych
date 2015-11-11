@@ -19,6 +19,7 @@ public class DataBaseController {
         wyp.setIdFaktury("100");
         wyp.setPeselPrac("93101400538");
         wyp.setPeselKlienta("941313");
+
         //zapis
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("NewPersistenceUnit");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
