@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - stuntman_proj@http://136.243.64.71" uuid="678a4084-b67f-48be-a10a-0e453ec9dc54">
+    <database-info product="MySQL" version="5.5.45-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="stuntman_proj"/>
+    <table name="Egzemplarz" schema="" catalog="stuntman_proj" type="TABLE">
+      <column name="id" sqlType="VARCHAR" precision="6" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DATA_ZAKUPU" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="ID_SPRZET" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ID_SERWIS" sqlType="VARCHAR" precision="6" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DATA_OST_PRZEG" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="WYCOFANY" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="Faktury" schema="" catalog="stuntman_proj" type="TABLE">
+      <column name="ID_FAKTURY" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12" remarks="Rk9STUFUOiBOUl9GQUtUVVJZL1JPSw=="/>
+      <column name="PESEL_PRAC" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PESEL_KLIENTA" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DATA_WYST" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="KWOTA" sqlType="FLOAT" precision="12" scale="0" nullable="false" jdbcType="7"/>
+      <primary-key name="PRIMARY" columns="ID_FAKTURY"/>
+      <foreign-key name="Faktury_ibfk_1" columns="PESEL_PRAC" ref-table="Pracownicy" ref-schema="" ref-catalog="stuntman_proj" ref-columns="PESEL_PRAC" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="Klienci" schema="" catalog="stuntman_proj" type="TABLE">
+      <column name="PESEL" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="IMIE" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NAZWISKO" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NR_DOWODU" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12" remarks="Qk8gU1BBQ0pBLCBUTyAxMCBaTkFLw5NX"/>
+      <column name="UWAGI" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ILOSC_TRANSAKCJI" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="QUdSRUdPV0FORSBUUklHR0VSRU0="/>
+      <column name="NR_TELEFONU" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="PESEL"/>
+    </table>
+    <table name="LOGOWANIE" schema="" catalog="stuntman_proj" type="TABLE">
+      <column name="PESEL" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LOGIN" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="HASLO" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="PESEL"/>
+      <foreign-key name="LOGOWANIE_ibfk_1" columns="PESEL" ref-table="Pracownicy" ref-schema="" ref-catalog="stuntman_proj" ref-columns="PESEL_PRAC" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="Log" schema="" catalog="stuntman_proj" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="TABELA" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ID_KROTKI" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="RODZAJ_OPER" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DATA" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="Pracownicy" schema="" catalog="stuntman_proj" type="TABLE">
+      <column name="PESEL_PRAC" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="IMIE" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NAZWISKO" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DATA_STARTU" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="STANOWISKO" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ZWOLNIONY" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="ADRES_EMAIL" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="PESEL_PRAC"/>
+      <exported-key name="Faktury_ibfk_1" table="Faktury" schema="" catalog="stuntman_proj" columns="PESEL_PRAC"/>
+      <exported-key name="LOGOWANIE_ibfk_1" table="LOGOWANIE" schema="" catalog="stuntman_proj" columns="PESEL"/>
+    </table>
+    <table name="Producent" schema="" catalog="stuntman_proj" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="6" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NAZWA" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ADRES" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TELEFON" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="Serwis" schema="" catalog="stuntman_proj" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="6" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NAZWA" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ADRES" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TELEFON" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="Sprzet" schema="" catalog="stuntman_proj" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NAZWA" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="MARKA" sqlType="VARCHAR" precision="30" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ID_PRODUCENT" sqlType="VARCHAR" precision="6" scale="0" nullable="false" jdbcType="12"/>
+      <column name="KATEGORIA" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DATA_ZAKUPU" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="ILOSC" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="Wypozyczenia" schema="" catalog="stuntman_proj" type="TABLE">
+      <column name="ID_EGZEMPLARZA" sqlType="VARCHAR" precision="6" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ID_FAKTURY" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PESEL_KLIENTA" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PESEL_PRAC" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DATA_WYP" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="WypozyczeniaArchiwum" schema="" catalog="stuntman_proj" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="6" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ID_SPRZETU" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ID_FAKTURY" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PESEL_KLIENTA" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PESEL_PRAC" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DATA_WYP" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="DATA_ZWROTU" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="rezerwacja" schema="" catalog="stuntman_proj" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="6" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PESEL_PRAC" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ID_EGZEMPLARZ" sqlType="VARCHAR" precision="6" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PESEL_KLIENTA" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DATA_START" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="DATA_KONIEC" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+  </data-source>
+</component>

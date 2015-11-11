@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="NewPersistenceUnit">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>DataBase.EgzemplarzEntity</class>
+        <class>DataBase.FakturyEntity</class>
+        <class>DataBase.KlienciEntity</class>
+        <class>DataBase.LogowanieEntity</class>
+        <class>DataBase.LogEntity</class>
+        <class>DataBase.PracownicyEntity</class>
+        <class>DataBase.ProducentEntity</class>
+        <class>DataBase.SerwisEntity</class>
+        <class>DataBase.SprzetEntity</class>
+        <class>DataBase.WypozyczeniaEntity</class>
+        <class>DataBase.WypozyczeniaArchiwumEntity</class>
+        <class>DataBase.RezerwacjaEntity</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mysql://136.243.64.71:3306/stuntman_proj"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.username"/>
+            <property name="hibernate.connection.password"/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
