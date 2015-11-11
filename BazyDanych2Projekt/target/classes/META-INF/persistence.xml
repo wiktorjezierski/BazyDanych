@@ -18,8 +18,8 @@
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://136.243.64.71:3306/stuntman_proj"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-            <property name="hibernate.connection.username"/>
-            <property name="hibernate.connection.password"/>
+            <property name="hibernate.connection.username" value="stuntman_wiktor"/>
+            <property name="hibernate.connection.password" value="baza1234"/>
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>

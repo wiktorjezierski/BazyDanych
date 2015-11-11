@@ -9,6 +9,9 @@ import java.sql.Date;
 @Entity
 @Table(name = "Sprzet", schema = "", catalog = "stuntman_proj")
 public class SprzetEntity {
+    @Id
+    @Column(name = "ID")
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String nazwa;
     private String marka;
@@ -17,8 +20,7 @@ public class SprzetEntity {
     private Date dataZakupu;
     private int ilosc;
 
-    @Id
-    @Column(name = "ID")
+
     public String getId() {
         return id;
     }
