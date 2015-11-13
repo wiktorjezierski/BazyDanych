@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
  * Hello world!
  *
  */
-public class App 
+public class DataBaseController 
 {
     public static void main( String[] args )
     {
@@ -21,7 +21,7 @@ public class App
         wyp.setDataWyp(new Date(2015,10,10));
         wyp.setIdFaktury("100");
         wyp.setPeselPrac("00000000");
-        wyp.setPeselKlienta("000004");
+        wyp.setPeselKlienta("000005");
 
         //zapis
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BD2");
