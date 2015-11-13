@@ -21,7 +21,7 @@ public class App
         wyp.setDataWyp(new Date(2015,10,10));
         wyp.setIdFaktury("100");
         wyp.setPeselPrac("00000000");
-        wyp.setPeselKlienta("000003");
+        wyp.setPeselKlienta("000004");
 
         //zapis
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BD2");
