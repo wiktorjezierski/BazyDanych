@@ -34,14 +34,14 @@ public class DataBaseController {
 		// entityManagerFactory.close();
 
 		DataBaseController db = new DataBaseController();
-//		db.saveToDataBase(wyp);
-//		int ile = db.findAll(WypozyczeniaEntity.class).size();
+		// db.saveToDataBase(wyp);
+		// int ile = db.findAll(WypozyczeniaEntity.class).size();
 		WypozyczeniaEntity wyp1 = (WypozyczeniaEntity) db.findByPrimaryKey(WypozyczeniaEntity.class, 1);
 		JOptionPane.showMessageDialog(null, wyp1.toString());
 	}
 
 	/**
-	 * zapisuje do bazy danych, przyjmuje szablon
+	 * Save object into Data Base, function is template
 	 */
 	public <T> boolean saveToDataBase(T param) {
 		try {
@@ -84,7 +84,7 @@ public class DataBaseController {
 
 	/**
 	 * Second param is int for class which id is type of int
-	 * */
+	 */
 	public Object findByPrimaryKey(Class type, int primaryKey) {
 		try {
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BD2");
@@ -104,10 +104,10 @@ public class DataBaseController {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Second param is String for class which id is type of String
-	 * */
+	 */
 	public Object findByPrimaryKey(Class type, String primaryKey) {
 		try {
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BD2");
@@ -115,7 +115,6 @@ public class DataBaseController {
 			entityManager.getTransaction().begin();
 
 			Object ob = type.newInstance();
-
 			ob = entityManager.find(type, primaryKey);
 
 			entityManager.getTransaction().commit();
