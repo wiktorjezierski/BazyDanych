@@ -4,14 +4,13 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
-
 /**
  * The persistent class for the Wypozyczenia database table.
  * 
  */
 @Entity
-@Table(name="Wypozyczenia")
-@NamedQuery(name="WypozyczeniaEntity.findAll", query="SELECT w FROM WypozyczeniaEntity w")
+@Table(name = "Wypozyczenia")
+@NamedQuery(name = "WypozyczeniaEntity.findAll", query = "SELECT w FROM WypozyczeniaEntity w")
 public class WypozyczeniaEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -19,19 +18,19 @@ public class WypozyczeniaEntity implements Serializable {
 	private int id;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="DATA_WYP")
+	@Column(name = "DATA_WYP")
 	private Date dataWyp;
 
-	@Column(name="ID_EGZEMPLARZA")
+	@Column(name = "ID_EGZEMPLARZA")
 	private String idEgzemplarza;
 
-	@Column(name="ID_FAKTURY")
+	@Column(name = "ID_FAKTURY")
 	private String idFaktury;
 
-	@Column(name="PESEL_KLIENTA")
+	@Column(name = "PESEL_KLIENTA")
 	private String peselKlienta;
 
-	@Column(name="PESEL_PRAC")
+	@Column(name = "PESEL_PRAC")
 	private String peselPrac;
 
 	public WypozyczeniaEntity() {
@@ -83,6 +82,12 @@ public class WypozyczeniaEntity implements Serializable {
 
 	public void setPeselPrac(String peselPrac) {
 		this.peselPrac = peselPrac;
+	}
+
+	@Override
+	public String toString() {
+		return "WypozyczeniaEntity [id=" + id + ", dataWyp=" + dataWyp + ", idEgzemplarza=" + idEgzemplarza
+				+ ", idFaktury=" + idFaktury + ", peselKlienta=" + peselKlienta + ", peselPrac=" + peselPrac + "]";
 	}
 
 }

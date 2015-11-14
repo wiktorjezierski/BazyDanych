@@ -14,7 +14,7 @@ import java.util.Date;
 @NamedQuery(name="LogEntity.findAll", query="SELECT l FROM LogEntity l")
 public class LogEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	private int id;
 
