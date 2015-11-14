@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b78a6eac-bb5d-45d5-aa07-c942e5699a30" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BD2/src/main/java/BazyDanychProjekt/BD2/DataBaseController.java" afterPath="$PROJECT_DIR$/../BD2/src/main/java/BazyDanychProjekt/BD2/DataBaseController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../BD2/target/classes/META-INF/maven/BazyDanychProjekt/BD2/pom.properties" afterPath="$PROJECT_DIR$/../BD2/target/classes/META-INF/maven/BazyDanychProjekt/BD2/pom.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="BazyDanych2Projekt.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -641,7 +640,7 @@
       <workItem from="1447439190105" duration="694000" />
       <workItem from="1447443034587" duration="2708000" />
       <workItem from="1447507449892" duration="894000" />
-      <workItem from="1447524255294" duration="29000" />
+      <workItem from="1447524255294" duration="599000" />
     </task>
     <task id="LOCAL-00001" summary="Testy autoincrementu bazy">
       <created>1447271831743</created>
@@ -665,7 +664,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8745000" />
+    <option name="totallyTimeSpent" value="9315000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -678,7 +677,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32905295" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
