@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
  * @author Wiktor Jezierski
  */
 public class DataBaseController {
-	
+
 	private final String persistenceName = "BD2";
-	
+
 	public static void main(String[] args) {
 		WypozyczeniaEntity wyp = new WypozyczeniaEntity();
 		wyp.setIdEgzemplarza("7");
@@ -38,10 +38,12 @@ public class DataBaseController {
 
 		DataBaseController db = new DataBaseController();
 		// db.saveToDataBase(wyp);
-		List<WypozyczeniaEntity> lista = (List<WypozyczeniaEntity>)db.findAll(WypozyczeniaEntity.class);
-		JOptionPane.showMessageDialog(null, lista.get(1).toString());
-//		WypozyczeniaEntity wyp1 = (WypozyczeniaEntity) db.findByPrimaryKey(WypozyczeniaEntity.class, 1);
-//		JOptionPane.showMessageDialog(null, wyp1.toString());
+		
+//		List<WypozyczeniaEntity> lista = (List<WypozyczeniaEntity>) db.findAll(WypozyczeniaEntity.class);
+//		JOptionPane.showMessageDialog(null, lista.get(1).toString());
+		
+		 WypozyczeniaEntity wyp1 = (WypozyczeniaEntity)db.findByPrimaryKey(WypozyczeniaEntity.class, 2);
+		 JOptionPane.showMessageDialog(null, wyp1.toString());
 	}
 
 	/**
@@ -52,14 +54,15 @@ public class DataBaseController {
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(persistenceName);
 			EntityManager entityManager = entityManagerFactory.createEntityManager();
 			entityManager.getTransaction().begin();
-			
+
 			entityManager.persist(param);
-			
+
 			entityManager.getTransaction().commit();
 			entityManager.close();
 			entityManagerFactory.close();
 			return true;
 		} catch (Exception e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -73,15 +76,14 @@ public class DataBaseController {
 			EntityManager entityManager = entityManagerFactory.createEntityManager();
 			entityManager.getTransaction().begin();
 
-			Object ob = type.newInstance();
-			Query query = entityManager.createQuery("from " + ob.getClass().getSimpleName());
+			Query query = entityManager.createQuery("from " + type.getSimpleName());
 			List<?> result = (List<?>) query.getResultList();
-			
+
 			entityManager.getTransaction().commit();
 			entityManager.close();
 			entityManagerFactory.close();
 			return result;
-		} catch (InstantiationException | IllegalAccessException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -96,14 +98,13 @@ public class DataBaseController {
 			EntityManager entityManager = entityManagerFactory.createEntityManager();
 			entityManager.getTransaction().begin();
 
-			Object ob = type.newInstance();
-			ob = entityManager.find(type, primaryKey);
+			Object ob = entityManager.find(type, primaryKey);
 
 			entityManager.getTransaction().commit();
 			entityManager.close();
 			entityManagerFactory.close();
 			return ob;
-		} catch (InstantiationException | IllegalAccessException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -118,41 +119,39 @@ public class DataBaseController {
 			EntityManager entityManager = entityManagerFactory.createEntityManager();
 			entityManager.getTransaction().begin();
 
-			Object ob = type.newInstance();
-			ob = entityManager.find(type, primaryKey);
+			Object ob = entityManager.find(type, primaryKey);
 
 			entityManager.getTransaction().commit();
 			entityManager.close();
 			entityManagerFactory.close();
 			return ob;
-		} catch (InstantiationException | IllegalAccessException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	/**
-	 * Function remove record from database
-	 * make tests!!!
-	 * */
-	public <T> boolean remove(T obj){
+	 * Function remove record from database make tests!!!
+	 */
+	public <T> boolean remove(T obj) {
 		try {
 			EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(persistenceName);
 			EntityManager entityManager = entityManagerFactory.createEntityManager();
 			entityManager.getTransaction().begin();
-			
+
 			entityManager.remove(obj);
-			
+
 			entityManager.getTransaction().commit();
 			entityManager.close();
 			entityManagerFactory.close();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
-		}			
+		}
 		return true;
-		
+
 	}
-	
+
 }
