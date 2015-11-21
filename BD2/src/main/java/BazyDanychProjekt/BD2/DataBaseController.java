@@ -43,12 +43,11 @@ public class DataBaseController {
 		DataBaseController db = new DataBaseController();
 		// db.remove(wyp);
 
-		// List<WypozyczeniaEntity> lista = (List<WypozyczeniaEntity>)
-		// db.findAll(WypozyczeniaEntity.class);
-		// JOptionPane.showMessageDialog(null, lista.get(1).toString());
+		 List<WypozyczeniaEntity> lista = db.findAll(WypozyczeniaEntity.class);
+		 JOptionPane.showMessageDialog(null, lista.get(1).toString());
 
-		WypozyczeniaEntity wyp1 = (WypozyczeniaEntity) db.findByPrimaryKey(WypozyczeniaEntity.class, 18);
-		// JOptionPane.showMessageDialog(null, wyp1.toString());
+//		WypozyczeniaEntity wyp1 = db.findByPrimaryKey(WypozyczeniaEntity.class, 17);
+//		JOptionPane.showMessageDialog(null, wyp1.toString());
 		db.closeConnection();
 	}
 
@@ -103,12 +102,13 @@ public class DataBaseController {
 
 	/**
 	 * Function search all rows in Table
+	 * @param <T>
 	 * */
-	public List<?> findAll(Class type) {
+	public <T> List<T> findAll(Class<T> type) {
 		try {
 			entityManager.getTransaction().begin();
 			Query query = entityManager.createQuery("from " + type.getSimpleName());
-			List<?> result = (List<?>) query.getResultList();
+			List<T> result = (List<T>) query.getResultList();
 			entityManager.getTransaction().commit();
 
 			return result;
@@ -120,11 +120,12 @@ public class DataBaseController {
 
 	/**
 	 * Second param is int for class which id is type of int
+	 * @param <T>
 	 */
-	public Object findByPrimaryKey(Class type, int primaryKey) {
+	public <T> T findByPrimaryKey(Class<T> type, int primaryKey) {
 		try {
 			entityManager.getTransaction().begin();
-			Object ob = entityManager.find(type, primaryKey);
+			T ob = (T) entityManager.find(type, primaryKey);
 			entityManager.getTransaction().commit();
 
 			return ob;
@@ -136,11 +137,12 @@ public class DataBaseController {
 
 	/**
 	 * Second param is String for class which id is type of String
+	 * @param <T>
 	 */
-	public Object findByPrimaryKey(Class type, String primaryKey) {
+	public <T> T findByPrimaryKey(Class<T> type, String primaryKey) {
 		try {
 			entityManager.getTransaction().begin();
-			Object ob = entityManager.find(type, primaryKey);
+			T ob = (T) entityManager.find(type, primaryKey);
 			entityManager.getTransaction().commit();
 
 			return ob;
@@ -167,8 +169,8 @@ public class DataBaseController {
 	}
 
 	/**
-	 * Function execute query SQL Languager
-	 * PAY ATTENTION for * in SELECT
+	 * Function execute query SQL Language
+	 * PAY ATTENTION for * in SELECT, remember to make cast
 	 * */
 	public List<?> executeQuery(String sql) {
 		try {
@@ -183,5 +185,5 @@ public class DataBaseController {
 		}
 		return null;
 	}
-
+	
 }
