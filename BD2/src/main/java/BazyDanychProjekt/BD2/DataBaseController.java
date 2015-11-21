@@ -47,12 +47,15 @@ public class DataBaseController {
 		// db.findAll(WypozyczeniaEntity.class);
 		// JOptionPane.showMessageDialog(null, lista.get(1).toString());
 
-		List<WypozyczeniaEntity> lista = db.findByNamedQuery(WypozyczeniaEntity.class, "test2", 17);
-		JOptionPane.showMessageDialog(null, lista.get(0).toString());
+//		List<WypozyczeniaEntity> lista = db.findByNamedQuery(WypozyczeniaEntity.class, "test2", 17);
+//		JOptionPane.showMessageDialog(null, lista.get(0).toString());
 
 		// WypozyczeniaEntity wyp1 =
 		// db.findByPrimaryKey(WypozyczeniaEntity.class, 17);
 		// JOptionPane.showMessageDialog(null, wyp1.toString());
+		
+		List<WypozyczeniaEntity> list = (List<WypozyczeniaEntity>) db.executeQuery("select w from WypozyczeniaEntity w");
+		JOptionPane.showMessageDialog(null, list.get(0).toString());
 		db.closeConnection();
 	}
 
