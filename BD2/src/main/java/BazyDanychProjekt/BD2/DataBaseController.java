@@ -43,17 +43,22 @@ public class DataBaseController {
 		DataBaseController db = new DataBaseController();
 		// db.remove(wyp);
 
-		 List<WypozyczeniaEntity> lista = db.findAll(WypozyczeniaEntity.class);
-		 JOptionPane.showMessageDialog(null, lista.get(1).toString());
+		// List<WypozyczeniaEntity> lista =
+		// db.findAll(WypozyczeniaEntity.class);
+		// JOptionPane.showMessageDialog(null, lista.get(1).toString());
 
-//		WypozyczeniaEntity wyp1 = db.findByPrimaryKey(WypozyczeniaEntity.class, 17);
-//		JOptionPane.showMessageDialog(null, wyp1.toString());
+		List<WypozyczeniaEntity> lista = db.findByNamedQuery(WypozyczeniaEntity.class, "test2", 17);
+		JOptionPane.showMessageDialog(null, lista.get(0).toString());
+
+		// WypozyczeniaEntity wyp1 =
+		// db.findByPrimaryKey(WypozyczeniaEntity.class, 17);
+		// JOptionPane.showMessageDialog(null, wyp1.toString());
 		db.closeConnection();
 	}
 
 	/**
 	 * standard constructor
-	 * */
+	 */
 	public DataBaseController() {
 		entityManagerFactory = Persistence.createEntityManagerFactory(persistenceName);
 		entityManager = entityManagerFactory.createEntityManager();
@@ -70,7 +75,7 @@ public class DataBaseController {
 
 	/**
 	 * Open connection with database
-	 * */
+	 */
 	public void openConnection() {
 		entityManagerFactory = Persistence.createEntityManagerFactory(persistenceName);
 		entityManager = entityManagerFactory.createEntityManager();
@@ -78,10 +83,24 @@ public class DataBaseController {
 
 	/**
 	 * Close connection with database
-	 * */
+	 */
 	public void closeConnection() {
 		entityManager.close();
 		entityManagerFactory.close();
+	}
+
+	/**
+	 * Open transaction for JPA entityManager
+	 */
+	private void commitTransaction() {
+		entityManager.getTransaction().commit();
+	}
+
+	/**
+	 * Close transaction for JPA entityManager
+	 */
+	private void beginTransaction() {
+		entityManager.getTransaction().begin();
 	}
 
 	/**
@@ -89,9 +108,9 @@ public class DataBaseController {
 	 */
 	public <T> boolean saveToDataBase(T param) {
 		try {
-			entityManager.getTransaction().begin();
+			beginTransaction();
 			entityManager.persist(param);
-			entityManager.getTransaction().commit();
+			commitTransaction();
 
 			return true;
 		} catch (Exception e) {
@@ -102,14 +121,15 @@ public class DataBaseController {
 
 	/**
 	 * Function search all rows in Table
+	 * 
 	 * @param <T>
-	 * */
+	 */
 	public <T> List<T> findAll(Class<T> type) {
 		try {
-			entityManager.getTransaction().begin();
+			beginTransaction();
 			Query query = entityManager.createQuery("from " + type.getSimpleName());
 			List<T> result = (List<T>) query.getResultList();
-			entityManager.getTransaction().commit();
+			commitTransaction();
 
 			return result;
 		} catch (Exception e) {
@@ -120,13 +140,14 @@ public class DataBaseController {
 
 	/**
 	 * Second param is int for class which id is type of int
+	 * 
 	 * @param <T>
 	 */
 	public <T> T findByPrimaryKey(Class<T> type, int primaryKey) {
 		try {
-			entityManager.getTransaction().begin();
+			beginTransaction();
 			T ob = (T) entityManager.find(type, primaryKey);
-			entityManager.getTransaction().commit();
+			commitTransaction();
 
 			return ob;
 		} catch (Exception e) {
@@ -137,13 +158,14 @@ public class DataBaseController {
 
 	/**
 	 * Second param is String for class which id is type of String
+	 * 
 	 * @param <T>
 	 */
 	public <T> T findByPrimaryKey(Class<T> type, String primaryKey) {
 		try {
-			entityManager.getTransaction().begin();
+			beginTransaction();
 			T ob = (T) entityManager.find(type, primaryKey);
-			entityManager.getTransaction().commit();
+			commitTransaction();
 
 			return ob;
 		} catch (Exception e) {
@@ -157,9 +179,9 @@ public class DataBaseController {
 	 */
 	public <T> boolean remove(T obj) {
 		try {
-			entityManager.getTransaction().begin();
+			beginTransaction();
 			entityManager.remove(obj);
-			entityManager.getTransaction().commit();
+			commitTransaction();
 
 			return true;
 		} catch (Exception e) {
@@ -169,15 +191,15 @@ public class DataBaseController {
 	}
 
 	/**
-	 * Function execute query SQL Language
-	 * PAY ATTENTION for * in SELECT, remember to make cast
-	 * */
+	 * Function execute query SQL Language PAY ATTENTION for * in SELECT,
+	 * remember to make cast
+	 */
 	public List<?> executeQuery(String sql) {
 		try {
-			entityManager.getTransaction().begin();
+			beginTransaction();
 			Query query = entityManager.createQuery(sql);
 			List<?> result = (List<?>) query.getResultList();
-			entityManager.getTransaction().commit();
+			commitTransaction();
 
 			return result;
 		} catch (Exception e) {
@@ -185,5 +207,41 @@ public class DataBaseController {
 		}
 		return null;
 	}
+
+	public <T> List<T> findByNamedQuery(Class<T> type, String queryName, String... value) {
+		try {
+			beginTransaction();
+			Query query = entityManager.createNamedQuery(queryName);
+			for (int i = 0; i < value.length; i++) {
+				query.setParameter(i + 1, value[i]);
+			}
+			List<T> result = (List<T>) query.getResultList();
+			commitTransaction();
+
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
 	
+	public <T> List<T> findByNamedQuery(Class<T> type, String queryName, int... value) {
+		try {
+			beginTransaction();
+			Query query = entityManager.createNamedQuery(queryName);
+			for (int i = 0; i < value.length; i++) {
+				query.setParameter(i + 1, value[i]);
+			}
+			List<T> result = (List<T>) query.getResultList();
+			commitTransaction();
+
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
 }
