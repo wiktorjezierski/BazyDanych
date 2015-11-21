@@ -12,8 +12,8 @@ import java.util.Date;
 @Table(name = "Wypozyczenia")
 @NamedQueries({
 	@NamedQuery(name = "WypozyczeniaEntity.findAll", query = "SELECT w FROM WypozyczeniaEntity w"),
-	@NamedQuery(name = "test", query = "SELECT w FROM WypozyczeniaEntity w WHERE w.idEgzemplarza = ?1"),
-	@NamedQuery(name = "test2", query = "SELECT w FROM WypozyczeniaEntity w WHERE w.id = ?1")
+	@NamedQuery(name = "test", query = "SELECT w FROM WypozyczeniaEntity w WHERE w.peselKlienta Like ?1"),
+	@NamedQuery(name = "test2", query = "SELECT w FROM WypozyczeniaEntity w WHERE w.id Like ?1")
 	})
 public class WypozyczeniaEntity implements Serializable {
 	private static final long serialVersionUID = 1L;

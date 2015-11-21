@@ -54,8 +54,8 @@ public class DataBaseController {
 		// db.findByPrimaryKey(WypozyczeniaEntity.class, 17);
 		// JOptionPane.showMessageDialog(null, wyp1.toString());
 		
-		List<WypozyczeniaEntity> list = (List<WypozyczeniaEntity>) db.executeQuery("select w from WypozyczeniaEntity w");
-		JOptionPane.showMessageDialog(null, list.get(0).toString());
+		List<WypozyczeniaEntity> list =  db.executeNamedQueryForLike(WypozyczeniaEntity.class, "test", "1");
+		JOptionPane.showMessageDialog(null, list.size());
 		db.closeConnection();
 	}
 
@@ -193,6 +193,32 @@ public class DataBaseController {
 		return null;
 	}
 
+	/**
+	 * Execute NamedQuery with char % before and after value in Like
+	 * */
+	public <T> List<T> executeNamedQueryForLike(Class<T> type, String queryName, String... value) {
+		try {
+			String x = "%";
+			
+			beginTransaction();
+			Query query = entityManager.createNamedQuery(queryName);
+			for (int i = 0; i < value.length; i++) {
+				query.setParameter(i + 1, x+value[i]+x);
+			}
+			List<T> result = (List<T>) query.getResultList();
+			commitTransaction();
+
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	/**
+	 * 
+	 * */
 	public <T> List<T> executeNamedQuery(Class<T> type, String queryName, String... value) {
 		try {
 			beginTransaction();
@@ -211,7 +237,31 @@ public class DataBaseController {
 		return null;
 	}
 	
+	/**
+	 * 
+	 * */
 	public <T> List<T> executeNamedQuery(Class<T> type, String queryName, int... value) {
+		try {
+			beginTransaction();
+			Query query = entityManager.createNamedQuery(queryName);
+			for (int i = 0; i < value.length; i++) {
+				query.setParameter(i + 1, value[i]);
+			}
+			List<T> result = (List<T>) query.getResultList();
+			commitTransaction();
+
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+	
+	/**
+	 * was not tested
+	 * */
+	public <T> List<T> executeNamedQuery(Class<T> type, String queryName, Date... value) {
 		try {
 			beginTransaction();
 			Query query = entityManager.createNamedQuery(queryName);
