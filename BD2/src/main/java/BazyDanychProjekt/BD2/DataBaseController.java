@@ -121,6 +121,22 @@ public class DataBaseController {
 			return false;
 		}
 	}
+	
+	/**
+	 * Function remove record from database make tests!!!
+	 */
+	public <T> boolean remove(T obj) {
+		try {
+			beginTransaction();
+			entityManager.remove(obj);
+			commitTransaction();
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 	/**
 	 * Function search all rows in Table
@@ -177,40 +193,6 @@ public class DataBaseController {
 		return null;
 	}
 
-	/**
-	 * Function remove record from database make tests!!!
-	 */
-	public <T> boolean remove(T obj) {
-		try {
-			beginTransaction();
-			entityManager.remove(obj);
-			commitTransaction();
-
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	/**
-	 * Function execute query SQL Language PAY ATTENTION for * in SELECT,
-	 * remember to make cast
-	 */
-	public List<?> executeQuery(String sql) {
-		try {
-			beginTransaction();
-			Query query = entityManager.createQuery(sql);
-			List<?> result = (List<?>) query.getResultList();
-			commitTransaction();
-
-			return result;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 	public <T> List<T> findByNamedQuery(Class<T> type, String queryName, String... value) {
 		try {
 			beginTransaction();
@@ -244,6 +226,24 @@ public class DataBaseController {
 			e.printStackTrace();
 		}
 
+		return null;
+	}
+	
+	/**
+	 * Function execute query SQL Language PAY ATTENTION for * in SELECT,
+	 * remember to make cast
+	 */
+	public List<?> executeQuery(String sql) {
+		try {
+			beginTransaction();
+			Query query = entityManager.createQuery(sql);
+			List<?> result = (List<?>) query.getResultList();
+			commitTransaction();
+
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
