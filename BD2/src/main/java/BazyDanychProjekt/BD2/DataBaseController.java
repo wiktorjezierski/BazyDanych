@@ -198,7 +198,7 @@ public class DataBaseController {
 	 * */
 	public <T> List<T> executeNamedQueryForLike(Class<T> type, String queryName, String... value) {
 		try {
-			String x = "%";
+			String x = "%"; 
 			
 			beginTransaction();
 			Query query = entityManager.createNamedQuery(queryName);
