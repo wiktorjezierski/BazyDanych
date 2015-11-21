@@ -193,7 +193,7 @@ public class DataBaseController {
 		return null;
 	}
 
-	public <T> List<T> findByNamedQuery(Class<T> type, String queryName, String... value) {
+	public <T> List<T> executeNamedQuery(Class<T> type, String queryName, String... value) {
 		try {
 			beginTransaction();
 			Query query = entityManager.createNamedQuery(queryName);
@@ -211,7 +211,7 @@ public class DataBaseController {
 		return null;
 	}
 	
-	public <T> List<T> findByNamedQuery(Class<T> type, String queryName, int... value) {
+	public <T> List<T> executeNamedQuery(Class<T> type, String queryName, int... value) {
 		try {
 			beginTransaction();
 			Query query = entityManager.createNamedQuery(queryName);
