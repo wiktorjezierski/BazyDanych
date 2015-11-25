@@ -105,4 +105,15 @@ public class FakturyEntity implements Serializable {
 		this.klienci = klienci;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "FakturyEntity [idFaktury=" + idFaktury + ", dataWyst=" + dataWyst + ", kwota=" + kwota + ", pracownicy="
+				+ pracownicy + ", wypozyczenias=" + wypozyczenias + ", klienci=" + klienci + "]";
+	}
+	
+	
+
 }

@@ -159,4 +159,15 @@ public class PracownicyEntity implements Serializable {
 		return wypozyczenia;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "PracownicyEntity [peselPrac=" + peselPrac + ", adresEmail=" + adresEmail + ", dataStartu=" + dataStartu
+				+ ", imie=" + imie + ", nazwisko=" + nazwisko + ", stanowisko=" + stanowisko + ", zwolniony="
+				+ zwolniony + ", fakturies=" + fakturies + ", logowanie=" + logowanie + ", wypozyczenias="
+				+ wypozyczenias + "]";
+	}
+
 }

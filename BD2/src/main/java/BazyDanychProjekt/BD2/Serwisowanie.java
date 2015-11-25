@@ -75,4 +75,13 @@ public class Serwisowanie implements Serializable {
 		this.serwi = serwi;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Serwisowanie [id=" + id + ", data=" + data + ", koszt=" + koszt + ", egzemplarz=" + egzemplarz
+				+ ", serwi=" + serwi + "]";
+	}
+
 }

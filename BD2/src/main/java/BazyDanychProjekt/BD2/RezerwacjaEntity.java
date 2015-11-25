@@ -86,4 +86,14 @@ public class RezerwacjaEntity implements Serializable {
 		this.peselPrac = peselPrac;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "RezerwacjaEntity [id=" + id + ", dataKoniec=" + dataKoniec + ", dataStart=" + dataStart
+				+ ", idEgzemplarz=" + idEgzemplarz + ", peselKlienta=" + peselKlienta + ", peselPrac=" + peselPrac
+				+ "]";
+	}
+
 }

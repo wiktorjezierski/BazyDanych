@@ -144,4 +144,16 @@ public class KlienciEntity implements Serializable {
 		return wypozyczenia;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "KlienciEntity [pesel=" + pesel + ", iloscTransakcji=" + iloscTransakcji + ", imie=" + imie
+				+ ", nazwisko=" + nazwisko + ", nrDowodu=" + nrDowodu + ", nrTelefonu=" + nrTelefonu + ", uwagi="
+				+ uwagi + ", fakturies=" + fakturies + ", wypozyczenias=" + wypozyczenias + "]";
+	}
+	
+	
+
 }

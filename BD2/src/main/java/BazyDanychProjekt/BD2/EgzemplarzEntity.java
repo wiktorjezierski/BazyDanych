@@ -142,4 +142,16 @@ public class EgzemplarzEntity implements Serializable {
 		this.serwi = serwi;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "EgzemplarzEntity [id=" + id + ", dataOstPrzeg=" + dataOstPrzeg + ", dataZakupu=" + dataZakupu
+				+ ", wycofany=" + wycofany + ", wypozyczenias=" + wypozyczenias + ", serwisowanies=" + serwisowanies
+				+ ", sprzet=" + sprzet + ", serwi=" + serwi + "]";
+	}
+	
+	
+
 }

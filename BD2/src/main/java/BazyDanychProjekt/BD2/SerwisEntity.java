@@ -111,4 +111,13 @@ public class SerwisEntity implements Serializable {
 		return serwisowany;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "SerwisEntity [id=" + id + ", adres=" + adres + ", nazwa=" + nazwa + ", telefon=" + telefon
+				+ ", egzemplarzs=" + egzemplarzs + ", serwisowanies=" + serwisowanies + "]";
+	}
+
 }

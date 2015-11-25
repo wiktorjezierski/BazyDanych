@@ -61,4 +61,14 @@ public class LogowanieEntity implements Serializable {
 		this.pracownicy = pracownicy;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "LogowanieEntity [pesel=" + pesel + ", haslo=" + haslo + ", login=" + login + ", pracownicy="
+				+ pracownicy + "]";
+	}
+	
+
 }

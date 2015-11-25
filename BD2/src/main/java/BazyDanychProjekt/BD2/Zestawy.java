@@ -64,4 +64,12 @@ public class Zestawy implements Serializable {
 		this.sprzet = sprzet;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Zestawy [id=" + id + ", dataEnd=" + dataEnd + ", idZestawu=" + idZestawu + ", sprzet=" + sprzet + "]";
+	}
+
 }

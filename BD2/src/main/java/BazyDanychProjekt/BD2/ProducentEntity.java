@@ -85,4 +85,13 @@ public class ProducentEntity implements Serializable {
 		return sprzet;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ProducentEntity [id=" + id + ", adres=" + adres + ", nazwa=" + nazwa + ", telefon=" + telefon
+				+ ", sprzets=" + sprzets + "]";
+	}
+
 }

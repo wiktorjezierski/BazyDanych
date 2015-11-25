@@ -72,4 +72,15 @@ public class LogEntity implements Serializable {
 		this.tabela = tabela;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "LogEntity [id=" + id + ", data=" + data + ", idKrotki=" + idKrotki + ", rodzajOper=" + rodzajOper
+				+ ", tabela=" + tabela + "]";
+	}
+	
+	
+
 }

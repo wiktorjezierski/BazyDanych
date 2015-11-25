@@ -157,4 +157,14 @@ public class SprzetEntity implements Serializable {
 		this.producent = producent;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "SprzetEntity [id=" + id + ", dataZakupu=" + dataZakupu + ", dostepnych=" + dostepnych + ", ilosc="
+				+ ilosc + ", kategoria=" + kategoria + ", marka=" + marka + ", nazwa=" + nazwa + ", egzemplarzs="
+				+ egzemplarzs + ", zestawies=" + zestawies + ", producent=" + producent + "]";
+	}
+
 }

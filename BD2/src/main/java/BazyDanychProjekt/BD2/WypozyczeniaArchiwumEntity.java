@@ -85,4 +85,13 @@ public class WypozyczeniaArchiwumEntity implements Serializable {
 		this.peselPrac = peselPrac;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "WypozyczeniaArchiwumEntity [id=" + id + ", dataWyp=" + dataWyp + ", idEgzemplarza=" + idEgzemplarza
+				+ ", idFaktury=" + idFaktury + ", peselKlienta=" + peselKlienta + ", peselPrac=" + peselPrac + "]";
+	}
+
 }

@@ -93,4 +93,13 @@ public class WypozyczeniaEntity implements Serializable {
 		this.egzemplarz = egzemplarz;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "WypozyczeniaEntity [id=" + id + ", dataWyp=" + dataWyp + ", pracownicy=" + pracownicy + ", faktury="
+				+ faktury + ", klienci=" + klienci + ", egzemplarz=" + egzemplarz + "]";
+	}
+
 }
