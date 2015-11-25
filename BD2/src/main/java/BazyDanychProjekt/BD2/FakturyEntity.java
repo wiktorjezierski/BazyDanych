@@ -3,6 +3,7 @@ package BazyDanychProjekt.BD2;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -17,7 +18,7 @@ public class FakturyEntity implements Serializable {
 
 	@Id
 	@Column(name="ID_FAKTURY")
-	private String idFaktury;
+	private int idFaktury;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="DATA_WYST")
@@ -25,22 +26,28 @@ public class FakturyEntity implements Serializable {
 
 	private float kwota;
 
-	@Column(name="PESEL_KLIENTA")
-	private String peselKlienta;
-
 	//bi-directional many-to-one association to PracownicyEntity
 	@ManyToOne
 	@JoinColumn(name="PESEL_PRAC")
 	private PracownicyEntity pracownicy;
 
+	//bi-directional many-to-one association to WypozyczeniaEntity
+	@OneToMany(mappedBy="faktury")
+	private List<WypozyczeniaEntity> wypozyczenias;
+
+	//bi-directional many-to-one association to KlienciEntity
+	@ManyToOne
+	@JoinColumn(name="PESEL_KLIENTA")
+	private KlienciEntity klienci;
+
 	public FakturyEntity() {
 	}
 
-	public String getIdFaktury() {
+	public int getIdFaktury() {
 		return this.idFaktury;
 	}
 
-	public void setIdFaktury(String idFaktury) {
+	public void setIdFaktury(int idFaktury) {
 		this.idFaktury = idFaktury;
 	}
 
@@ -60,20 +67,42 @@ public class FakturyEntity implements Serializable {
 		this.kwota = kwota;
 	}
 
-	public String getPeselKlienta() {
-		return this.peselKlienta;
-	}
-
-	public void setPeselKlienta(String peselKlienta) {
-		this.peselKlienta = peselKlienta;
-	}
-
 	public PracownicyEntity getPracownicy() {
 		return this.pracownicy;
 	}
 
 	public void setPracownicy(PracownicyEntity pracownicy) {
 		this.pracownicy = pracownicy;
+	}
+
+	public List<WypozyczeniaEntity> getWypozyczenias() {
+		return this.wypozyczenias;
+	}
+
+	public void setWypozyczenias(List<WypozyczeniaEntity> wypozyczenias) {
+		this.wypozyczenias = wypozyczenias;
+	}
+
+	public WypozyczeniaEntity addWypozyczenia(WypozyczeniaEntity wypozyczenia) {
+		getWypozyczenias().add(wypozyczenia);
+		wypozyczenia.setFaktury(this);
+
+		return wypozyczenia;
+	}
+
+	public WypozyczeniaEntity removeWypozyczenia(WypozyczeniaEntity wypozyczenia) {
+		getWypozyczenias().remove(wypozyczenia);
+		wypozyczenia.setFaktury(null);
+
+		return wypozyczenia;
+	}
+
+	public KlienciEntity getKlienci() {
+		return this.klienci;
+	}
+
+	public void setKlienci(KlienciEntity klienci) {
+		this.klienci = klienci;
 	}
 
 }

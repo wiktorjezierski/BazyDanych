@@ -2,6 +2,7 @@ package BazyDanychProjekt.BD2;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -15,7 +16,7 @@ public class SerwisEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String id;
+	private int id;
 
 	private String adres;
 
@@ -23,14 +24,22 @@ public class SerwisEntity implements Serializable {
 
 	private String telefon;
 
+	//bi-directional many-to-one association to EgzemplarzEntity
+	@OneToMany(mappedBy="serwi")
+	private List<EgzemplarzEntity> egzemplarzs;
+
+	//bi-directional many-to-one association to Serwisowanie
+	@OneToMany(mappedBy="serwi")
+	private List<Serwisowanie> serwisowanies;
+
 	public SerwisEntity() {
 	}
 
-	public String getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -58,14 +67,48 @@ public class SerwisEntity implements Serializable {
 		this.telefon = telefon;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "SerwisEntity [id=" + id + ", adres=" + adres + ", nazwa=" + nazwa + ", telefon=" + telefon + "]";
+	public List<EgzemplarzEntity> getEgzemplarzs() {
+		return this.egzemplarzs;
 	}
-	
-	
+
+	public void setEgzemplarzs(List<EgzemplarzEntity> egzemplarzs) {
+		this.egzemplarzs = egzemplarzs;
+	}
+
+	public EgzemplarzEntity addEgzemplarz(EgzemplarzEntity egzemplarz) {
+		getEgzemplarzs().add(egzemplarz);
+		egzemplarz.setSerwi(this);
+
+		return egzemplarz;
+	}
+
+	public EgzemplarzEntity removeEgzemplarz(EgzemplarzEntity egzemplarz) {
+		getEgzemplarzs().remove(egzemplarz);
+		egzemplarz.setSerwi(null);
+
+		return egzemplarz;
+	}
+
+	public List<Serwisowanie> getSerwisowanies() {
+		return this.serwisowanies;
+	}
+
+	public void setSerwisowanies(List<Serwisowanie> serwisowanies) {
+		this.serwisowanies = serwisowanies;
+	}
+
+	public Serwisowanie addSerwisowany(Serwisowanie serwisowany) {
+		getSerwisowanies().add(serwisowany);
+		serwisowany.setSerwi(this);
+
+		return serwisowany;
+	}
+
+	public Serwisowanie removeSerwisowany(Serwisowanie serwisowany) {
+		getSerwisowanies().remove(serwisowany);
+		serwisowany.setSerwi(null);
+
+		return serwisowany;
+	}
 
 }

@@ -16,7 +16,7 @@ public class RezerwacjaEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String id;
+	private int id;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="DATA_KONIEC")
@@ -38,11 +38,11 @@ public class RezerwacjaEntity implements Serializable {
 	public RezerwacjaEntity() {
 	}
 
-	public String getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

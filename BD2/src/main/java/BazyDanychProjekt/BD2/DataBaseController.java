@@ -20,15 +20,6 @@ public class DataBaseController {
 	private EntityManager entityManager;
 
 	public static void main(String[] args) {
-		WypozyczeniaEntity wyp = new WypozyczeniaEntity();
-		wyp.setId(18);
-		wyp.setIdEgzemplarza("7");
-		wyp.setPeselKlienta("93101400538");
-		wyp.setDataWyp(new Date(2015, 10, 10));
-		wyp.setIdFaktury("100");
-		wyp.setPeselPrac("00000000");
-		wyp.setPeselKlienta("000011");
-
 		// zapis
 		// EntityManagerFactory entityManagerFactory =
 		// Persistence.createEntityManagerFactory("BD2");

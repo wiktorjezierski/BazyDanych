@@ -2,6 +2,7 @@ package BazyDanychProjekt.BD2;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -31,6 +32,14 @@ public class KlienciEntity implements Serializable {
 	private String nrTelefonu;
 
 	private String uwagi;
+
+	//bi-directional many-to-one association to FakturyEntity
+	@OneToMany(mappedBy="klienci")
+	private List<FakturyEntity> fakturies;
+
+	//bi-directional many-to-one association to WypozyczeniaEntity
+	@OneToMany(mappedBy="klienci")
+	private List<WypozyczeniaEntity> wypozyczenias;
 
 	public KlienciEntity() {
 	}
@@ -89,6 +98,50 @@ public class KlienciEntity implements Serializable {
 
 	public void setUwagi(String uwagi) {
 		this.uwagi = uwagi;
+	}
+
+	public List<FakturyEntity> getFakturies() {
+		return this.fakturies;
+	}
+
+	public void setFakturies(List<FakturyEntity> fakturies) {
+		this.fakturies = fakturies;
+	}
+
+	public FakturyEntity addFaktury(FakturyEntity faktury) {
+		getFakturies().add(faktury);
+		faktury.setKlienci(this);
+
+		return faktury;
+	}
+
+	public FakturyEntity removeFaktury(FakturyEntity faktury) {
+		getFakturies().remove(faktury);
+		faktury.setKlienci(null);
+
+		return faktury;
+	}
+
+	public List<WypozyczeniaEntity> getWypozyczenias() {
+		return this.wypozyczenias;
+	}
+
+	public void setWypozyczenias(List<WypozyczeniaEntity> wypozyczenias) {
+		this.wypozyczenias = wypozyczenias;
+	}
+
+	public WypozyczeniaEntity addWypozyczenia(WypozyczeniaEntity wypozyczenia) {
+		getWypozyczenias().add(wypozyczenia);
+		wypozyczenia.setKlienci(this);
+
+		return wypozyczenia;
+	}
+
+	public WypozyczeniaEntity removeWypozyczenia(WypozyczeniaEntity wypozyczenia) {
+		getWypozyczenias().remove(wypozyczenia);
+		wypozyczenia.setKlienci(null);
+
+		return wypozyczenia;
 	}
 
 }

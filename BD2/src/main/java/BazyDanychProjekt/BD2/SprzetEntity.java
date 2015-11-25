@@ -3,6 +3,7 @@ package BazyDanychProjekt.BD2;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -16,14 +17,13 @@ public class SprzetEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String id;
+	private int id;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="DATA_ZAKUPU")
 	private Date dataZakupu;
 
-	@Column(name="ID_PRODUCENT")
-	private String idProducent;
+	private int dostepnych;
 
 	private int ilosc;
 
@@ -33,14 +33,27 @@ public class SprzetEntity implements Serializable {
 
 	private String nazwa;
 
+	//bi-directional many-to-one association to EgzemplarzEntity
+	@OneToMany(mappedBy="sprzet")
+	private List<EgzemplarzEntity> egzemplarzs;
+
+	//bi-directional many-to-one association to Zestawy
+	@OneToMany(mappedBy="sprzet")
+	private List<Zestawy> zestawies;
+
+	//bi-directional many-to-one association to ProducentEntity
+	@ManyToOne
+	@JoinColumn(name="ID_PRODUCENT")
+	private ProducentEntity producent;
+
 	public SprzetEntity() {
 	}
 
-	public String getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -52,12 +65,12 @@ public class SprzetEntity implements Serializable {
 		this.dataZakupu = dataZakupu;
 	}
 
-	public String getIdProducent() {
-		return this.idProducent;
+	public int getDostepnych() {
+		return this.dostepnych;
 	}
 
-	public void setIdProducent(String idProducent) {
-		this.idProducent = idProducent;
+	public void setDostepnych(int dostepnych) {
+		this.dostepnych = dostepnych;
 	}
 
 	public int getIlosc() {
@@ -90,6 +103,58 @@ public class SprzetEntity implements Serializable {
 
 	public void setNazwa(String nazwa) {
 		this.nazwa = nazwa;
+	}
+
+	public List<EgzemplarzEntity> getEgzemplarzs() {
+		return this.egzemplarzs;
+	}
+
+	public void setEgzemplarzs(List<EgzemplarzEntity> egzemplarzs) {
+		this.egzemplarzs = egzemplarzs;
+	}
+
+	public EgzemplarzEntity addEgzemplarz(EgzemplarzEntity egzemplarz) {
+		getEgzemplarzs().add(egzemplarz);
+		egzemplarz.setSprzet(this);
+
+		return egzemplarz;
+	}
+
+	public EgzemplarzEntity removeEgzemplarz(EgzemplarzEntity egzemplarz) {
+		getEgzemplarzs().remove(egzemplarz);
+		egzemplarz.setSprzet(null);
+
+		return egzemplarz;
+	}
+
+	public List<Zestawy> getZestawies() {
+		return this.zestawies;
+	}
+
+	public void setZestawies(List<Zestawy> zestawies) {
+		this.zestawies = zestawies;
+	}
+
+	public Zestawy addZestawy(Zestawy zestawy) {
+		getZestawies().add(zestawy);
+		zestawy.setSprzet(this);
+
+		return zestawy;
+	}
+
+	public Zestawy removeZestawy(Zestawy zestawy) {
+		getZestawies().remove(zestawy);
+		zestawy.setSprzet(null);
+
+		return zestawy;
+	}
+
+	public ProducentEntity getProducent() {
+		return this.producent;
+	}
+
+	public void setProducent(ProducentEntity producent) {
+		this.producent = producent;
 	}
 
 }

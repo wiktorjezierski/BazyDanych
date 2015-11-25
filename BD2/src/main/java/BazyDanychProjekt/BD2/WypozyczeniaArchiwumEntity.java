@@ -16,21 +16,17 @@ public class WypozyczeniaArchiwumEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String id;
+	private int id;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="DATA_WYP")
 	private Date dataWyp;
 
-	@Temporal(TemporalType.DATE)
-	@Column(name="DATA_ZWROTU")
-	private Date dataZwrotu;
+	@Column(name="ID_EGZEMPLARZA")
+	private String idEgzemplarza;
 
 	@Column(name="ID_FAKTURY")
 	private String idFaktury;
-
-	@Column(name="ID_SPRZETU")
-	private String idSprzetu;
 
 	@Column(name="PESEL_KLIENTA")
 	private String peselKlienta;
@@ -41,11 +37,11 @@ public class WypozyczeniaArchiwumEntity implements Serializable {
 	public WypozyczeniaArchiwumEntity() {
 	}
 
-	public String getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -57,12 +53,12 @@ public class WypozyczeniaArchiwumEntity implements Serializable {
 		this.dataWyp = dataWyp;
 	}
 
-	public Date getDataZwrotu() {
-		return this.dataZwrotu;
+	public String getIdEgzemplarza() {
+		return this.idEgzemplarza;
 	}
 
-	public void setDataZwrotu(Date dataZwrotu) {
-		this.dataZwrotu = dataZwrotu;
+	public void setIdEgzemplarza(String idEgzemplarza) {
+		this.idEgzemplarza = idEgzemplarza;
 	}
 
 	public String getIdFaktury() {
@@ -71,14 +67,6 @@ public class WypozyczeniaArchiwumEntity implements Serializable {
 
 	public void setIdFaktury(String idFaktury) {
 		this.idFaktury = idFaktury;
-	}
-
-	public String getIdSprzetu() {
-		return this.idSprzetu;
-	}
-
-	public void setIdSprzetu(String idSprzetu) {
-		this.idSprzetu = idSprzetu;
 	}
 
 	public String getPeselKlienta() {

@@ -4,17 +4,14 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
+
 /**
  * The persistent class for the Wypozyczenia database table.
  * 
  */
 @Entity
-@Table(name = "Wypozyczenia")
-@NamedQueries({
-	@NamedQuery(name = "WypozyczeniaEntity.findAll", query = "SELECT w FROM WypozyczeniaEntity w"),
-	@NamedQuery(name = "test", query = "SELECT w FROM WypozyczeniaEntity w WHERE w.peselKlienta Like ?1"),
-	@NamedQuery(name = "test2", query = "SELECT w FROM WypozyczeniaEntity w WHERE w.id Like ?1")
-	})
+@Table(name="Wypozyczenia")
+@NamedQuery(name="WypozyczeniaEntity.findAll", query="SELECT w FROM WypozyczeniaEntity w")
 public class WypozyczeniaEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -22,20 +19,28 @@ public class WypozyczeniaEntity implements Serializable {
 	private int id;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "DATA_WYP")
+	@Column(name="DATA_WYP")
 	private Date dataWyp;
 
-	@Column(name = "ID_EGZEMPLARZA")
-	private String idEgzemplarza;
+	//bi-directional many-to-one association to PracownicyEntity
+	@ManyToOne
+	@JoinColumn(name="PESEL_PRAC")
+	private PracownicyEntity pracownicy;
 
-	@Column(name = "ID_FAKTURY")
-	private String idFaktury;
+	//bi-directional many-to-one association to FakturyEntity
+	@ManyToOne
+	@JoinColumn(name="ID_FAKTURY")
+	private FakturyEntity faktury;
 
-	@Column(name = "PESEL_KLIENTA")
-	private String peselKlienta;
+	//bi-directional many-to-one association to KlienciEntity
+	@ManyToOne
+	@JoinColumn(name="PESEL_KLIENTA")
+	private KlienciEntity klienci;
 
-	@Column(name = "PESEL_PRAC")
-	private String peselPrac;
+	//bi-directional many-to-one association to EgzemplarzEntity
+	@ManyToOne
+	@JoinColumn(name="ID_EGZEMPLARZA")
+	private EgzemplarzEntity egzemplarz;
 
 	public WypozyczeniaEntity() {
 	}
@@ -56,42 +61,36 @@ public class WypozyczeniaEntity implements Serializable {
 		this.dataWyp = dataWyp;
 	}
 
-	public String getIdEgzemplarza() {
-		return this.idEgzemplarza;
+	public PracownicyEntity getPracownicy() {
+		return this.pracownicy;
 	}
 
-	public void setIdEgzemplarza(String idEgzemplarza) {
-		this.idEgzemplarza = idEgzemplarza;
+	public void setPracownicy(PracownicyEntity pracownicy) {
+		this.pracownicy = pracownicy;
 	}
 
-	public String getIdFaktury() {
-		return this.idFaktury;
+	public FakturyEntity getFaktury() {
+		return this.faktury;
 	}
 
-	public void setIdFaktury(String idFaktury) {
-		this.idFaktury = idFaktury;
+	public void setFaktury(FakturyEntity faktury) {
+		this.faktury = faktury;
 	}
 
-	public String getPeselKlienta() {
-		return this.peselKlienta;
+	public KlienciEntity getKlienci() {
+		return this.klienci;
 	}
 
-	public void setPeselKlienta(String peselKlienta) {
-		this.peselKlienta = peselKlienta;
+	public void setKlienci(KlienciEntity klienci) {
+		this.klienci = klienci;
 	}
 
-	public String getPeselPrac() {
-		return this.peselPrac;
+	public EgzemplarzEntity getEgzemplarz() {
+		return this.egzemplarz;
 	}
 
-	public void setPeselPrac(String peselPrac) {
-		this.peselPrac = peselPrac;
-	}
-
-	@Override
-	public String toString() {
-		return "WypozyczeniaEntity [id=" + id + ", dataWyp=" + dataWyp + ", idEgzemplarza=" + idEgzemplarza
-				+ ", idFaktury=" + idFaktury + ", peselKlienta=" + peselKlienta + ", peselPrac=" + peselPrac + "]";
+	public void setEgzemplarz(EgzemplarzEntity egzemplarz) {
+		this.egzemplarz = egzemplarz;
 	}
 
 }

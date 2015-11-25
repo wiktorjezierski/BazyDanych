@@ -44,6 +44,10 @@ public class PracownicyEntity implements Serializable {
 	@OneToOne(mappedBy="pracownicy")
 	private LogowanieEntity logowanie;
 
+	//bi-directional many-to-one association to WypozyczeniaEntity
+	@OneToMany(mappedBy="pracownicy")
+	private List<WypozyczeniaEntity> wypozyczenias;
+
 	public PracownicyEntity() {
 	}
 
@@ -131,6 +135,28 @@ public class PracownicyEntity implements Serializable {
 
 	public void setLogowanie(LogowanieEntity logowanie) {
 		this.logowanie = logowanie;
+	}
+
+	public List<WypozyczeniaEntity> getWypozyczenias() {
+		return this.wypozyczenias;
+	}
+
+	public void setWypozyczenias(List<WypozyczeniaEntity> wypozyczenias) {
+		this.wypozyczenias = wypozyczenias;
+	}
+
+	public WypozyczeniaEntity addWypozyczenia(WypozyczeniaEntity wypozyczenia) {
+		getWypozyczenias().add(wypozyczenia);
+		wypozyczenia.setPracownicy(this);
+
+		return wypozyczenia;
+	}
+
+	public WypozyczeniaEntity removeWypozyczenia(WypozyczeniaEntity wypozyczenia) {
+		getWypozyczenias().remove(wypozyczenia);
+		wypozyczenia.setPracownicy(null);
+
+		return wypozyczenia;
 	}
 
 }

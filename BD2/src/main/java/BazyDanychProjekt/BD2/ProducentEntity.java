@@ -2,6 +2,7 @@ package BazyDanychProjekt.BD2;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -15,7 +16,7 @@ public class ProducentEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String id;
+	private int id;
 
 	private String adres;
 
@@ -23,14 +24,18 @@ public class ProducentEntity implements Serializable {
 
 	private String telefon;
 
+	//bi-directional many-to-one association to SprzetEntity
+	@OneToMany(mappedBy="producent")
+	private List<SprzetEntity> sprzets;
+
 	public ProducentEntity() {
 	}
 
-	public String getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -56,6 +61,28 @@ public class ProducentEntity implements Serializable {
 
 	public void setTelefon(String telefon) {
 		this.telefon = telefon;
+	}
+
+	public List<SprzetEntity> getSprzets() {
+		return this.sprzets;
+	}
+
+	public void setSprzets(List<SprzetEntity> sprzets) {
+		this.sprzets = sprzets;
+	}
+
+	public SprzetEntity addSprzet(SprzetEntity sprzet) {
+		getSprzets().add(sprzet);
+		sprzet.setProducent(this);
+
+		return sprzet;
+	}
+
+	public SprzetEntity removeSprzet(SprzetEntity sprzet) {
+		getSprzets().remove(sprzet);
+		sprzet.setProducent(null);
+
+		return sprzet;
 	}
 
 }
