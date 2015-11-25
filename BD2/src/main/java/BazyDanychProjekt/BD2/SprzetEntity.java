@@ -39,7 +39,7 @@ public class SprzetEntity implements Serializable {
 
 	//bi-directional many-to-one association to Zestawy
 	@OneToMany(mappedBy="sprzet")
-	private List<Zestawy> zestawies;
+	private List<ZestawyEntity> zestawies;
 
 	//bi-directional many-to-one association to ProducentEntity
 	@ManyToOne
@@ -127,22 +127,22 @@ public class SprzetEntity implements Serializable {
 		return egzemplarz;
 	}
 
-	public List<Zestawy> getZestawies() {
+	public List<ZestawyEntity> getZestawies() {
 		return this.zestawies;
 	}
 
-	public void setZestawies(List<Zestawy> zestawies) {
+	public void setZestawies(List<ZestawyEntity> zestawies) {
 		this.zestawies = zestawies;
 	}
 
-	public Zestawy addZestawy(Zestawy zestawy) {
+	public ZestawyEntity addZestawy(ZestawyEntity zestawy) {
 		getZestawies().add(zestawy);
 		zestawy.setSprzet(this);
 
 		return zestawy;
 	}
 
-	public Zestawy removeZestawy(Zestawy zestawy) {
+	public ZestawyEntity removeZestawy(ZestawyEntity zestawy) {
 		getZestawies().remove(zestawy);
 		zestawy.setSprzet(null);
 

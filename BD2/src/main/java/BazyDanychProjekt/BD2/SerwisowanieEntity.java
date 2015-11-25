@@ -10,8 +10,8 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name="Serwisowanie.findAll", query="SELECT s FROM Serwisowanie s")
-public class Serwisowanie implements Serializable {
+@NamedQuery(name="Serwisowanie.findAll", query="SELECT s FROM SerwisowanieEntity s")
+public class SerwisowanieEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -32,7 +32,7 @@ public class Serwisowanie implements Serializable {
 	@JoinColumn(name="id_Serwis")
 	private SerwisEntity serwi;
 
-	public Serwisowanie() {
+	public SerwisowanieEntity() {
 	}
 
 	public int getId() {

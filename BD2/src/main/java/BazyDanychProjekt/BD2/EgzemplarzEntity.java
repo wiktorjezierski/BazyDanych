@@ -35,7 +35,7 @@ public class EgzemplarzEntity implements Serializable {
 
 	//bi-directional many-to-one association to Serwisowanie
 	@OneToMany(mappedBy="egzemplarz")
-	private List<Serwisowanie> serwisowanies;
+	private List<SerwisowanieEntity> serwisowanies;
 
 	//bi-directional many-to-one association to SprzetEntity
 	@ManyToOne
@@ -104,22 +104,22 @@ public class EgzemplarzEntity implements Serializable {
 		return wypozyczenia;
 	}
 
-	public List<Serwisowanie> getSerwisowanies() {
+	public List<SerwisowanieEntity> getSerwisowanies() {
 		return this.serwisowanies;
 	}
 
-	public void setSerwisowanies(List<Serwisowanie> serwisowanies) {
+	public void setSerwisowanies(List<SerwisowanieEntity> serwisowanies) {
 		this.serwisowanies = serwisowanies;
 	}
 
-	public Serwisowanie addSerwisowany(Serwisowanie serwisowany) {
+	public SerwisowanieEntity addSerwisowany(SerwisowanieEntity serwisowany) {
 		getSerwisowanies().add(serwisowany);
 		serwisowany.setEgzemplarz(this);
 
 		return serwisowany;
 	}
 
-	public Serwisowanie removeSerwisowany(Serwisowanie serwisowany) {
+	public SerwisowanieEntity removeSerwisowany(SerwisowanieEntity serwisowany) {
 		getSerwisowanies().remove(serwisowany);
 		serwisowany.setEgzemplarz(null);
 
