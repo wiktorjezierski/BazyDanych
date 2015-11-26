@@ -45,7 +45,7 @@ public class PracownicyEntity implements Serializable {
 	private LogowanieEntity logowanie;
 
 	//bi-directional many-to-one association to WypozyczeniaEntity
-	@OneToMany(cascade={javax.persistence.CascadeType.PERSIST},mappedBy="pracownicy")
+	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="pracownicy")
 	private List<WypozyczeniaEntity> wypozyczenias;
 
 	public PracownicyEntity() {

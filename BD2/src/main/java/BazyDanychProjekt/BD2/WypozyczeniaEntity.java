@@ -23,7 +23,7 @@ public class WypozyczeniaEntity implements Serializable {
 	private Date dataWyp;
 
 	//bi-directional many-to-one association to PracownicyEntity
-	@ManyToOne(cascade={javax.persistence.CascadeType.PERSIST},optional=false)
+	@ManyToOne(cascade=CascadeType.PERSIST,optional=false)
 	@JoinColumn(name="PESEL_PRAC")
 	private PracownicyEntity pracownicy;
 
