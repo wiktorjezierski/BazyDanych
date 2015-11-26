@@ -46,7 +46,7 @@ public class DataBaseController {
 		// JOptionPane.showMessageDialog(null, wyp1.toString());
 		
 		List<LogEntity> list =  db.findAll(LogEntity.class);
-		JOptionPane.showMessageDialog(null, list.get(1).toString());
+		JOptionPane.showMessageDialog(null, list.get(0).toString());
 		db.closeConnection(); 
 	}
 
