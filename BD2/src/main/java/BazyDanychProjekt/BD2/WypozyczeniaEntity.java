@@ -23,7 +23,7 @@ public class WypozyczeniaEntity implements Serializable {
 	private Date dataWyp;
 
 	//bi-directional many-to-one association to PracownicyEntity
-	@ManyToOne
+	@ManyToOne(cascade={javax.persistence.CascadeType.PERSIST},optional=false)
 	@JoinColumn(name="PESEL_PRAC")
 	private PracownicyEntity pracownicy;
 
@@ -93,13 +93,11 @@ public class WypozyczeniaEntity implements Serializable {
 		this.egzemplarz = egzemplarz;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
-		return "WypozyczeniaEntity [id=" + id + ", dataWyp=" + dataWyp + ", pracownicy=" + pracownicy + ", faktury="
-				+ faktury + ", klienci=" + klienci + ", egzemplarz=" + egzemplarz + "]";
+		return "WypozyczeniaEntity [dataWyp=" + dataWyp + ", faktury=" + pracownicy.getImie() +"]";
 	}
+
+	
 
 }
