@@ -4,14 +4,13 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
-
 /**
  * The persistent class for the Wypozyczenia database table.
  * 
  */
 @Entity
-@Table(name="Wypozyczenia")
-@NamedQuery(name="WypozyczeniaEntity.findAll", query="SELECT w FROM WypozyczeniaEntity w")
+@Table(name = "Wypozyczenia")
+@NamedQuery(name = "WypozyczeniaEntity.findAll", query = "SELECT w FROM WypozyczeniaEntity w")
 public class WypozyczeniaEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -19,30 +18,41 @@ public class WypozyczeniaEntity implements Serializable {
 	private int id;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="DATA_WYP")
+	@Column(name = "DATA_WYP")
 	private Date dataWyp;
 
-	//bi-directional many-to-one association to PracownicyEntity
-	@ManyToOne(cascade=CascadeType.PERSIST,optional=false)
-	@JoinColumn(name="PESEL_PRAC")
+	// bi-directional many-to-one association to PracownicyEntity
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+	@JoinColumn(name = "PESEL_PRAC")
 	private PracownicyEntity pracownicy;
 
-	//bi-directional many-to-one association to FakturyEntity
-	@ManyToOne
-	@JoinColumn(name="ID_FAKTURY")
+	// bi-directional many-to-one association to FakturyEntity
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+	@JoinColumn(name = "ID_FAKTURY")
 	private FakturyEntity faktury;
 
-	//bi-directional many-to-one association to KlienciEntity
-	@ManyToOne
-	@JoinColumn(name="PESEL_KLIENTA")
+	// bi-directional many-to-one association to KlienciEntity
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+	@JoinColumn(name = "PESEL_KLIENTA")
 	private KlienciEntity klienci;
 
-	//bi-directional many-to-one association to EgzemplarzEntity
-	@ManyToOne
-	@JoinColumn(name="ID_EGZEMPLARZA")
+	// bi-directional many-to-one association to EgzemplarzEntity
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+	@JoinColumn(name = "ID_EGZEMPLARZA")
 	private EgzemplarzEntity egzemplarz;
 
 	public WypozyczeniaEntity() {
+	}
+
+	public WypozyczeniaEntity(int id, Date dataWyp, PracownicyEntity pracownicy, FakturyEntity faktury,
+			KlienciEntity klienci, EgzemplarzEntity egzemplarz) {
+		super();
+		this.id = id;
+		this.dataWyp = dataWyp;
+		this.pracownicy = pracownicy;
+		this.faktury = faktury;
+		this.klienci = klienci;
+		this.egzemplarz = egzemplarz;
 	}
 
 	public int getId() {
@@ -95,9 +105,7 @@ public class WypozyczeniaEntity implements Serializable {
 
 	@Override
 	public String toString() {
-		return "WypozyczeniaEntity [dataWyp=" + dataWyp + ", faktury=" + pracownicy.getImie() +"]";
+		return "WypozyczeniaEntity [dataWyp=" + dataWyp + ", faktury=" + pracownicy.getImie() + "]";
 	}
-
-	
 
 }

@@ -34,11 +34,11 @@ public class KlienciEntity implements Serializable {
 	private String uwagi;
 
 	//bi-directional many-to-one association to FakturyEntity
-	@OneToMany(mappedBy="klienci")
+	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="klienci")
 	private List<FakturyEntity> fakturies;
 
 	//bi-directional many-to-one association to WypozyczeniaEntity
-	@OneToMany(mappedBy="klienci")
+	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="klienci")
 	private List<WypozyczeniaEntity> wypozyczenias;
 
 	public KlienciEntity() {

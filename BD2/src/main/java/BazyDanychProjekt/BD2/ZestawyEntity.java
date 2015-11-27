@@ -25,7 +25,7 @@ public class ZestawyEntity implements Serializable {
 	private String idZestawu;
 
 	//bi-directional many-to-one association to SprzetEntity
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
 	@JoinColumn(name="ID_SPRZET")
 	private SprzetEntity sprzet;
 

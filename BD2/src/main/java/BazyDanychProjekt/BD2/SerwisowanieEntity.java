@@ -23,12 +23,12 @@ public class SerwisowanieEntity implements Serializable {
 	private int koszt;
 
 	//bi-directional many-to-one association to EgzemplarzEntity
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
 	@JoinColumn(name="id_Egzemplarz")
 	private EgzemplarzEntity egzemplarz;
 
 	//bi-directional many-to-one association to SerwisEntity
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
 	@JoinColumn(name="id_Serwis")
 	private SerwisEntity serwi;
 

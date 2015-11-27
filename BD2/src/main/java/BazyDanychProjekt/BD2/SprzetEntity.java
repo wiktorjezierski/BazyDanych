@@ -34,15 +34,15 @@ public class SprzetEntity implements Serializable {
 	private String nazwa;
 
 	//bi-directional many-to-one association to EgzemplarzEntity
-	@OneToMany(mappedBy="sprzet")
+	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="sprzet")
 	private List<EgzemplarzEntity> egzemplarzs;
 
 	//bi-directional many-to-one association to Zestawy
-	@OneToMany(mappedBy="sprzet")
+	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="sprzet")
 	private List<ZestawyEntity> zestawies;
 
 	//bi-directional many-to-one association to ProducentEntity
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
 	@JoinColumn(name="ID_PRODUCENT")
 	private ProducentEntity producent;
 

@@ -22,7 +22,7 @@ public class LogowanieEntity implements Serializable {
 	private String login;
 
 	//bi-directional one-to-one association to PracownicyEntity
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST, optional = false)
 	@JoinColumn(name="PESEL")
 	private PracownicyEntity pracownicy;
 
@@ -67,7 +67,7 @@ public class LogowanieEntity implements Serializable {
 	@Override
 	public String toString() {
 		return "LogowanieEntity [pesel=" + pesel + ", haslo=" + haslo + ", login=" + login + ", pracownicy="
-				+ pracownicy + "]";
+				+ pracownicy.getImie() + "]";
 	}
 	
 
