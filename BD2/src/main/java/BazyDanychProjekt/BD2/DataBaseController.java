@@ -20,17 +20,6 @@ public class DataBaseController {
 	private EntityManager entityManager;
 
 	public static void main(String[] args) {
-		// zapis
-		// EntityManagerFactory entityManagerFactory =
-		// Persistence.createEntityManagerFactory("BD2");
-		// EntityManager entityManager =
-		// entityManagerFactory.createEntityManager();
-		// entityManager.getTransaction().begin();
-		// entityManager.persist(wyp);
-		// entityManager.getTransaction().commit();
-		// entityManager.close();
-		// entityManagerFactory.close();
-
 		DataBaseController db = new DataBaseController();
 		// db.remove(wyp);
 

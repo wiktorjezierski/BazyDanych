@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
-import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -12,18 +11,10 @@ import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.JTextField;
 import javax.swing.BoxLayout;
-import java.awt.GridLayout;
 import java.awt.Rectangle;
 
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import net.miginfocom.swing.MigLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -79,9 +70,10 @@ public class GUI {
 		
 		JPanel panPracownicy = new JPanel();
 		tabbedPane.addTab("Pracownicy", null, panPracownicy, null);
-		panPracownicy.setLayout(new BoxLayout(panPracownicy, BoxLayout.X_AXIS));
+		panPracownicy.setLayout(null);
 		
 		tablePracownicy = new JTable();
+		tablePracownicy.setBounds(0, 8, 469, 160);
 		tablePracownicy.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tablePracownicy.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -103,6 +95,7 @@ public class GUI {
 		panPracownicy.add(tablePracownicy);
 		
 		JButton btnNewButton = new JButton("Usuń");
+		btnNewButton.setBounds(469, 49, 57, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
