@@ -11,7 +11,9 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Faktury")
-@NamedQuery(name = "FakturyEntity.findAll", query = "SELECT f FROM FakturyEntity f")
+@NamedQueries({
+	@NamedQuery(name = "FakturyEntity.findAll", query = "SELECT f FROM FakturyEntity f")
+})
 public class FakturyEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -122,8 +124,8 @@ public class FakturyEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "FakturyEntity [idFaktury=" + idFaktury + ", dataWyst=" + dataWyst + ", kwota=" + kwota + ", pracownicy="
-				+ pracownicy + ", wypozyczenias=" + wypozyczenias + ", klienci=" + klienci + "]";
+		return "Faktury: dataWyst=" + dataWyst + ", kwota=" + kwota + ", pracownicy="
+				+ pracownicy.getNazwisko() + ", klient=" + klienci.getImie() +" " + klienci.getNazwisko() + "]";
 	}
 
 }

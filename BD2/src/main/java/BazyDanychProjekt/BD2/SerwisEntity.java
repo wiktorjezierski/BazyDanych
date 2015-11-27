@@ -10,7 +10,9 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Serwis")
-@NamedQuery(name = "SerwisEntity.findAll", query = "SELECT s FROM SerwisEntity s")
+@NamedQueries({
+	@NamedQuery(name = "SerwisEntity.findAll", query = "SELECT s FROM SerwisEntity s")
+})
 public class SerwisEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -128,8 +130,7 @@ public class SerwisEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "SerwisEntity [id=" + id + ", adres=" + adres + ", nazwa=" + nazwa + ", telefon=" + telefon
-				+ ", egzemplarzs=" + egzemplarzs + ", serwisowanies=" + serwisowanies + "]";
+		return "Serwis: id=" + id + ", adres=" + adres + ", nazwa=" + nazwa + ", telefon=" + telefon;
 	}
 
 }

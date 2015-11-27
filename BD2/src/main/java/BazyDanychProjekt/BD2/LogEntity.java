@@ -10,7 +10,9 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "Log")
-@NamedQuery(name = "LogEntity.findAll", query = "SELECT l FROM LogEntity l")
+@NamedQueries({
+	@NamedQuery(name = "LogEntity.findAll", query = "SELECT l FROM LogEntity l")
+})
 public class LogEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -87,8 +89,8 @@ public class LogEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "LogEntity [id=" + id + ", data=" + data + ", idKrotki=" + idKrotki + ", rodzajOper=" + rodzajOper
-				+ ", tabela=" + tabela + "]";
+		return "Log: id=" + id + ", data=" + data + ", idKrotki=" + idKrotki + ", rodzajOper=" + rodzajOper
+				+ ", tabela=" + tabela;
 	}
 
 }

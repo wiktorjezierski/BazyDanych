@@ -9,6 +9,8 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.swing.JOptionPane;
 
+import com.mysql.jdbc.log.Log;
+
 /**
  * @author Wiktor Jezierski
  */
@@ -34,7 +36,7 @@ public class DataBaseController {
 		// db.findByPrimaryKey(WypozyczeniaEntity.class, 17);
 		// JOptionPane.showMessageDialog(null, wyp1.toString());
 		
-		List<LogowanieEntity> list =  db.findAll(LogowanieEntity.class);
+		List<SerwisowanieEntity> list =  db.findAll(SerwisowanieEntity.class);
 		JOptionPane.showMessageDialog(null, list.get(0).toString());
 		db.closeConnection(); 
 	}

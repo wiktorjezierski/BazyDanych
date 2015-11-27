@@ -2,6 +2,7 @@ package BazyDanychProjekt.BD2;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,9 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Egzemplarz")
-@NamedQuery(name = "EgzemplarzEntity.findAll", query = "SELECT e FROM EgzemplarzEntity e")
+@NamedQueries({
+	@NamedQuery(name = "EgzemplarzEntity.findAll", query = "SELECT e FROM EgzemplarzEntity e")
+})
 public class EgzemplarzEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -162,9 +165,8 @@ public class EgzemplarzEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "EgzemplarzEntity [id=" + id + ", dataOstPrzeg=" + dataOstPrzeg + ", dataZakupu=" + dataZakupu
-				+ ", wycofany=" + wycofany + ", wypozyczenias=" + wypozyczenias + ", serwisowanies=" + serwisowanies
-				+ ", sprzet=" + sprzet + ", serwi=" + serwi + "]";
+		return "Egzemplarz: id=" + id + ", dataOstPrzeg=" + dataOstPrzeg + ", dataZakupu=" + dataZakupu + ", wycofany="
+				+ wycofany + ", sprzet=" + sprzet.getMarka() + " " + sprzet.getNazwa();
 	}
 
 }

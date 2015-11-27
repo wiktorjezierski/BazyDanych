@@ -9,7 +9,10 @@ import java.util.Date;
  * 
  */
 @Entity
-@NamedQuery(name = "Serwisowanie.findAll", query = "SELECT s FROM SerwisowanieEntity s")
+@Table(name = "Serwisowanie")
+@NamedQueries({
+	@NamedQuery(name = "Serwisowanie.findAll", query = "SELECT s FROM SerwisowanieEntity s")
+})
 public class SerwisowanieEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -90,8 +93,7 @@ public class SerwisowanieEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Serwisowanie [id=" + id + ", data=" + data + ", koszt=" + koszt + ", egzemplarz=" + egzemplarz
-				+ ", serwi=" + serwi + "]";
+		return "Serwisowanie: id=" + id + ", data=" + data + ", koszt=" + koszt;
 	}
 
 }

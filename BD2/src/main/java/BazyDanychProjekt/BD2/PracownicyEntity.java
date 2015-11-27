@@ -11,7 +11,9 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Pracownicy")
-@NamedQuery(name = "PracownicyEntity.findAll", query = "SELECT p FROM PracownicyEntity p")
+@NamedQueries({ 
+	@NamedQuery(name = "PracownicyEntity.findAll", query = "SELECT p FROM PracownicyEntity p") 
+	})
 public class PracownicyEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -181,10 +183,9 @@ public class PracownicyEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "PracownicyEntity [peselPrac=" + peselPrac + ", adresEmail=" + adresEmail + ", dataStartu=" + dataStartu
+		return "Pracownicy: pesel=" + peselPrac + ", adresEmail=" + adresEmail + ", dataStartu=" + dataStartu
 				+ ", imie=" + imie + ", nazwisko=" + nazwisko + ", stanowisko=" + stanowisko + ", zwolniony="
-				+ zwolniony + ", fakturies=" + fakturies + ", logowanie=" + logowanie + ", wypozyczenias="
-				+ wypozyczenias + "]";
+				+ zwolniony;
 	}
 
 }

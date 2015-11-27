@@ -10,7 +10,9 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "WypozyczeniaArchiwum")
-@NamedQuery(name = "WypozyczeniaArchiwumEntity.findAll", query = "SELECT w FROM WypozyczeniaArchiwumEntity w")
+@NamedQueries({
+	@NamedQuery(name = "WypozyczeniaArchiwumEntity.findAll", query = "SELECT w FROM WypozyczeniaArchiwumEntity w")
+})
 public class WypozyczeniaArchiwumEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -102,8 +104,8 @@ public class WypozyczeniaArchiwumEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "WypozyczeniaArchiwumEntity [id=" + id + ", dataWyp=" + dataWyp + ", idEgzemplarza=" + idEgzemplarza
-				+ ", idFaktury=" + idFaktury + ", peselKlienta=" + peselKlienta + ", peselPrac=" + peselPrac + "]";
+		return "WypozyczeniaArchiwum: id=" + id + ", dataWyp=" + dataWyp + ", idEgzemplarza=" + idEgzemplarza
+				+ ", idFaktury=" + idFaktury + ", peselKlienta=" + peselKlienta + ", peselPrac=" + peselPrac;
 	}
 
 }

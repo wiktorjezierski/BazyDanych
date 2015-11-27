@@ -10,7 +10,9 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "rezerwacja")
-@NamedQuery(name = "RezerwacjaEntity.findAll", query = "SELECT r FROM RezerwacjaEntity r")
+@NamedQueries({
+	@NamedQuery(name = "RezerwacjaEntity.findAll", query = "SELECT r FROM RezerwacjaEntity r")
+})
 public class RezerwacjaEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -103,9 +105,8 @@ public class RezerwacjaEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "RezerwacjaEntity [id=" + id + ", dataKoniec=" + dataKoniec + ", dataStart=" + dataStart
-				+ ", idEgzemplarz=" + idEgzemplarz + ", peselKlienta=" + peselKlienta + ", peselPrac=" + peselPrac
-				+ "]";
+		return "Rezerwacja: id=" + id + ", dataKoniec=" + dataKoniec + ", dataStart=" + dataStart
+				+ ", idEgzemplarz=" + idEgzemplarz + ", peselKlienta=" + peselKlienta + ", peselPrac=" + peselPrac;
 	}
 
 }

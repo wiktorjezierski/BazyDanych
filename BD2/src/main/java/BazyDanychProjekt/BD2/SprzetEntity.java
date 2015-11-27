@@ -11,7 +11,9 @@ import java.util.List;
  */
 @Entity
 @Table(name = "Sprzet")
-@NamedQuery(name = "SprzetEntity.findAll", query = "SELECT s FROM SprzetEntity s")
+@NamedQueries({
+	@NamedQuery(name = "SprzetEntity.findAll", query = "SELECT s FROM SprzetEntity s")
+})
 public class SprzetEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -179,9 +181,10 @@ public class SprzetEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "SprzetEntity [id=" + id + ", dataZakupu=" + dataZakupu + ", dostepnych=" + dostepnych + ", ilosc="
-				+ ilosc + ", kategoria=" + kategoria + ", marka=" + marka + ", nazwa=" + nazwa + ", egzemplarzs="
-				+ egzemplarzs + ", zestawies=" + zestawies + ", producent=" + producent + "]";
+		return "Sprzet: id=" + id + ", dataZakupu=" + dataZakupu + ", dostepnych=" + dostepnych + ", ilosc=" + ilosc
+				+ ", kategoria=" + kategoria + ", marka=" + marka + ", nazwa=" + nazwa + " producent="
+				+ producent.getNazwa();
+
 	}
 
 }

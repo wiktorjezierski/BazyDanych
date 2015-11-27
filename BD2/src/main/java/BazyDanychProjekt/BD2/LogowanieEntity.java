@@ -9,7 +9,9 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "LOGOWANIE")
-@NamedQuery(name = "LogowanieEntity.findAll", query = "SELECT l FROM LogowanieEntity l")
+@NamedQueries({
+	@NamedQuery(name = "LogowanieEntity.findAll", query = "SELECT l FROM LogowanieEntity l")
+})
 public class LogowanieEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -75,8 +77,8 @@ public class LogowanieEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "LogowanieEntity [pesel=" + pesel + ", haslo=" + haslo + ", login=" + login + ", pracownicy="
-				+ pracownicy.getImie() + "]";
+		return "Logowanie: pesel=" + pesel + ", haslo=" + haslo + ", login=" + login + ", pracownicy="
+				+ pracownicy.getImie() + " " + pracownicy.getAdresEmail();
 	}
 
 }

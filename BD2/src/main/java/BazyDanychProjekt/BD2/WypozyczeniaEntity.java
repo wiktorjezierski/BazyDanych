@@ -105,7 +105,8 @@ public class WypozyczeniaEntity implements Serializable {
 
 	@Override
 	public String toString() {
-		return "WypozyczeniaEntity [dataWyp=" + dataWyp + ", faktury=" + pracownicy.getImie() + "]";
+		return "WypozyczeniaEntity [dataWyp=" + dataWyp + ", faktury=" + pracownicy.getImie() + "SPRZET= "
+				+ egzemplarz.getSprzet().getIlosc() + "]";
 	}
 
 }
