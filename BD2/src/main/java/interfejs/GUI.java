@@ -11,6 +11,21 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.JTextField;
+import javax.swing.BoxLayout;
+import java.awt.GridLayout;
+import java.awt.Rectangle;
+
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import net.miginfocom.swing.MigLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GUI {
 
@@ -50,15 +65,21 @@ public class GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 559, 262);
+		frame.setBounds(100, 100, 559, 306);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{531, 0};
+		gridBagLayout.rowHeights = new int[]{217, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		frame.getContentPane().setLayout(gridBagLayout);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setSize(400, 600);
-		frame.getContentPane().add(tabbedPane, BorderLayout.NORTH);
+		tabbedPane.setBounds(new Rectangle(600, 600));
 		
 		JPanel panPracownicy = new JPanel();
 		tabbedPane.addTab("Pracownicy", null, panPracownicy, null);
+		panPracownicy.setLayout(new BoxLayout(panPracownicy, BoxLayout.X_AXIS));
 		
 		tablePracownicy = new JTable();
 		tablePracownicy.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -82,6 +103,10 @@ public class GUI {
 		panPracownicy.add(tablePracownicy);
 		
 		JButton btnNewButton = new JButton("Usuń");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		panPracownicy.add(btnNewButton);
 		
 		JPanel panRezerwacje = new JPanel();
@@ -133,6 +158,12 @@ public class GUI {
 		
 		JPanel panZestawy = new JPanel();
 		tabbedPane.addTab("Zestawy", null, panZestawy, null);
+		GridBagConstraints gbc_tabbedPane = new GridBagConstraints();
+		gbc_tabbedPane.anchor = GridBagConstraints.NORTH;
+		gbc_tabbedPane.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tabbedPane.gridx = 0;
+		gbc_tabbedPane.gridy = 0;
+		frame.getContentPane().add(tabbedPane, gbc_tabbedPane);
 	}
 
 }
