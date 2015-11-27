@@ -4,14 +4,13 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the Producent database table.
  * 
  */
 @Entity
-@Table(name="Producent")
-@NamedQuery(name="ProducentEntity.findAll", query="SELECT p FROM ProducentEntity p")
+@Table(name = "Producent")
+@NamedQuery(name = "ProducentEntity.findAll", query = "SELECT p FROM ProducentEntity p")
 public class ProducentEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -24,11 +23,20 @@ public class ProducentEntity implements Serializable {
 
 	private String telefon;
 
-	//bi-directional many-to-one association to SprzetEntity
-	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="producent")
+	// bi-directional many-to-one association to SprzetEntity
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "producent")
 	private List<SprzetEntity> sprzets;
 
 	public ProducentEntity() {
+	}
+
+	public ProducentEntity(int id, String adres, String nazwa, String telefon, List<SprzetEntity> sprzets) {
+		super();
+		this.id = id;
+		this.adres = adres;
+		this.nazwa = nazwa;
+		this.telefon = telefon;
+		this.sprzets = sprzets;
 	}
 
 	public int getId() {
@@ -85,7 +93,9 @@ public class ProducentEntity implements Serializable {
 		return sprzet;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

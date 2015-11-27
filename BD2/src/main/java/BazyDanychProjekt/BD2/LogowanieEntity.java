@@ -3,14 +3,13 @@ package BazyDanychProjekt.BD2;
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 /**
  * The persistent class for the LOGOWANIE database table.
  * 
  */
 @Entity
-@Table(name="LOGOWANIE")
-@NamedQuery(name="LogowanieEntity.findAll", query="SELECT l FROM LogowanieEntity l")
+@Table(name = "LOGOWANIE")
+@NamedQuery(name = "LogowanieEntity.findAll", query = "SELECT l FROM LogowanieEntity l")
 public class LogowanieEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -21,12 +20,20 @@ public class LogowanieEntity implements Serializable {
 
 	private String login;
 
-	//bi-directional one-to-one association to PracownicyEntity
+	// bi-directional one-to-one association to PracownicyEntity
 	@OneToOne(cascade = CascadeType.PERSIST, optional = false)
-	@JoinColumn(name="PESEL")
+	@JoinColumn(name = "PESEL")
 	private PracownicyEntity pracownicy;
 
 	public LogowanieEntity() {
+	}
+
+	public LogowanieEntity(String pesel, String haslo, String login, PracownicyEntity pracownicy) {
+		super();
+		this.pesel = pesel;
+		this.haslo = haslo;
+		this.login = login;
+		this.pracownicy = pracownicy;
 	}
 
 	public String getPesel() {
@@ -61,7 +68,9 @@ public class LogowanieEntity implements Serializable {
 		this.pracownicy = pracownicy;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -69,6 +78,5 @@ public class LogowanieEntity implements Serializable {
 		return "LogowanieEntity [pesel=" + pesel + ", haslo=" + haslo + ", login=" + login + ", pracownicy="
 				+ pracownicy.getImie() + "]";
 	}
-	
 
 }

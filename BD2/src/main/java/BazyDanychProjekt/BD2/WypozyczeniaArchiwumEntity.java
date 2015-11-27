@@ -4,14 +4,13 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
-
 /**
  * The persistent class for the WypozyczeniaArchiwum database table.
  * 
  */
 @Entity
-@Table(name="WypozyczeniaArchiwum")
-@NamedQuery(name="WypozyczeniaArchiwumEntity.findAll", query="SELECT w FROM WypozyczeniaArchiwumEntity w")
+@Table(name = "WypozyczeniaArchiwum")
+@NamedQuery(name = "WypozyczeniaArchiwumEntity.findAll", query = "SELECT w FROM WypozyczeniaArchiwumEntity w")
 public class WypozyczeniaArchiwumEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -19,22 +18,33 @@ public class WypozyczeniaArchiwumEntity implements Serializable {
 	private int id;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="DATA_WYP")
+	@Column(name = "DATA_WYP")
 	private Date dataWyp;
 
-	@Column(name="ID_EGZEMPLARZA")
+	@Column(name = "ID_EGZEMPLARZA")
 	private String idEgzemplarza;
 
-	@Column(name="ID_FAKTURY")
+	@Column(name = "ID_FAKTURY")
 	private String idFaktury;
 
-	@Column(name="PESEL_KLIENTA")
+	@Column(name = "PESEL_KLIENTA")
 	private String peselKlienta;
 
-	@Column(name="PESEL_PRAC")
+	@Column(name = "PESEL_PRAC")
 	private String peselPrac;
 
 	public WypozyczeniaArchiwumEntity() {
+	}
+
+	public WypozyczeniaArchiwumEntity(int id, Date dataWyp, String idEgzemplarza, String idFaktury, String peselKlienta,
+			String peselPrac) {
+		super();
+		this.id = id;
+		this.dataWyp = dataWyp;
+		this.idEgzemplarza = idEgzemplarza;
+		this.idFaktury = idFaktury;
+		this.peselKlienta = peselKlienta;
+		this.peselPrac = peselPrac;
 	}
 
 	public int getId() {
@@ -85,7 +95,9 @@ public class WypozyczeniaArchiwumEntity implements Serializable {
 		this.peselPrac = peselPrac;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

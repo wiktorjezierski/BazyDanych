@@ -5,26 +5,25 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The persistent class for the Pracownicy database table.
  * 
  */
 @Entity
-@Table(name="Pracownicy")
-@NamedQuery(name="PracownicyEntity.findAll", query="SELECT p FROM PracownicyEntity p")
+@Table(name = "Pracownicy")
+@NamedQuery(name = "PracownicyEntity.findAll", query = "SELECT p FROM PracownicyEntity p")
 public class PracownicyEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="PESEL_PRAC")
+	@Column(name = "PESEL_PRAC")
 	private String peselPrac;
 
-	@Column(name="ADRES_EMAIL")
+	@Column(name = "ADRES_EMAIL")
 	private String adresEmail;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="DATA_STARTU")
+	@Column(name = "DATA_STARTU")
 	private Date dataStartu;
 
 	private String imie;
@@ -36,19 +35,35 @@ public class PracownicyEntity implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date zwolniony;
 
-	//bi-directional many-to-one association to FakturyEntity
-	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="pracownicy")
+	// bi-directional many-to-one association to FakturyEntity
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pracownicy")
 	private List<FakturyEntity> fakturies;
 
-	//bi-directional one-to-one association to LogowanieEntity
-	@OneToOne(cascade=CascadeType.PERSIST,mappedBy="pracownicy")
+	// bi-directional one-to-one association to LogowanieEntity
+	@OneToOne(cascade = CascadeType.PERSIST, mappedBy = "pracownicy")
 	private LogowanieEntity logowanie;
 
-	//bi-directional many-to-one association to WypozyczeniaEntity
-	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="pracownicy")
+	// bi-directional many-to-one association to WypozyczeniaEntity
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pracownicy")
 	private List<WypozyczeniaEntity> wypozyczenias;
 
 	public PracownicyEntity() {
+	}
+
+	public PracownicyEntity(String peselPrac, String adresEmail, Date dataStartu, String imie, String nazwisko,
+			String stanowisko, Date zwolniony, List<FakturyEntity> fakturies, LogowanieEntity logowanie,
+			List<WypozyczeniaEntity> wypozyczenias) {
+		super();
+		this.peselPrac = peselPrac;
+		this.adresEmail = adresEmail;
+		this.dataStartu = dataStartu;
+		this.imie = imie;
+		this.nazwisko = nazwisko;
+		this.stanowisko = stanowisko;
+		this.zwolniony = zwolniony;
+		this.fakturies = fakturies;
+		this.logowanie = logowanie;
+		this.wypozyczenias = wypozyczenias;
 	}
 
 	public String getPeselPrac() {
@@ -159,7 +174,9 @@ public class PracownicyEntity implements Serializable {
 		return wypozyczenia;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

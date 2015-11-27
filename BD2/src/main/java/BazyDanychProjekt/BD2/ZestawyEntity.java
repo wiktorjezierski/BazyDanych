@@ -4,13 +4,12 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
-
 /**
  * The persistent class for the Zestawy database table.
  * 
  */
 @Entity
-@NamedQuery(name="Zestawy.findAll", query="SELECT z FROM ZestawyEntity z")
+@NamedQuery(name = "Zestawy.findAll", query = "SELECT z FROM ZestawyEntity z")
 public class ZestawyEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -18,18 +17,26 @@ public class ZestawyEntity implements Serializable {
 	private int id;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="DATA_END")
+	@Column(name = "DATA_END")
 	private Date dataEnd;
 
-	@Column(name="ID_ZESTAWU")
+	@Column(name = "ID_ZESTAWU")
 	private String idZestawu;
 
-	//bi-directional many-to-one association to SprzetEntity
+	// bi-directional many-to-one association to SprzetEntity
 	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
-	@JoinColumn(name="ID_SPRZET")
+	@JoinColumn(name = "ID_SPRZET")
 	private SprzetEntity sprzet;
 
 	public ZestawyEntity() {
+	}
+
+	public ZestawyEntity(int id, Date dataEnd, String idZestawu, SprzetEntity sprzet) {
+		super();
+		this.id = id;
+		this.dataEnd = dataEnd;
+		this.idZestawu = idZestawu;
+		this.sprzet = sprzet;
 	}
 
 	public int getId() {
@@ -64,7 +71,9 @@ public class ZestawyEntity implements Serializable {
 		this.sprzet = sprzet;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

@@ -4,14 +4,13 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the Serwis database table.
  * 
  */
 @Entity
-@Table(name="Serwis")
-@NamedQuery(name="SerwisEntity.findAll", query="SELECT s FROM SerwisEntity s")
+@Table(name = "Serwis")
+@NamedQuery(name = "SerwisEntity.findAll", query = "SELECT s FROM SerwisEntity s")
 public class SerwisEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -24,15 +23,26 @@ public class SerwisEntity implements Serializable {
 
 	private String telefon;
 
-	//bi-directional many-to-one association to EgzemplarzEntity
-	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="serwi")
+	// bi-directional many-to-one association to EgzemplarzEntity
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "serwi")
 	private List<EgzemplarzEntity> egzemplarzs;
 
-	//bi-directional many-to-one association to Serwisowanie
-	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="serwi")
+	// bi-directional many-to-one association to Serwisowanie
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "serwi")
 	private List<SerwisowanieEntity> serwisowanies;
 
 	public SerwisEntity() {
+	}
+
+	public SerwisEntity(int id, String adres, String nazwa, String telefon, List<EgzemplarzEntity> egzemplarzs,
+			List<SerwisowanieEntity> serwisowanies) {
+		super();
+		this.id = id;
+		this.adres = adres;
+		this.nazwa = nazwa;
+		this.telefon = telefon;
+		this.egzemplarzs = egzemplarzs;
+		this.serwisowanies = serwisowanies;
 	}
 
 	public int getId() {
@@ -111,7 +121,9 @@ public class SerwisEntity implements Serializable {
 		return serwisowany;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

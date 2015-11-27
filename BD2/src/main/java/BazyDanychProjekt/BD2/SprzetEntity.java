@@ -5,14 +5,13 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The persistent class for the Sprzet database table.
  * 
  */
 @Entity
-@Table(name="Sprzet")
-@NamedQuery(name="SprzetEntity.findAll", query="SELECT s FROM SprzetEntity s")
+@Table(name = "Sprzet")
+@NamedQuery(name = "SprzetEntity.findAll", query = "SELECT s FROM SprzetEntity s")
 public class SprzetEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,7 +19,7 @@ public class SprzetEntity implements Serializable {
 	private int id;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="DATA_ZAKUPU")
+	@Column(name = "DATA_ZAKUPU")
 	private Date dataZakupu;
 
 	private int dostepnych;
@@ -33,20 +32,36 @@ public class SprzetEntity implements Serializable {
 
 	private String nazwa;
 
-	//bi-directional many-to-one association to EgzemplarzEntity
-	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="sprzet")
+	// bi-directional many-to-one association to EgzemplarzEntity
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "sprzet")
 	private List<EgzemplarzEntity> egzemplarzs;
 
-	//bi-directional many-to-one association to Zestawy
-	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="sprzet")
+	// bi-directional many-to-one association to Zestawy
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "sprzet")
 	private List<ZestawyEntity> zestawies;
 
-	//bi-directional many-to-one association to ProducentEntity
+	// bi-directional many-to-one association to ProducentEntity
 	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
-	@JoinColumn(name="ID_PRODUCENT")
+	@JoinColumn(name = "ID_PRODUCENT")
 	private ProducentEntity producent;
 
 	public SprzetEntity() {
+	}
+
+	public SprzetEntity(int id, Date dataZakupu, int dostepnych, int ilosc, String kategoria, String marka,
+			String nazwa, List<EgzemplarzEntity> egzemplarzs, List<ZestawyEntity> zestawies,
+			ProducentEntity producent) {
+		super();
+		this.id = id;
+		this.dataZakupu = dataZakupu;
+		this.dostepnych = dostepnych;
+		this.ilosc = ilosc;
+		this.kategoria = kategoria;
+		this.marka = marka;
+		this.nazwa = nazwa;
+		this.egzemplarzs = egzemplarzs;
+		this.zestawies = zestawies;
+		this.producent = producent;
 	}
 
 	public int getId() {
@@ -157,7 +172,9 @@ public class SprzetEntity implements Serializable {
 		this.producent = producent;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

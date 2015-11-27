@@ -4,13 +4,12 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
-
 /**
  * The persistent class for the Serwisowanie database table.
  * 
  */
 @Entity
-@NamedQuery(name="Serwisowanie.findAll", query="SELECT s FROM SerwisowanieEntity s")
+@NamedQuery(name = "Serwisowanie.findAll", query = "SELECT s FROM SerwisowanieEntity s")
 public class SerwisowanieEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -22,17 +21,26 @@ public class SerwisowanieEntity implements Serializable {
 
 	private int koszt;
 
-	//bi-directional many-to-one association to EgzemplarzEntity
+	// bi-directional many-to-one association to EgzemplarzEntity
 	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
-	@JoinColumn(name="id_Egzemplarz")
+	@JoinColumn(name = "id_Egzemplarz")
 	private EgzemplarzEntity egzemplarz;
 
-	//bi-directional many-to-one association to SerwisEntity
+	// bi-directional many-to-one association to SerwisEntity
 	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
-	@JoinColumn(name="id_Serwis")
+	@JoinColumn(name = "id_Serwis")
 	private SerwisEntity serwi;
 
 	public SerwisowanieEntity() {
+	}
+
+	public SerwisowanieEntity(int id, Date data, int koszt, EgzemplarzEntity egzemplarz, SerwisEntity serwi) {
+		super();
+		this.id = id;
+		this.data = data;
+		this.koszt = koszt;
+		this.egzemplarz = egzemplarz;
+		this.serwi = serwi;
 	}
 
 	public int getId() {
@@ -75,7 +83,9 @@ public class SerwisowanieEntity implements Serializable {
 		this.serwi = serwi;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

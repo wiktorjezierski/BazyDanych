@@ -4,44 +4,57 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the Klienci database table.
  * 
  */
 @Entity
-@Table(name="Klienci")
-@NamedQuery(name="KlienciEntity.findAll", query="SELECT k FROM KlienciEntity k")
+@Table(name = "Klienci")
+@NamedQuery(name = "KlienciEntity.findAll", query = "SELECT k FROM KlienciEntity k")
 public class KlienciEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private String pesel;
 
-	@Column(name="ILOSC_TRANSAKCJI")
+	@Column(name = "ILOSC_TRANSAKCJI")
 	private int iloscTransakcji;
 
 	private String imie;
 
 	private String nazwisko;
 
-	@Column(name="NR_DOWODU")
+	@Column(name = "NR_DOWODU")
 	private String nrDowodu;
 
-	@Column(name="NR_TELEFONU")
+	@Column(name = "NR_TELEFONU")
 	private String nrTelefonu;
 
 	private String uwagi;
 
-	//bi-directional many-to-one association to FakturyEntity
-	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="klienci")
+	// bi-directional many-to-one association to FakturyEntity
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "klienci")
 	private List<FakturyEntity> fakturies;
 
-	//bi-directional many-to-one association to WypozyczeniaEntity
-	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="klienci")
+	// bi-directional many-to-one association to WypozyczeniaEntity
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "klienci")
 	private List<WypozyczeniaEntity> wypozyczenias;
 
 	public KlienciEntity() {
+	}
+
+	public KlienciEntity(String pesel, int iloscTransakcji, String imie, String nazwisko, String nrDowodu,
+			String nrTelefonu, String uwagi, List<FakturyEntity> fakturies, List<WypozyczeniaEntity> wypozyczenias) {
+		super();
+		this.pesel = pesel;
+		this.iloscTransakcji = iloscTransakcji;
+		this.imie = imie;
+		this.nazwisko = nazwisko;
+		this.nrDowodu = nrDowodu;
+		this.nrTelefonu = nrTelefonu;
+		this.uwagi = uwagi;
+		this.fakturies = fakturies;
+		this.wypozyczenias = wypozyczenias;
 	}
 
 	public String getPesel() {
@@ -144,7 +157,9 @@ public class KlienciEntity implements Serializable {
 		return wypozyczenia;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -153,7 +168,5 @@ public class KlienciEntity implements Serializable {
 				+ ", nazwisko=" + nazwisko + ", nrDowodu=" + nrDowodu + ", nrTelefonu=" + nrTelefonu + ", uwagi="
 				+ uwagi + ", fakturies=" + fakturies + ", wypozyczenias=" + wypozyczenias + "]";
 	}
-	
-	
 
 }

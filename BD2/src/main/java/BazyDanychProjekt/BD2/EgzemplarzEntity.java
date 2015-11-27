@@ -5,14 +5,13 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-
 /**
  * The persistent class for the Egzemplarz database table.
  * 
  */
 @Entity
-@Table(name="Egzemplarz")
-@NamedQuery(name="EgzemplarzEntity.findAll", query="SELECT e FROM EgzemplarzEntity e")
+@Table(name = "Egzemplarz")
+@NamedQuery(name = "EgzemplarzEntity.findAll", query = "SELECT e FROM EgzemplarzEntity e")
 public class EgzemplarzEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,34 +19,48 @@ public class EgzemplarzEntity implements Serializable {
 	private String id;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="DATA_OST_PRZEG")
+	@Column(name = "DATA_OST_PRZEG")
 	private Date dataOstPrzeg;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="DATA_ZAKUPU")
+	@Column(name = "DATA_ZAKUPU")
 	private Date dataZakupu;
 
-	private byte wycofany;
+	private boolean wycofany;
 
-	//bi-directional many-to-one association to WypozyczeniaEntity
-	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="egzemplarz")
+	// bi-directional many-to-one association to WypozyczeniaEntity
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "egzemplarz")
 	private List<WypozyczeniaEntity> wypozyczenias;
 
-	//bi-directional many-to-one association to Serwisowanie
-	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="egzemplarz")
+	// bi-directional many-to-one association to Serwisowanie
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "egzemplarz")
 	private List<SerwisowanieEntity> serwisowanies;
 
-	//bi-directional many-to-one association to SprzetEntity
+	// bi-directional many-to-one association to SprzetEntity
 	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
-	@JoinColumn(name="ID_SPRZET")
+	@JoinColumn(name = "ID_SPRZET")
 	private SprzetEntity sprzet;
 
-	//bi-directional many-to-one association to SerwisEntity
+	// bi-directional many-to-one association to SerwisEntity
 	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
-	@JoinColumn(name="ID_SERWIS")
+	@JoinColumn(name = "ID_SERWIS")
 	private SerwisEntity serwi;
 
 	public EgzemplarzEntity() {
+	}
+
+	public EgzemplarzEntity(String id, Date dataOstPrzeg, Date dataZakupu, boolean wycofany,
+			List<WypozyczeniaEntity> wypozyczenias, List<SerwisowanieEntity> serwisowanies, SprzetEntity sprzet,
+			SerwisEntity serwi) {
+		super();
+		this.id = id;
+		this.dataOstPrzeg = dataOstPrzeg;
+		this.dataZakupu = dataZakupu;
+		this.wycofany = wycofany;
+		this.wypozyczenias = wypozyczenias;
+		this.serwisowanies = serwisowanies;
+		this.sprzet = sprzet;
+		this.serwi = serwi;
 	}
 
 	public String getId() {
@@ -74,11 +87,11 @@ public class EgzemplarzEntity implements Serializable {
 		this.dataZakupu = dataZakupu;
 	}
 
-	public byte getWycofany() {
+	public boolean getWycofany() {
 		return this.wycofany;
 	}
 
-	public void setWycofany(byte wycofany) {
+	public void setWycofany(boolean wycofany) {
 		this.wycofany = wycofany;
 	}
 
@@ -142,7 +155,9 @@ public class EgzemplarzEntity implements Serializable {
 		this.serwi = serwi;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -151,7 +166,5 @@ public class EgzemplarzEntity implements Serializable {
 				+ ", wycofany=" + wycofany + ", wypozyczenias=" + wypozyczenias + ", serwisowanies=" + serwisowanies
 				+ ", sprzet=" + sprzet + ", serwi=" + serwi + "]";
 	}
-	
-	
 
 }

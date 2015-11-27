@@ -4,14 +4,13 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 
-
 /**
  * The persistent class for the rezerwacja database table.
  * 
  */
 @Entity
-@Table(name="rezerwacja")
-@NamedQuery(name="RezerwacjaEntity.findAll", query="SELECT r FROM RezerwacjaEntity r")
+@Table(name = "rezerwacja")
+@NamedQuery(name = "RezerwacjaEntity.findAll", query = "SELECT r FROM RezerwacjaEntity r")
 public class RezerwacjaEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -19,23 +18,34 @@ public class RezerwacjaEntity implements Serializable {
 	private int id;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="DATA_KONIEC")
+	@Column(name = "DATA_KONIEC")
 	private Date dataKoniec;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="DATA_START")
+	@Column(name = "DATA_START")
 	private Date dataStart;
 
-	@Column(name="ID_EGZEMPLARZ")
+	@Column(name = "ID_EGZEMPLARZ")
 	private String idEgzemplarz;
 
-	@Column(name="PESEL_KLIENTA")
+	@Column(name = "PESEL_KLIENTA")
 	private String peselKlienta;
 
-	@Column(name="PESEL_PRAC")
+	@Column(name = "PESEL_PRAC")
 	private String peselPrac;
 
 	public RezerwacjaEntity() {
+	}
+
+	public RezerwacjaEntity(int id, Date dataKoniec, Date dataStart, String idEgzemplarz, String peselKlienta,
+			String peselPrac) {
+		super();
+		this.id = id;
+		this.dataKoniec = dataKoniec;
+		this.dataStart = dataStart;
+		this.idEgzemplarz = idEgzemplarz;
+		this.peselKlienta = peselKlienta;
+		this.peselPrac = peselPrac;
 	}
 
 	public int getId() {
@@ -86,7 +96,9 @@ public class RezerwacjaEntity implements Serializable {
 		this.peselPrac = peselPrac;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
