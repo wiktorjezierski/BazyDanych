@@ -10,11 +10,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import javax.swing.ListSelectionModel;
 import javax.swing.JTextField;
-import javax.swing.BoxLayout;
 import java.awt.Rectangle;
 
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
