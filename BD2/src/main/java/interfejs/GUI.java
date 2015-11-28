@@ -14,6 +14,8 @@ import java.awt.Rectangle;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class GUI {
 
@@ -23,6 +25,7 @@ public class GUI {
 	private JTextField txtPeselKlienta;
 	private JTextField txtDataRozpoczcia;
 	private JTextField txtIdEgzemplarza;
+	private JTable tableRezerwacje;
 	private JTable table;
 
 	/**
@@ -53,7 +56,7 @@ public class GUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 559, 306);
+		frame.setBounds(100, 100, 559, 299);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -63,11 +66,19 @@ public class GUI {
 		tabbedPane.addTab("Pracownicy", null, panPracownicy, null);
 		panPracownicy.setLayout(null);
 		
+		JScrollPane scrollPanePracownicy = new JScrollPane();
+		scrollPanePracownicy.setBounds(30, 9, 469, 160);
+		panPracownicy.add(scrollPanePracownicy);
+		
 		tablePracownicy = new JTable();
-		tablePracownicy.setBounds(30, 9, 469, 160);
+		scrollPanePracownicy.setViewportView(tablePracownicy);
 		tablePracownicy.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tablePracownicy.setModel(new DefaultTableModel(
 			new Object[][] {
+				{"94022214550", "Piotr", "\u0141awniczak", "22.11.2015", "true"},
+				{"93012132442", "Wiktor", "Jezierski", "27.11.2015", "true"},
+				{"77083044329", "Rozb\u00F3jnik", "Alibaba", "11.02.2004", "false"},
+				{null, null, null, null, null},
 				{null, null, null, null, null},
 				{null, null, null, null, null},
 				{null, null, null, null, null},
@@ -79,16 +90,19 @@ public class GUI {
 				"PESEL", "Imi\u0119", "Nazwisko", "Data rozpocz\u0119cia pracy", "Zatrudniony"
 			}
 		));
-		panPracownicy.add(tablePracownicy);
 		
 		JButton btnNewButton = new JButton("Usuń");
-		btnNewButton.setBounds(428, 180, 71, 23);
+		btnNewButton.setBounds(30, 180, 71, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 		frame.getContentPane().setLayout(null);
 		panPracownicy.add(btnNewButton);
+		
+		JButton btnDodaj_1 = new JButton("Dodaj");
+		btnDodaj_1.setBounds(410, 180, 89, 23);
+		panPracownicy.add(btnDodaj_1);
 		
 		JPanel panRezerwacje = new JPanel();
 		tabbedPane.addTab("Rezerwacje", null, panRezerwacje, null);
@@ -122,8 +136,44 @@ public class GUI {
 		btnDodaj.setBounds(406, 5, 86, 23);
 		panRezerwacje.add(btnDodaj);
 		
+		JButton btnNewButton_1 = new JButton("Cofnij rezerwację");
+		btnNewButton_1.setBounds(349, 183, 143, 23);
+		panRezerwacje.add(btnNewButton_1);
+		
+		JScrollPane scrollPaneRezerwacje = new JScrollPane();
+		scrollPaneRezerwacje.setBounds(22, 34, 470, 138);
+		panRezerwacje.add(scrollPaneRezerwacje);
+		
+		tableRezerwacje = new JTable();
+		scrollPaneRezerwacje.setViewportView(tableRezerwacje);
+		tableRezerwacje.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"1", "Narty biegowe", "32", "22.01.2016", "28.01.2016", "Piotr", "\u0141awniczak"},
+				{"2", "Sanki", "8", "20.12.2016", "21.12.2016", "Wiktor", "Jezierski"},
+				{"3", "Snowboard", "1", "02.02.2017", "22.03.2017", "Wiktor", "Jezierski"},
+				{"", null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+			},
+			new String[] {
+				"ID", "Rodzaj sprz\u0119tu", "ID Egzemplarza", "Data rozpocz\u0119cia wypo\u017Cyczenia", "Data zwrotu", "Imi\u0119 pracownika", "Nazwisko pracownika"
+			}
+		));
+		
+		JPanel panKlienci = new JPanel();
+		tabbedPane.addTab("Klienci", null, panKlienci, null);
+		panKlienci.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(37, 5, 452, 154);
+		panKlienci.add(scrollPane);
+		
 		table = new JTable();
-		table.setBounds(22, 34, 470, 148);
+		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null, null},
@@ -131,15 +181,14 @@ public class GUI {
 				{null, null, null, null, null},
 				{null, null, null, null, null},
 				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
 			},
 			new String[] {
-				"New column", "New column", "New column", "New column", "New column"
+				"Pesel", "Imi\u0119", "Nazwisko", "NR Dowodu", "Liczba Transakcji"
 			}
 		));
-		panRezerwacje.add(table);
-		
-		JPanel panKlienci = new JPanel();
-		tabbedPane.addTab("Klienci", null, panKlienci, null);
 		
 		JPanel panSprzet = new JPanel();
 		tabbedPane.addTab("Sprzęt", null, panSprzet, null);
@@ -148,5 +197,4 @@ public class GUI {
 		tabbedPane.addTab("Zestawy", null, panZestawy, null);
 		frame.getContentPane().add(tabbedPane);
 	}
-
 }
