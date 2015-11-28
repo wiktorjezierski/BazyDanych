@@ -11,7 +11,8 @@ import java.util.List;
 @Entity
 @Table(name = "Klienci")
 @NamedQueries({
-	@NamedQuery(name = "KlienciEntity.findAll", query = "SELECT k FROM KlienciEntity k")	
+	@NamedQuery(name = "KlienciEntity.findAll", query = "SELECT k FROM KlienciEntity k"),
+	@NamedQuery(name = "znajdzPoNazwisku", query = "SELECT k FROM KlienciEntity k WHERE k.nazwisko LIKE ?1")
 })
 public class KlienciEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
