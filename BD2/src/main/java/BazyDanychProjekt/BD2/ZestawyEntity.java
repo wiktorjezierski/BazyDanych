@@ -23,22 +23,22 @@ public class ZestawyEntity implements Serializable {
 	@Column(name = "DATA_END")
 	private Date dataEnd;
 
-	@Column(name = "ID_ZESTAWU")
-	private String idZestawu;
+//	@Column(name = "ID_ZESTAWU")
+//	private String idZestawu;
 
 	// bi-directional many-to-one association to SprzetEntity
 	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
-	@JoinColumn(name = "ID_SPRZET")
+	@JoinColumn(name = "ID_SPRZET1")
 	private SprzetEntity sprzet;
 
 	public ZestawyEntity() {
 	}
 
-	public ZestawyEntity(int id, Date dataEnd, String idZestawu, SprzetEntity sprzet) {
+	public ZestawyEntity(int id, Date dataEnd, SprzetEntity sprzet) {
 		super();
 		this.id = id;
 		this.dataEnd = dataEnd;
-		this.idZestawu = idZestawu;
+//		this.idZestawu = idZestawu;
 		this.sprzet = sprzet;
 	}
 
@@ -58,13 +58,13 @@ public class ZestawyEntity implements Serializable {
 		this.dataEnd = dataEnd;
 	}
 
-	public String getIdZestawu() {
-		return this.idZestawu;
-	}
-
-	public void setIdZestawu(String idZestawu) {
-		this.idZestawu = idZestawu;
-	}
+//	public String getIdZestawu() {
+//		return this.idZestawu;
+//	}
+//
+//	public void setIdZestawu(String idZestawu) {
+//		this.idZestawu = idZestawu;
+//	}
 
 	public SprzetEntity getSprzet() {
 		return this.sprzet;
@@ -81,7 +81,7 @@ public class ZestawyEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Zestawy: id=" + id + ", dataEnd=" + dataEnd + ", idZestawu=" + idZestawu ;
+		return "Zestawy: id=" + id + ", dataEnd=" + dataEnd + ", idZestawu=" + sprzet.getId() ;
 	}
 
 }
