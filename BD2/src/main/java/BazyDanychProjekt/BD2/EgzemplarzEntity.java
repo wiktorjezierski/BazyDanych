@@ -28,6 +28,8 @@ public class EgzemplarzEntity implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "DATA_ZAKUPU")
 	private Date dataZakupu;
+	
+	private boolean dostepny;
 
 	private boolean wycofany;
 
@@ -88,6 +90,14 @@ public class EgzemplarzEntity implements Serializable {
 
 	public void setDataZakupu(Date dataZakupu) {
 		this.dataZakupu = dataZakupu;
+	}
+
+	public boolean isDostepny() {
+		return dostepny;
+	}
+
+	public void setDostepny(boolean dostepny) {
+		this.dostepny = dostepny;
 	}
 
 	public boolean getWycofany() {
@@ -166,7 +176,7 @@ public class EgzemplarzEntity implements Serializable {
 	@Override
 	public String toString() {
 		return "Egzemplarz: id=" + id + ", dataOstPrzeg=" + dataOstPrzeg + ", dataZakupu=" + dataZakupu + ", wycofany="
-				+ wycofany + ", sprzet=" + sprzet.getMarka() + " " + sprzet.getNazwa();
+				+ wycofany + ", sprzet=" + sprzet.getMarka() + " " + sprzet.getNazwa() + " " + dostepny;
 	}
 
 }

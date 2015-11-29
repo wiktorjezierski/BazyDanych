@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import com.mysql.jdbc.log.Log;
 
+
 /**
  * @author Wiktor Jezierski
  */
@@ -36,7 +37,7 @@ public class DataBaseController {
 		// db.findByPrimaryKey(WypozyczeniaEntity.class, 17);
 		// JOptionPane.showMessageDialog(null, wyp1.toString());
 		
-		List<ZestawyEntity> list =  db.findAll(ZestawyEntity.class);
+		List<PracownicyEntity> list =  db.findAll(PracownicyEntity.class);
 		JOptionPane.showMessageDialog(null, list.get(0).toString());
 		
 		List<KlienciEntity> lista = db.executeNamedQueryForLike(KlienciEntity.class, "znajdzPoNazwisku", "M");
