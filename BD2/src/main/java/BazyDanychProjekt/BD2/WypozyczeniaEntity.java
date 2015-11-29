@@ -16,6 +16,9 @@ public class WypozyczeniaEntity implements Serializable {
 
 	@Id
 	private int id;
+	
+	@Column(name = "NR_WYPOZYCZENIA")
+	private int nrWypozyczenia;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name = "DATA_WYP")
@@ -61,6 +64,14 @@ public class WypozyczeniaEntity implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getNrWypozyczenia() {
+		return nrWypozyczenia;
+	}
+
+	public void setNrWypozyczenia(int nrWypozyczenia) {
+		this.nrWypozyczenia = nrWypozyczenia;
 	}
 
 	public Date getDataWyp() {
