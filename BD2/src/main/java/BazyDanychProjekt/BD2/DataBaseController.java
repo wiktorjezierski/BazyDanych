@@ -40,8 +40,8 @@ public class DataBaseController {
 		List<PracownicyEntity> list =  db.findAll(PracownicyEntity.class);
 		JOptionPane.showMessageDialog(null, list.get(0).toString());
 		
-		List<KlienciEntity> lista = db.executeNamedQueryForLike(KlienciEntity.class, "znajdzPoNazwisku", "M");
-		JOptionPane.showMessageDialog(null, lista.get(0).toString());
+		List<KlienciEntity> lista = db.executeNamedQueryForLike(KlienciEntity.class, "znajdzPoNazwisku", "P");
+		JOptionPane.showMessageDialog(null, lista.size());
 		db.closeConnection(); 
 	}
 

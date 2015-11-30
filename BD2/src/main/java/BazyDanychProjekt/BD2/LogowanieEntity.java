@@ -10,7 +10,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "LOGOWANIE")
 @NamedQueries({
-	@NamedQuery(name = "LogowanieEntity.findAll", query = "SELECT l FROM LogowanieEntity l")
+	@NamedQuery(name = "LogowanieEntity.findAll", query = "SELECT l FROM LogowanieEntity l"),
+	@NamedQuery(name = "LogowanieEntity.findByLogin", query = "SELECT l FROM LogowanieEntity l WHERE l.login = ?1")
 })
 public class LogowanieEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
