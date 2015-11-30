@@ -15,7 +15,7 @@ public class Sprzet extends JPanel {
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 622, 248);
+		scrollPane.setBounds(10, 11, 622, 286);
 		add(scrollPane);
 		
 		table = new JTable();
