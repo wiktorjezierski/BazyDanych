@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 public class Logowanie {
 	GUI window = new GUI();
 	JFrame frmZaloguj;
+	LogowanieAF logowanko;
 	private JPasswordField passwordField;
 
 	/**
@@ -51,6 +52,8 @@ public class Logowanie {
 		frmZaloguj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmZaloguj.getContentPane().setLayout(null);
 		
+		logowanko = new LogowanieAF();
+		
 		JTextPane textPane = new JTextPane();
 		textPane.setBounds(105, 11, 124, 30);
 		frmZaloguj.getContentPane().add(textPane);
@@ -70,7 +73,6 @@ public class Logowanie {
 		JButton btnZaloguj = new JButton("Zaloguj");
 		btnZaloguj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LogowanieAF logowanko = new LogowanieAF();
 				boolean logowanie = logowanko.zaloguj(textPane.getText(), passwordField.getText());
 				if (logowanie){
 					frmZaloguj.setVisible(false);
