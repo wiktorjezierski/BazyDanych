@@ -9,9 +9,12 @@ import BazyDanychProjekt.ApplicationFunction.LogowanieAF;
 
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Logowanie {
 	GUI window = new GUI();
@@ -73,7 +76,7 @@ public class Logowanie {
 		JButton btnZaloguj = new JButton("Zaloguj");
 		btnZaloguj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				boolean logowanie = logowanko.zaloguj(textPane.getText(), passwordField.getText());
+				boolean logowanie = logowanko.zaloguj(textPane.getText().trim(), passwordField.getText());
 				if (logowanie){
 					frmZaloguj.setVisible(false);
 					window.frmWypoyczalniaSprztuSpotowego.setVisible(true);
@@ -83,5 +86,15 @@ public class Logowanie {
 		});
 		btnZaloguj.setBounds(105, 97, 124, 42);
 		frmZaloguj.getContentPane().add(btnZaloguj);
+		
+		textPane.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == 9){
+					frmZaloguj.getRootPane().setDefaultButton(btnZaloguj);	
+					passwordField.requestFocus();
+				}
+			}
+		});
 	}
 }
