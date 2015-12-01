@@ -23,7 +23,7 @@ import javax.swing.JMenu;
 
 public class GUI {
 
-	private JFrame frmWypoyczalniaSprztuSpotowego;
+	JFrame frmWypoyczalniaSprztuSpotowego;
 
 	/**
 	 * Launch the application.

@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
+
+import BazyDanychProjekt.ApplicationFunction.LogowanieAF;
+
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -11,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Logowanie {
-
+	GUI window = new GUI();
 	JFrame frmZaloguj;
 	private JPasswordField passwordField;
 
@@ -67,9 +70,13 @@ public class Logowanie {
 		JButton btnZaloguj = new JButton("Zaloguj");
 		btnZaloguj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//jeśli zalogowano, to zamknij okno logowania i wywołaj okno aplikacji
-				//jeśli nie, to zwróć komunikat o błędzie i poproś o ponowne wpisanie danych
-				
+				LogowanieAF logowanko = new LogowanieAF();
+				boolean logowanie = logowanko.zaloguj(textPane.getText(), passwordField.getText());
+				if (logowanie){
+					frmZaloguj.setVisible(false);
+					window.frmWypoyczalniaSprztuSpotowego.setVisible(true);
+				}
+					
 			}
 		});
 		btnZaloguj.setBounds(105, 97, 124, 42);
