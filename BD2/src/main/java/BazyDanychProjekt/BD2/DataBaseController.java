@@ -19,8 +19,8 @@ public class DataBaseController {
 
 	private final String persistenceName = "BD2";
 
-	private EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager;
+	private static EntityManagerFactory entityManagerFactory;
+	private static EntityManager entityManager;
 
 	public static void main(String[] args) {
 		DataBaseController db = new DataBaseController();
@@ -49,8 +49,10 @@ public class DataBaseController {
 	 * standard constructor
 	 */
 	public DataBaseController() {
-		entityManagerFactory = Persistence.createEntityManagerFactory(persistenceName);
-		entityManager = entityManagerFactory.createEntityManager();
+		if (entityManagerFactory == null || entityManager == null) {
+			entityManagerFactory = Persistence.createEntityManagerFactory(persistenceName);
+			entityManager = entityManagerFactory.createEntityManager();
+		}
 	}
 
 	/**
