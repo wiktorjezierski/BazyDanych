@@ -18,10 +18,11 @@ import java.awt.event.KeyEvent;
 
 public class Logowanie {
 	GUI window = new GUI();
-	JFrame frmZaloguj;
-	LogowanieAF logowanko;
+	private JFrame frmZaloguj;
+	private LogowanieAF logowanko;
 	private JPasswordField passwordField;
-	JButton btnZaloguj;
+	private JButton btnZaloguj;
+	private JTextPane textPane;
 
 	/**
 	 * Launch the application.
@@ -44,9 +45,9 @@ public class Logowanie {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			if(e.getKeyCode() == 9){
-				frmZaloguj.getRootPane().setDefaultButton(btnZaloguj);	
 				passwordField.requestFocus();
 			}
+			frmZaloguj.getRootPane().setDefaultButton(btnZaloguj);	
 		}
 	};
 	
@@ -69,7 +70,7 @@ public class Logowanie {
 		
 		logowanko = new LogowanieAF();
 		
-		JTextPane textPane = new JTextPane();
+		textPane = new JTextPane();
 		textPane.setBounds(105, 11, 124, 30);
 		frmZaloguj.getContentPane().add(textPane);
 		
@@ -86,19 +87,22 @@ public class Logowanie {
 		frmZaloguj.getContentPane().add(lblHaso);
 		
 		btnZaloguj = new JButton("Zaloguj");
-		btnZaloguj.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				boolean logowanie = logowanko.zaloguj(textPane.getText().trim(), passwordField.getText());
-				if (logowanie){
-					frmZaloguj.setVisible(false);
-					window.frmWypoyczalniaSprztuSpotowego.setVisible(true);
-				}
-					
-			}
-		});
+		btnZaloguj.addActionListener(zaloguj);
 		btnZaloguj.setBounds(105, 97, 124, 42);
 		frmZaloguj.getContentPane().add(btnZaloguj);
 		
 		textPane.addKeyListener(keyAdapter);
 	}
+	
+	ActionListener zaloguj = new ActionListener() {
+		
+		public void actionPerformed(ActionEvent arg0) {
+			boolean logowanie = logowanko.zaloguj(textPane.getText().trim(), passwordField.getText());
+			if (logowanie){
+				frmZaloguj.setVisible(false);
+				window.frmWypoyczalniaSprztuSpotowego.setVisible(true);
+			}
+				
+		}
+	};
 }
