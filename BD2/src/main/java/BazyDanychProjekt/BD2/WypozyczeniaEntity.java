@@ -25,22 +25,22 @@ public class WypozyczeniaEntity implements Serializable {
 	private Date dataWyp;
 
 	// bi-directional many-to-one association to PracownicyEntity
-	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
 	@JoinColumn(name = "PESEL_PRAC")
 	private PracownicyEntity pracownicy;
 
 	// bi-directional many-to-one association to FakturyEntity
-	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
 	@JoinColumn(name = "ID_FAKTURY")
 	private FakturyEntity faktury;
 
 	// bi-directional many-to-one association to KlienciEntity
-	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
 	@JoinColumn(name = "PESEL_KLIENTA")
 	private KlienciEntity klienci;
 
 	// bi-directional many-to-one association to EgzemplarzEntity
-	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
 	@JoinColumn(name = "ID_EGZEMPLARZA")
 	private EgzemplarzEntity egzemplarz;
 

@@ -28,16 +28,16 @@ public class FakturyEntity implements Serializable {
 	private float kwota;
 
 	// bi-directional many-to-one association to PracownicyEntity
-	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
 	@JoinColumn(name = "PESEL_PRAC")
 	private PracownicyEntity pracownicy;
 
 	// bi-directional many-to-one association to WypozyczeniaEntity
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "faktury")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "faktury", fetch=FetchType.LAZY)
 	private List<WypozyczeniaEntity> wypozyczenias;
 
 	// bi-directional many-to-one association to KlienciEntity
-	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
 	@JoinColumn(name = "PESEL_KLIENTA")
 	private KlienciEntity klienci;
 

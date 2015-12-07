@@ -34,20 +34,20 @@ public class EgzemplarzEntity implements Serializable {
 	private boolean wycofany;
 
 	// bi-directional many-to-one association to WypozyczeniaEntity
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "egzemplarz")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "egzemplarz", fetch=FetchType.LAZY)
 	private List<WypozyczeniaEntity> wypozyczenias;
 
 	// bi-directional many-to-one association to Serwisowanie
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "egzemplarz")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "egzemplarz", fetch=FetchType.LAZY)
 	private List<SerwisowanieEntity> serwisowanies;
 
 	// bi-directional many-to-one association to SprzetEntity
-	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
 	@JoinColumn(name = "ID_SPRZET")
 	private SprzetEntity sprzet;
 
 	// bi-directional many-to-one association to SerwisEntity
-	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
 	@JoinColumn(name = "ID_SERWIS")
 	private SerwisEntity serwi;
 

@@ -36,11 +36,11 @@ public class KlienciEntity implements Serializable {
 	private String uwagi;
 
 	// bi-directional many-to-one association to FakturyEntity
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "klienci")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "klienci", fetch=FetchType.LAZY)
 	private List<FakturyEntity> fakturies;
 
 	// bi-directional many-to-one association to WypozyczeniaEntity
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "klienci")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "klienci", fetch=FetchType.LAZY)
 	private List<WypozyczeniaEntity> wypozyczenias;
 
 	public KlienciEntity() {

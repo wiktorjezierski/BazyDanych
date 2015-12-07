@@ -38,15 +38,15 @@ public class PracownicyEntity implements Serializable {
 	private Date zwolniony;
 
 	// bi-directional many-to-one association to FakturyEntity
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pracownicy")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pracownicy", fetch=FetchType.LAZY)
 	private List<FakturyEntity> fakturies;
 
 	// bi-directional one-to-one association to LogowanieEntity
-	@OneToOne(cascade = CascadeType.PERSIST, mappedBy = "pracownicy")
+	@OneToOne(cascade = CascadeType.PERSIST, mappedBy = "pracownicy", fetch=FetchType.LAZY)
 	private LogowanieEntity logowanie;
 
 	// bi-directional many-to-one association to WypozyczeniaEntity
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pracownicy")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pracownicy", fetch=FetchType.LAZY)
 	private List<WypozyczeniaEntity> wypozyczenias;
 
 	public PracownicyEntity() {

@@ -26,11 +26,11 @@ public class SerwisEntity implements Serializable {
 	private String telefon;
 
 	// bi-directional many-to-one association to EgzemplarzEntity
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "serwi")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "serwi", fetch=FetchType.LAZY)
 	private List<EgzemplarzEntity> egzemplarzs;
 
 	// bi-directional many-to-one association to Serwisowanie
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "serwi")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "serwi", fetch=FetchType.LAZY)
 	private List<SerwisowanieEntity> serwisowanies;
 
 	public SerwisEntity() {

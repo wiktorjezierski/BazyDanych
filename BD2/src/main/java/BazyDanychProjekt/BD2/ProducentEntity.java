@@ -27,7 +27,7 @@ public class ProducentEntity implements Serializable {
 	private String telefon;
 
 	// bi-directional many-to-one association to SprzetEntity
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "producent")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "producent", fetch=FetchType.LAZY)
 	private List<SprzetEntity> sprzets;
 
 	public ProducentEntity() {
