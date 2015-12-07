@@ -37,25 +37,6 @@ public class Pracownicy extends JPanel {
 		tablePracownicy.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tablePracownicy.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"94022214550", "Piotr", "\u0141awniczak", "22.11.2015", "true"},
-				{"93012132442", "Wiktor", "Jezierski", "27.11.2015", "true"},
-				{"77083044329", "Rozb\u00F3jnik", "Alibaba", "11.02.2004", "false"},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
 			},
 			new String[] {
 				"PESEL", "Imi\u0119", "Nazwisko", "Data rozpocz\u0119cia pracy", "Zatrudniony"
@@ -89,26 +70,14 @@ public class Pracownicy extends JPanel {
 	
 	
 	private void setContentTable() {
-		try {
-			List<PracownicyEntity> employees = mPracownicy.findAllEmployees();
-			employees.remove(0);
-			TableModel model = tablePracownicy.getModel();
-			PracownicyEntity p;
-			
-			for (int i = 0; i < employees.size(); i++) {
-				p = employees.get(i);
-				model.setValueAt(p.getPeselPrac(), i, 0);
-				model.setValueAt(p.getImie(), i, 1);
-				model.setValueAt(p.getNazwisko(), i, 2);
-				model.setValueAt(p.getDataStartu().toString(), i, 3);
+		List<PracownicyEntity> employees = mPracownicy.findAllEmployees();
+		employees.remove(0);
+		DefaultTableModel model = (DefaultTableModel) tablePracownicy.getModel();
 
-				if (p.getZwolniony() != null)
-					model.setValueAt(p.getZwolniony().toString(), i, 4);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		for (PracownicyEntity p : employees) {
+			model.addRow(new Object[] { p.getPeselPrac(), p.getImie(), p.getNazwisko(), p.getDataStartu().toString(),
+					p.getZwolniony() });
 		}
-
 	}
 
 }
