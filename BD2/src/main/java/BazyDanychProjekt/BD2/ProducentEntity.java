@@ -19,10 +19,11 @@ public class ProducentEntity implements Serializable {
 	@Id
 	private int id;
 
-	private String adres;
+	private String miasto;
 
 	private String nazwa;
-
+	
+	@Column(name = "NR_TELEFONU")
 	private String telefon;
 
 	// bi-directional many-to-one association to SprzetEntity
@@ -35,7 +36,7 @@ public class ProducentEntity implements Serializable {
 	public ProducentEntity(int id, String adres, String nazwa, String telefon, List<SprzetEntity> sprzets) {
 		super();
 		this.id = id;
-		this.adres = adres;
+		this.miasto = adres;
 		this.nazwa = nazwa;
 		this.telefon = telefon;
 		this.sprzets = sprzets;
@@ -50,11 +51,11 @@ public class ProducentEntity implements Serializable {
 	}
 
 	public String getAdres() {
-		return this.adres;
+		return this.miasto;
 	}
 
 	public void setAdres(String adres) {
-		this.adres = adres;
+		this.miasto = adres;
 	}
 
 	public String getNazwa() {
@@ -102,7 +103,7 @@ public class ProducentEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Producent: id=" + id + ", adres=" + adres + ", nazwa=" + nazwa + ", telefon=" + telefon;
+		return "Producent: id=" + id + ", adres=" + miasto + ", nazwa=" + nazwa + ", telefon=" + telefon;
 	}
 
 }

@@ -37,7 +37,7 @@ public class DataBaseController {
 		// db.findByPrimaryKey(WypozyczeniaEntity.class, 17);
 		// JOptionPane.showMessageDialog(null, wyp1.toString());
 		
-		List<PracownicyEntity> list =  db.findAll(PracownicyEntity.class);
+		List<ProducentEntity> list =  db.findAll(ProducentEntity.class);
 		JOptionPane.showMessageDialog(null, list.get(0).toString());
 		
 		List<KlienciEntity> lista = db.executeNamedQueryForLike(KlienciEntity.class, "znajdzPoNazwisku", "P");
