@@ -15,6 +15,7 @@ import javax.swing.table.TableModel;
 
 import BazyDanychProjekt.ApplicationFunction.PracownicyAF;
 import BazyDanychProjekt.BD2.PracownicyEntity;
+import BazyDanychProjekt.BD2.PracownicyEntityView;
 
 public class Pracownicy extends JPanel {
 	
@@ -70,11 +71,11 @@ public class Pracownicy extends JPanel {
 	
 	
 	private void setContentTable() {
-		List<PracownicyEntity> employees = mPracownicy.findAllEmployees();
+		List<PracownicyEntityView> employees = mPracownicy.findAllEmployees();
 		employees.remove(0);
 		DefaultTableModel model = (DefaultTableModel) tablePracownicy.getModel();
 
-		for (PracownicyEntity p : employees) {
+		for (PracownicyEntityView p : employees) {
 			model.addRow(new Object[] { p.getPeselPrac(), p.getImie(), p.getNazwisko(), p.getDataStartu().toString(),
 					p.getZwolniony() });
 		}
