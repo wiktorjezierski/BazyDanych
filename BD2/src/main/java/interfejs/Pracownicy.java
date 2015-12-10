@@ -71,11 +71,11 @@ public class Pracownicy extends JPanel {
 	
 	
 	private void setContentTable() {
-		List<PracownicyEntityView> employees = mPracownicy.findAllEmployees();
+		List<PracownicyEntity> employees = mPracownicy.findAllEmployees();
 		employees.remove(0);
 		DefaultTableModel model = (DefaultTableModel) tablePracownicy.getModel();
 
-		for (PracownicyEntityView p : employees) {
+		for (PracownicyEntity p : employees) {
 			model.addRow(new Object[] { p.getPeselPrac(), p.getImie(), p.getNazwisko(), p.getDataStartu().toString(),
 					p.getZwolniony() });
 		}

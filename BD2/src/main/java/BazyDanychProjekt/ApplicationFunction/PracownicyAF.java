@@ -18,8 +18,8 @@ public class PracownicyAF {
 		mController = new DataBaseController();
 	}
 	
-	public List<PracownicyEntityView> findAllEmployees(){
-		return mController.findAll(PracownicyEntityView.class);
+	public List<PracownicyEntity> findAllEmployees(){
+		return mController.findAll(PracownicyEntity.class);
 	}
 
 }
