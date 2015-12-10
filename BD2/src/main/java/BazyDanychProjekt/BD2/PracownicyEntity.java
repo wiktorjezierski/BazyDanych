@@ -42,8 +42,8 @@ public class PracownicyEntity implements Serializable {
 	private List<FakturyEntity> fakturies;
 
 	// bi-directional one-to-one association to LogowanieEntity
-	@OneToOne(cascade = CascadeType.PERSIST, mappedBy = "pracownicy", fetch=FetchType.LAZY)
-	private LogowanieEntity logowanie;
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pracownicy", fetch=FetchType.LAZY)
+	private List<LogowanieEntity> logowanie;
 
 	// bi-directional many-to-one association to WypozyczeniaEntity
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pracownicy", fetch=FetchType.LAZY)
@@ -53,7 +53,7 @@ public class PracownicyEntity implements Serializable {
 	}
 
 	public PracownicyEntity(String peselPrac, String adresEmail, Date dataStartu, String imie, String nazwisko,
-			String stanowisko, Date zwolniony, List<FakturyEntity> fakturies, LogowanieEntity logowanie,
+			String stanowisko, Date zwolniony, List<FakturyEntity> fakturies, List<LogowanieEntity> logowanie,
 			List<WypozyczeniaEntity> wypozyczenias) {
 		super();
 		this.peselPrac = peselPrac;
@@ -147,11 +147,11 @@ public class PracownicyEntity implements Serializable {
 	}
 
 	public LogowanieEntity getLogowanie() {
-		return this.logowanie;
+		return this.logowanie.get(0);
 	}
 
 	public void setLogowanie(LogowanieEntity logowanie) {
-		this.logowanie = logowanie;
+		this.logowanie.add(logowanie);
 	}
 
 	public List<WypozyczeniaEntity> getWypozyczenias() {

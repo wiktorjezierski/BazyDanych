@@ -24,7 +24,7 @@ public class LogowanieEntity implements Serializable {
 	private String login;
 
 	// bi-directional one-to-one association to PracownicyEntity
-	@OneToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.EAGER)
 	@JoinColumn(name = "PESEL")
 	private PracownicyEntity pracownicy;
 
