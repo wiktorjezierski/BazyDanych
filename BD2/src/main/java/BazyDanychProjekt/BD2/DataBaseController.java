@@ -83,14 +83,14 @@ public class DataBaseController {
 	/**
 	 * Open transaction for JPA entityManager
 	 */
-	private void commitTransaction() {
+	public void commitTransaction() {
 		entityManager.getTransaction().commit();
 	}
 
 	/**
 	 * Close transaction for JPA entityManager
 	 */
-	private void beginTransaction() {
+	public void beginTransaction() {
 		entityManager.getTransaction().begin();
 	}
 
@@ -103,6 +103,21 @@ public class DataBaseController {
 			entityManager.persist(param);
 			commitTransaction();
 
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	/**
+	 * Save object into Data Base, function is template
+	 * Must to use function beginTransaction() before and commitTransaction() after this function
+	 * function to using in loop
+	 */
+	public <T> boolean saveMoreToDataBase(T param) {
+		try {
+			entityManager.persist(param);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
