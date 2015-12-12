@@ -27,29 +27,35 @@ public class RezerwacjaEntity implements Serializable {
 	@Column(name = "DATA_START")
 	private Date dataStart;
 
-	@Column(name = "ID_EGZEMPLARZ")
-	private String idEgzemplarz;
-
-	@Column(name = "PESEL_KLIENTA")
-	private String peselKlienta;
-
-	@Column(name = "PESEL_PRAC")
-	private String peselPrac;
+	// bi-directional many-to-one association to KlienciEntity
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
+	@JoinColumn(name = "PESEL_KLIENTA")
+	private KlienciEntity klienci;
 	
+	// bi-directional many-to-one association to KlienciEntity
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
+	@JoinColumn(name = "PESEL_PRAC")
+	private PracownicyEntity pracownicy;
+	
+	// bi-directional many-to-one association to EgzemplarzEntity
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
+	@JoinColumn(name = "ID")
+	private EgzemplarzEntity egzemplarz;
 	
 
 	public RezerwacjaEntity() {
 	}
 
 	public RezerwacjaEntity(int id, Date dataKoniec, Date dataStart, String idEgzemplarz, String peselKlienta,
-			String peselPrac) {
+			String peselPrac, KlienciEntity klienci) {
 		super();
 		this.id = id;
 		this.dataKoniec = dataKoniec;
 		this.dataStart = dataStart;
-		this.idEgzemplarz = idEgzemplarz;
-		this.peselKlienta = peselKlienta;
-		this.peselPrac = peselPrac;
+		//this.idEgzemplarz = idEgzemplarz;
+//		this.peselKlienta = peselKlienta;
+//		this.peselPrac = peselPrac;
+		this.klienci = klienci;
 	}
 
 	public int getId() {
@@ -76,28 +82,12 @@ public class RezerwacjaEntity implements Serializable {
 		this.dataStart = dataStart;
 	}
 
-	public String getIdEgzemplarz() {
-		return this.idEgzemplarz;
+	public KlienciEntity getKlienci() {
+		return klienci;
 	}
 
-	public void setIdEgzemplarz(String idEgzemplarz) {
-		this.idEgzemplarz = idEgzemplarz;
-	}
-
-	public String getPeselKlienta() {
-		return this.peselKlienta;
-	}
-
-	public void setPeselKlienta(String peselKlienta) {
-		this.peselKlienta = peselKlienta;
-	}
-
-	public String getPeselPrac() {
-		return this.peselPrac;
-	}
-
-	public void setPeselPrac(String peselPrac) {
-		this.peselPrac = peselPrac;
+	public void setKlienci(KlienciEntity klienci) {
+		this.klienci = klienci;
 	}
 
 	/*
@@ -107,8 +97,7 @@ public class RezerwacjaEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Rezerwacja: id=" + id + ", dataKoniec=" + dataKoniec + ", dataStart=" + dataStart
-				+ ", idEgzemplarz=" + idEgzemplarz + ", peselKlienta=" + peselKlienta + ", peselPrac=" + peselPrac;
+		return "Rezerwacja: id=" + id + ", dataKoniec=" + dataKoniec + ", dataStart=" + dataStart;
 	}
 
 }

@@ -42,12 +42,17 @@ public class KlienciEntity implements Serializable {
 	// bi-directional many-to-one association to WypozyczeniaEntity
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "klienci", fetch=FetchType.LAZY)
 	private List<WypozyczeniaEntity> wypozyczenias;
+	
+	// bi-directional many-to-one association to WypozyczeniaEntity
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "klienci", fetch=FetchType.LAZY)
+	private List<RezerwacjaEntity> rezerwacjas;
 
 	public KlienciEntity() {
 	}
 
 	public KlienciEntity(String pesel, int iloscTransakcji, String imie, String nazwisko, String nrDowodu,
-			String nrTelefonu, String uwagi, List<FakturyEntity> fakturies, List<WypozyczeniaEntity> wypozyczenias) {
+			String nrTelefonu, String uwagi, List<FakturyEntity> fakturies, List<WypozyczeniaEntity> wypozyczenias,
+			List<RezerwacjaEntity> rezerwacjas) {
 		super();
 		this.pesel = pesel;
 		this.iloscTransakcji = iloscTransakcji;
@@ -58,6 +63,7 @@ public class KlienciEntity implements Serializable {
 		this.uwagi = uwagi;
 		this.fakturies = fakturies;
 		this.wypozyczenias = wypozyczenias;
+		this.rezerwacjas = rezerwacjas;
 	}
 
 	public String getPesel() {
@@ -158,6 +164,14 @@ public class KlienciEntity implements Serializable {
 		wypozyczenia.setKlienci(null);
 
 		return wypozyczenia;
+	}
+	
+	public List<RezerwacjaEntity> getRezerwacjas() {
+		return rezerwacjas;
+	}
+
+	public void setRezerwacjas(List<RezerwacjaEntity> rezerwacjas) {
+		this.rezerwacjas = rezerwacjas;
 	}
 
 	/*
