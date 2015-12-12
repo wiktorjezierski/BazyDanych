@@ -22,9 +22,9 @@ public class ZestawyEntity implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "DATA_END")
 	private Date dataEnd;
-
-//	@Column(name = "ID_ZESTAWU")
-//	private String idZestawu;
+	
+	@Column(name = "ID_SPRZET2")
+	private int idSprzet2;
 
 	// bi-directional many-to-one association to SprzetEntity
 	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
@@ -34,11 +34,11 @@ public class ZestawyEntity implements Serializable {
 	public ZestawyEntity() {
 	}
 
-	public ZestawyEntity(int id, Date dataEnd, SprzetEntity sprzet) {
+	public ZestawyEntity(int id, Date dataEnd, int id2, SprzetEntity sprzet) {
 		super();
 		this.id = id;
 		this.dataEnd = dataEnd;
-//		this.idZestawu = idZestawu;
+		this.idSprzet2 = id2;
 		this.sprzet = sprzet;
 	}
 
@@ -58,20 +58,20 @@ public class ZestawyEntity implements Serializable {
 		this.dataEnd = dataEnd;
 	}
 
-//	public String getIdZestawu() {
-//		return this.idZestawu;
-//	}
-//
-//	public void setIdZestawu(String idZestawu) {
-//		this.idZestawu = idZestawu;
-//	}
-
 	public SprzetEntity getSprzet() {
 		return this.sprzet;
 	}
 
 	public void setSprzet(SprzetEntity sprzet) {
 		this.sprzet = sprzet;
+	}
+
+	public int getIdSprzet2() {
+		return idSprzet2;
+	}
+
+	public void setIdSprzet2(int idSprzet2) {
+		this.idSprzet2 = idSprzet2;
 	}
 
 	/*

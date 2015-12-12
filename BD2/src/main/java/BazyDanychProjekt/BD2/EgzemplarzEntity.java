@@ -50,6 +50,10 @@ public class EgzemplarzEntity implements Serializable {
 	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
 	@JoinColumn(name = "ID_SERWIS")
 	private SerwisEntity serwi;
+	
+	// bi-directional many-to-one association to WypozyczeniaEntity
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "egzemplarz", fetch=FetchType.LAZY)
+	private List<RezerwacjaEntity> rezerwacjes;
 
 	public EgzemplarzEntity() {
 	}
