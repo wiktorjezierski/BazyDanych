@@ -4,8 +4,6 @@ import java.util.List;
 
 import BazyDanychProjekt.BD2.DataBaseController;
 import BazyDanychProjekt.BD2.PracownicyEntity;
-import BazyDanychProjekt.BD2.PracownicyEntityView;
-
 /**
  * @author Wiktor Jezierski
  * */

@@ -5,17 +5,13 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-
 import BazyDanychProjekt.ApplicationFunction.PracownicyAF;
 import BazyDanychProjekt.BD2.PracownicyEntity;
-import BazyDanychProjekt.BD2.PracownicyEntityView;
 
 public class Pracownicy extends JPanel {
 	
