@@ -35,6 +35,8 @@ public class RezerwacjaEntity implements Serializable {
 
 	@Column(name = "PESEL_PRAC")
 	private String peselPrac;
+	
+	
 
 	public RezerwacjaEntity() {
 	}
