@@ -88,9 +88,6 @@ public class GUI {
 		JMenu mnFsd = new JMenu("Plik");
 		menuBar.add(mnFsd);
 		
-		JMenuItem mntmOtwrz = new JMenuItem("Otwórz");
-		mnFsd.add(mntmOtwrz);
-		
 		JMenuItem mntmWyjcie = new JMenuItem("Wyjście");
 		mntmWyjcie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -113,9 +110,6 @@ public class GUI {
 		
 		JMenu mnSesja = new JMenu("Sesja");
 		menuBar.add(mnSesja);
-		
-		JMenuItem mntmZaloguj = new JMenuItem("Zaloguj");
-		mnSesja.add(mntmZaloguj);
 		
 		JMenuItem mntmWyloguj = new JMenuItem("Wyloguj");
 		mnSesja.add(mntmWyloguj);

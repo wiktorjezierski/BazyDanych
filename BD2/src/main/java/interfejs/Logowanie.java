@@ -101,8 +101,10 @@ public class Logowanie {
 			if (logowanie){
 				frmZaloguj.setVisible(false);
 				window.frmWypoyczalniaSprztuSpotowego.setVisible(true);
-			}
-				
+			} else
+			JOptionPane.showMessageDialog(null, "Podano niepoprawne dane");
+				textPane.setText(null);
+				passwordField.setText(null);
 		}
 	};
 }

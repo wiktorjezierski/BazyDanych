@@ -6,6 +6,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class Rezerwacje extends JPanel {
 
@@ -21,6 +25,17 @@ public class Rezerwacje extends JPanel {
 		setLayout(null);
 		
 		txtPeselKlienta = new JTextField();
+		txtPeselKlienta.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				txtPeselKlienta.setText(null);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtPeselKlienta.getText() == null)	//dlaczego nie łapie tego ifa???
+					txtPeselKlienta.setText("PESEL Klienta");
+			}
+		});
 		txtPeselKlienta.setBounds(10, 6, 124, 20);
 		txtPeselKlienta.setText("PESEL Klienta");
 		add(txtPeselKlienta);
