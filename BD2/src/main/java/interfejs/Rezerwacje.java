@@ -10,6 +10,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Rezerwacje extends JPanel {
 
@@ -60,6 +62,11 @@ public class Rezerwacje extends JPanel {
 		txtDataZwrotu.setColumns(10);
 		
 		JButton btnDodaj = new JButton("Dodaj");
+		btnDodaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		btnDodaj.setBounds(534, 5, 86, 23);
 		add(btnDodaj);
 		
