@@ -58,18 +58,20 @@ public class EgzemplarzEntity implements Serializable {
 	public EgzemplarzEntity() {
 	}
 
-	public EgzemplarzEntity(String id, Date dataOstPrzeg, Date dataZakupu, boolean wycofany,
+	public EgzemplarzEntity(String id, Date dataOstPrzeg, Date dataZakupu, boolean dostepny, boolean wycofany,
 			List<WypozyczeniaEntity> wypozyczenias, List<SerwisowanieEntity> serwisowanies, SprzetEntity sprzet,
-			SerwisEntity serwi) {
+			SerwisEntity serwi, List<RezerwacjaEntity> rezerwacjes) {
 		super();
 		this.id = id;
 		this.dataOstPrzeg = dataOstPrzeg;
 		this.dataZakupu = dataZakupu;
+		this.dostepny = dostepny;
 		this.wycofany = wycofany;
 		this.wypozyczenias = wypozyczenias;
 		this.serwisowanies = serwisowanies;
 		this.sprzet = sprzet;
 		this.serwi = serwi;
+		this.rezerwacjes = rezerwacjes;
 	}
 
 	public String getId() {
@@ -170,6 +172,14 @@ public class EgzemplarzEntity implements Serializable {
 
 	public void setSerwi(SerwisEntity serwi) {
 		this.serwi = serwi;
+	}
+
+	public List<RezerwacjaEntity> getRezerwacjes() {
+		return rezerwacjes;
+	}
+
+	public void setRezerwacjes(List<RezerwacjaEntity> rezerwacjes) {
+		this.rezerwacjes = rezerwacjes;
 	}
 
 	/*
