@@ -46,16 +46,15 @@ public class RezerwacjaEntity implements Serializable {
 	public RezerwacjaEntity() {
 	}
 
-	public RezerwacjaEntity(int id, Date dataKoniec, Date dataStart, String idEgzemplarz, String peselKlienta,
-			String peselPrac, KlienciEntity klienci) {
+	public RezerwacjaEntity(int id, Date dataKoniec, Date dataStart, KlienciEntity klienci, PracownicyEntity pracownicy,
+			EgzemplarzEntity egzemplarz) {
 		super();
 		this.id = id;
 		this.dataKoniec = dataKoniec;
 		this.dataStart = dataStart;
-		//this.idEgzemplarz = idEgzemplarz;
-//		this.peselKlienta = peselKlienta;
-//		this.peselPrac = peselPrac;
 		this.klienci = klienci;
+		this.pracownicy = pracownicy;
+		this.egzemplarz = egzemplarz;
 	}
 
 	public int getId() {
@@ -88,6 +87,22 @@ public class RezerwacjaEntity implements Serializable {
 
 	public void setKlienci(KlienciEntity klienci) {
 		this.klienci = klienci;
+	}
+
+	public PracownicyEntity getPracownicy() {
+		return pracownicy;
+	}
+
+	public void setPracownicy(PracownicyEntity pracownicy) {
+		this.pracownicy = pracownicy;
+	}
+
+	public EgzemplarzEntity getEgzemplarz() {
+		return egzemplarz;
+	}
+
+	public void setEgzemplarz(EgzemplarzEntity egzemplarz) {
+		this.egzemplarz = egzemplarz;
 	}
 
 	/*

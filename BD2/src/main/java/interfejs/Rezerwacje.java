@@ -34,7 +34,7 @@ public class Rezerwacje extends JPanel {
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
-				if(txtPeselKlienta.getText() == null)	//dlaczego nie łapie tego ifa???
+				if(txtPeselKlienta.getText().equals(""))	//Typowy blad;) Stringi porownujesz .equals(), poprzez == sprawdzasz adresy a nie zawartosc
 					txtPeselKlienta.setText("PESEL Klienta");
 			}
 		});
