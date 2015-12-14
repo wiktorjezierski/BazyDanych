@@ -36,6 +36,9 @@ public class PracownicyEntity implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	private Date zwolniony;
+	
+	@Column(name = "ACCESS_LEVEL")
+	private int accessLevel;
 
 	// bi-directional many-to-one association to FakturyEntity
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "pracownicy", fetch=FetchType.LAZY)
@@ -193,6 +196,14 @@ public class PracownicyEntity implements Serializable {
 
 	public void setRezerwacjas(List<RezerwacjaEntity> rezerwacjas) {
 		this.rezerwacjas = rezerwacjas;
+	}
+
+	public int getAccessLevel() {
+		return accessLevel;
+	}
+
+	public void setAccessLevel(int accessLevel) {
+		this.accessLevel = accessLevel;
 	}
 
 	/*

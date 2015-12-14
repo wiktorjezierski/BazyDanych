@@ -1,7 +1,9 @@
 package BazyDanychProjekt.BD2;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -50,8 +52,11 @@ public class DataBaseController {
 	 */
 	public DataBaseController() {
 		if (entityManagerFactory == null || entityManager == null) {
-			entityManagerFactory = Persistence.createEntityManagerFactory(persistenceName);
-			entityManager = entityManagerFactory.createEntityManager();
+			Map properties = new HashMap();
+			properties.put("javax.persistence.jdbc.user", "stuntman_wiktor");
+			properties.put("javax.persistence.jdbc.password", "baza1234");			
+			entityManagerFactory = Persistence.createEntityManagerFactory(persistenceName, properties);
+			entityManager = entityManagerFactory.createEntityManager();			
 		}
 	}
 
@@ -78,6 +83,17 @@ public class DataBaseController {
 	public void closeConnection() {
 		entityManager.close();
 		entityManagerFactory.close();
+	}
+	
+	/**
+	 * Close actually connection and open new with new parameters
+	 * */
+	public void reconnect(String username, String password){
+		Map properties = new HashMap();
+		properties.put("javax.persistence.jdbc.user", username);
+		properties.put("javax.persistence.jdbc.password", password);			
+		entityManagerFactory = Persistence.createEntityManagerFactory(persistenceName, properties);
+		entityManager = entityManagerFactory.createEntityManager();	
 	}
 
 	/**
