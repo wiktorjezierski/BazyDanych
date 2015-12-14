@@ -52,7 +52,7 @@ public class DataBaseController {
 	 */
 	public DataBaseController() {
 		if (entityManagerFactory == null || entityManager == null) {
-			Map properties = new HashMap();
+			Map<String, String> properties = new HashMap<String, String>();
 			properties.put("javax.persistence.jdbc.user", "stuntman_wiktor");
 			properties.put("javax.persistence.jdbc.password", "baza1234");			
 			entityManagerFactory = Persistence.createEntityManagerFactory(persistenceName, properties);
@@ -89,7 +89,7 @@ public class DataBaseController {
 	 * Close actually connection and open new with new parameters
 	 * */
 	public void reconnect(String username, String password){
-		Map properties = new HashMap();
+		Map<String, String> properties = new HashMap<String, String>();
 		properties.put("javax.persistence.jdbc.user", username);
 		properties.put("javax.persistence.jdbc.password", password);			
 		entityManagerFactory = Persistence.createEntityManagerFactory(persistenceName, properties);
