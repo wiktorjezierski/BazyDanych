@@ -111,8 +111,10 @@ public class DodajKlienta extends JDialog {
 								|| telefon.equals("")) {
 							JOptionPane.showMessageDialog(null, "Nie podano wszystkich obowiązkowych pól.");
 						} else {
-							mKlienci.dodaj(pesel, imie, nazwisko, nrDowodu, telefon, uwagi);
+							mKlienci = new KlienciAF();
+							String komunikat = mKlienci.dodaj(pesel, imie, nazwisko, nrDowodu, telefon, uwagi);
 							setVisible(false);
+							JOptionPane.showMessageDialog(null, komunikat);
 						}
 					}
 				});

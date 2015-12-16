@@ -2,6 +2,8 @@ package BazyDanychProjekt.BD2;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,7 +54,16 @@ public class KlienciEntity implements Serializable {
 
 	public KlienciEntity(String pesel, int iloscTransakcji, String imie, String nazwisko, String nrDowodu,
 			String nrTelefonu, String uwagi){
-		
+		this.pesel = pesel;
+		this.iloscTransakcji = iloscTransakcji;
+		this.imie = imie;
+		this.nazwisko = nazwisko;
+		this.nrDowodu = nrDowodu;
+		this.nrTelefonu = nrTelefonu;
+		this.uwagi = uwagi;
+		this.fakturies = new ArrayList<FakturyEntity>();
+		this.wypozyczenias = new ArrayList<WypozyczeniaEntity>();
+		this.rezerwacjas = new ArrayList<RezerwacjaEntity>();
 	}
 	
 	public KlienciEntity(String pesel, int iloscTransakcji, String imie, String nazwisko, String nrDowodu,
