@@ -51,6 +51,11 @@ public class KlienciEntity implements Serializable {
 	}
 
 	public KlienciEntity(String pesel, int iloscTransakcji, String imie, String nazwisko, String nrDowodu,
+			String nrTelefonu, String uwagi){
+		
+	}
+	
+	public KlienciEntity(String pesel, int iloscTransakcji, String imie, String nazwisko, String nrDowodu,
 			String nrTelefonu, String uwagi, List<FakturyEntity> fakturies, List<WypozyczeniaEntity> wypozyczenias,
 			List<RezerwacjaEntity> rezerwacjas) {
 		super();

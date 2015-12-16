@@ -7,8 +7,12 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import BazyDanychProjekt.ApplicationFunction.KlienciAF;
+
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -21,7 +25,7 @@ public class DodajKlienta extends JDialog {
 	private JTextField txtNaziwsko;
 	private JTextField txtNrDowodu;
 	private JTextField txtTelefon;
-
+	private KlienciAF mKlienci;
 
 	public void setTxtPeselKlienta(JTextField txtPeselKlienta) {
 		this.txtPeselKlienta.setText(txtPeselKlienta.getText());
@@ -41,27 +45,27 @@ public class DodajKlienta extends JDialog {
 			txtPeselKlienta.setColumns(10);
 		}
 		
-		JLabel lblPeselKlienta = new JLabel("Pesel Klienta:");
+		JLabel lblPeselKlienta = new JLabel("Pesel Klienta*");
 		lblPeselKlienta.setBounds(10, 14, 77, 14);
 		contentPanel.add(lblPeselKlienta);
 		
-		JLabel lblNewLabel = new JLabel("Imię:");
+		JLabel lblNewLabel = new JLabel("Imię*");
 		lblNewLabel.setBounds(10, 39, 46, 14);
 		contentPanel.add(lblNewLabel);
 		
-		JLabel lblNazwisko = new JLabel("Nazwisko:");
+		JLabel lblNazwisko = new JLabel("Nazwisko*");
 		lblNazwisko.setBounds(10, 64, 60, 14);
 		contentPanel.add(lblNazwisko);
 		
-		JLabel lblNewLabel_1 = new JLabel("Numer dowodu:");
+		JLabel lblNewLabel_1 = new JLabel("Numer dowodu*");
 		lblNewLabel_1.setBounds(10, 89, 103, 14);
 		contentPanel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Numer telefonu:");
+		JLabel lblNewLabel_2 = new JLabel("Numer telefonu*");
 		lblNewLabel_2.setBounds(10, 114, 103, 14);
 		contentPanel.add(lblNewLabel_2);
 		
-		JLabel lblUwagi = new JLabel("Uwagi:");
+		JLabel lblUwagi = new JLabel("Uwagi");
 		lblUwagi.setBounds(10, 139, 60, 14);
 		contentPanel.add(lblUwagi);
 		
@@ -103,8 +107,13 @@ public class DodajKlienta extends JDialog {
 						String telefon = txtTelefon.getText();
 						String uwagi = txtUwagi.getText();
 						
-						//mKlienci.dodaj(new Klient(pesel, imie, nazwisko, nrDowodu, telefon, uwagi));
-						setVisible(false);
+						if (pesel.equals("") || imie.equals("") || nazwisko.equals("") || nrDowodu.equals("")
+								|| telefon.equals("")) {
+							JOptionPane.showMessageDialog(null, "Nie podano wszystkich obowiązkowych pól.");
+						} else {
+							mKlienci.dodaj(pesel, imie, nazwisko, nrDowodu, telefon, uwagi);
+							setVisible(false);
+						}
 					}
 				});
 				okButton.setActionCommand("OK");
