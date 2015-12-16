@@ -15,9 +15,13 @@ public class PracownicyAF {
 		super();
 		mController = new DataBaseController();
 	}
-	
+
 	public List<PracownicyEntity> findAllEmployees(){
 		return mController.findAll(PracownicyEntity.class);
+	}
+	
+	public boolean remove(PracownicyEntity pracownik){
+		return mController.remove(pracownik);
 	}
 
 }

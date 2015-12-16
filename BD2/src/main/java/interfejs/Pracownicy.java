@@ -2,6 +2,7 @@ package interfejs;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -19,6 +20,7 @@ public class Pracownicy extends JPanel {
 	
 	private JTable tablePracownicy;
 	private PracownicyAF mPracownicy;
+	List<PracownicyEntity> employees;
 	
 	/**
 	 * Create the panel.
@@ -43,7 +45,6 @@ public class Pracownicy extends JPanel {
 		));
 		
 		JButton btnNewButton = new JButton("Usuń");
-		btnNewButton.addActionListener(btnDelete);
 		btnNewButton.setBounds(10, 293, 71, 23);		
 		add(btnNewButton);
 		
@@ -65,15 +66,12 @@ public class Pracownicy extends JPanel {
 		btnNewButton_1.setBounds(112, 293, 89, 23);
 		add(btnNewButton_1);
 		
-		setContentTable();
+		ActionListener btnDelete = delete;
+		btnNewButton.addActionListener(btnDelete);
 		
+		setContentTable();
 		}
 	
-	ActionListener btnDelete = new ActionListener(){
-		public void actionPerformed(ActionEvent e) {
-			
-		}
-	};
 	
 	ActionListener btnAdd = new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
@@ -81,10 +79,27 @@ public class Pracownicy extends JPanel {
 		}
 	};
 	
+	ActionListener delete = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			int selectedRow = tablePracownicy.getSelectedRow();
+			PracownicyEntity prac = employees.get(selectedRow);
+			boolean rm = mPracownicy.remove(prac);
+
+			if (rm == true) {
+				setContentTable();
+				JOptionPane.showMessageDialog(null, "usunieto");
+				employees.clear();
+			} else {
+				JOptionPane.showMessageDialog(null, "Nie usunieto");
+			}
+		}
+	};
 	
 	private void setContentTable() {
-		List<PracownicyEntity> employees = mPracownicy.findAllEmployees();
+		employees = mPracownicy.findAllEmployees();
 		employees.remove(0);
+		tablePracownicy.setModel(new DefaultTableModel(new Object[][] {},
+				new String[] { "PESEL", "Imi\u0119", "Nazwisko", "Data rozpocz\u0119cia pracy", "Zatrudniony" }));
 		DefaultTableModel model = (DefaultTableModel) tablePracownicy.getModel();
 
 		for (PracownicyEntity p : employees) {
