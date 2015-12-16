@@ -3,8 +3,10 @@ package interfejs;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -50,8 +52,22 @@ public class Pracownicy extends JPanel {
 		btnDodaj_1.setBounds(543, 293, 89, 23);
 		add(btnDodaj_1);
 		
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				DefaultTableModel model = (DefaultTableModel) tablePracownicy.getModel();
+				int selectedRow = tablePracownicy.getSelectedRow();
+				Object S = model.getValueAt(selectedRow, 1);
+				JOptionPane.showMessageDialog(null, S);
+				
+			}
+		});
+		btnNewButton_1.setBounds(112, 293, 89, 23);
+		add(btnNewButton_1);
+		
 		setContentTable();
-	}
+		
+		}
 	
 	ActionListener btnDelete = new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
@@ -76,5 +92,4 @@ public class Pracownicy extends JPanel {
 					p.getZwolniony() });
 		}
 	}
-
 }
