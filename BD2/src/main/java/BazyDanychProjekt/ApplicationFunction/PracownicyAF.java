@@ -9,7 +9,16 @@ import BazyDanychProjekt.BD2.PracownicyEntity;
  * */
 public class PracownicyAF {
 	
-	DataBaseController mController;
+	private DataBaseController mController;
+	private List<PracownicyEntity> employees;
+	
+	public List<PracownicyEntity> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<PracownicyEntity> employees) {
+		this.employees = employees;
+	}
 
 	public PracownicyAF() {
 		super();
@@ -20,8 +29,10 @@ public class PracownicyAF {
 		return mController.findAll(PracownicyEntity.class);
 	}
 	
-	public boolean remove(PracownicyEntity pracownik){
-		return mController.remove(pracownik);
+	public boolean remove(int number){
+		PracownicyEntity p = employees.get(number);
+		employees.remove(number);
+		return mController.remove(p);
 	}
 
 }

@@ -20,7 +20,6 @@ public class Pracownicy extends JPanel {
 	
 	private JTable tablePracownicy;
 	private PracownicyAF mPracownicy;
-	List<PracownicyEntity> employees;
 	
 	/**
 	 * Create the panel.
@@ -69,7 +68,7 @@ public class Pracownicy extends JPanel {
 		ActionListener btnDelete = delete;
 		btnNewButton.addActionListener(btnDelete);
 		
-		setContentTable();
+		setContentTable(true);
 		}
 	
 	
@@ -82,27 +81,26 @@ public class Pracownicy extends JPanel {
 	ActionListener delete = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			int selectedRow = tablePracownicy.getSelectedRow();
-			PracownicyEntity prac = employees.get(selectedRow);
-			boolean rm = mPracownicy.remove(prac);
+			boolean rm = mPracownicy.remove(selectedRow);
 
 			if (rm == true) {
-				setContentTable();
+				setContentTable(false);
 				JOptionPane.showMessageDialog(null, "usunieto");
-				employees.clear();
 			} else {
 				JOptionPane.showMessageDialog(null, "Nie usunieto");
 			}
 		}
 	};
 	
-	private void setContentTable() {
-		employees = mPracownicy.findAllEmployees();
-		employees.remove(0);
+	private void setContentTable(boolean choice) {
+		if (choice == true)
+			mPracownicy.setEmployees(mPracownicy.findAllEmployees());
+		
 		tablePracownicy.setModel(new DefaultTableModel(new Object[][] {},
 				new String[] { "PESEL", "Imi\u0119", "Nazwisko", "Data rozpocz\u0119cia pracy", "Zatrudniony" }));
 		DefaultTableModel model = (DefaultTableModel) tablePracownicy.getModel();
 
-		for (PracownicyEntity p : employees) {
+		for (PracownicyEntity p : mPracownicy.getEmployees()) {
 			model.addRow(new Object[] { p.getPeselPrac(), p.getImie(), p.getNazwisko(), p.getDataStartu().toString(),
 					p.getZwolniony() });
 		}
