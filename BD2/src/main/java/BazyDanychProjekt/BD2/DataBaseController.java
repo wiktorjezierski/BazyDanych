@@ -113,17 +113,17 @@ public class DataBaseController {
 	/**
 	 * Save object into Data Base, function is template
 	 */
-	public <T> boolean saveToDataBase(T param) {
-		try {
+	public <T> boolean saveToDataBase(T param) throws Exception {
+	/*	try {*/
 			beginTransaction();
 			entityManager.persist(param);
 			commitTransaction();
 
 			return true;
-		} catch (Exception e) {
+	/*	} catch (Exception e) {
 			e.printStackTrace();
 			return false;
-		}
+		}*/
 	}
 	
 	/**

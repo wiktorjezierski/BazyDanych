@@ -62,7 +62,7 @@ public class Pracownicy extends JPanel {
 				
 			}
 		});
-		btnNewButton_1.setBounds(112, 293, 89, 23);
+		btnNewButton_1.setBounds(91, 293, 89, 23);
 		add(btnNewButton_1);
 		
 		ActionListener btnDelete = delete;
@@ -85,9 +85,9 @@ public class Pracownicy extends JPanel {
 
 			if (rm == true) {
 				setContentTable(false);
-				JOptionPane.showMessageDialog(null, "usunieto");
+				JOptionPane.showMessageDialog(null, "Pomyślnie usunięto pracownika z bazy.");
 			} else {
-				JOptionPane.showMessageDialog(null, "Nie usunieto");
+				JOptionPane.showMessageDialog(null, "Wystąpił błąd podczas usuwania pracownika.");
 			}
 		}
 	};

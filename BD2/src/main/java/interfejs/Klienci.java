@@ -18,10 +18,11 @@ public class Klienci extends JPanel {
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 620, 249);
+		scrollPane.setBounds(10, 11, 620, 271);
 		add(scrollPane);
 		
 		table = new JTable();
+		dodajKlientaDlg = new DodajKlienta();
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -52,10 +53,9 @@ public class Klienci extends JPanel {
 		btnDodaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dodajKlientaDlg.setVisible(true);
-				
 			}
 		});
-		btnDodaj.setBounds(541, 266, 89, 23);
+		btnDodaj.setBounds(541, 293, 89, 23);
 		add(btnDodaj);
 		
 		JButton btnUsun = new JButton("Usuń");
@@ -65,7 +65,7 @@ public class Klienci extends JPanel {
 			//nie wiem czy ID klientów w tabeli zgadzają się z ID klientów w Hibernacie, ale myślę że to nie bedzie ogółem trudne do zaimplementowania
 			}
 		});
-		btnUsun.setBounds(10, 266, 89, 23);
+		btnUsun.setBounds(10, 293, 89, 23);
 		add(btnUsun);
 		
 	}

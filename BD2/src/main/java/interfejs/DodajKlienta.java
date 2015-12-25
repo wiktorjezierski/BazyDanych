@@ -25,10 +25,20 @@ public class DodajKlienta extends JDialog {
 	private JTextField txtNaziwsko;
 	private JTextField txtNrDowodu;
 	private JTextField txtTelefon;
+	private JTextPane txtUwagi;
 	private KlienciAF mKlienci;
 
 	public void setTxtPeselKlienta(JTextField txtPeselKlienta) {
 		this.txtPeselKlienta.setText(txtPeselKlienta.getText());
+	}
+	
+	public void resetujFormularz(){
+		txtPeselKlienta.setText(null);
+		txtImie.setText(null);
+		txtNaziwsko.setText(null);
+		txtNrDowodu.setText(null);
+		txtTelefon.setText(null);
+		txtUwagi.setText(null);
 	}
 	
 	public DodajKlienta() {
@@ -46,7 +56,7 @@ public class DodajKlienta extends JDialog {
 		}
 		
 		JLabel lblPeselKlienta = new JLabel("Pesel Klienta*");
-		lblPeselKlienta.setBounds(10, 14, 77, 14);
+		lblPeselKlienta.setBounds(10, 14, 107, 14);
 		contentPanel.add(lblPeselKlienta);
 		
 		JLabel lblNewLabel = new JLabel("Imię*");
@@ -54,7 +64,7 @@ public class DodajKlienta extends JDialog {
 		contentPanel.add(lblNewLabel);
 		
 		JLabel lblNazwisko = new JLabel("Nazwisko*");
-		lblNazwisko.setBounds(10, 64, 60, 14);
+		lblNazwisko.setBounds(10, 64, 82, 14);
 		contentPanel.add(lblNazwisko);
 		
 		JLabel lblNewLabel_1 = new JLabel("Numer dowodu*");
@@ -89,7 +99,7 @@ public class DodajKlienta extends JDialog {
 		contentPanel.add(txtTelefon);
 		txtTelefon.setColumns(10);
 		
-		JTextPane txtUwagi = new JTextPane();
+		txtUwagi = new JTextPane();
 		txtUwagi.setBounds(127, 139, 162, 78);
 		contentPanel.add(txtUwagi);
 		{
@@ -112,15 +122,21 @@ public class DodajKlienta extends JDialog {
 							JOptionPane.showMessageDialog(null, "Nie podano wszystkich obowiązkowych pól.");
 						} else {
 							mKlienci = new KlienciAF();
-							String komunikat = mKlienci.dodaj(pesel, imie, nazwisko, nrDowodu, telefon, uwagi);
+							try {
+								JOptionPane.showMessageDialog(null, mKlienci.dodaj(pesel, imie, nazwisko, nrDowodu, telefon, uwagi));
+							} catch (javax.persistence.EntityExistsException e){
+								JOptionPane.showMessageDialog(null, "Błąd! Osoba o podanym numerze PESEL istnieje już w bazie danych.");
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
 							setVisible(false);
-							JOptionPane.showMessageDialog(null, komunikat);
 						}
+						resetujFormularz();
 					}
 				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
@@ -131,6 +147,7 @@ public class DodajKlienta extends JDialog {
 				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
+				getRootPane().setDefaultButton(cancelButton);
 			}
 		}
 	}
