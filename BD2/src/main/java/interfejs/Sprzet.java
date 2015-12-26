@@ -4,12 +4,25 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+
+import BazyDanychProjekt.ApplicationFunction.SprzetAF;
+import BazyDanychProjekt.BD2.SprzetEntity;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Sprzet extends JPanel {
+	
+	SprzetAF mSprzet;
 	private JTable table;
 	private JTextField txtNazwa;
 	private JTextField txtMarka;
@@ -23,6 +36,7 @@ public class Sprzet extends JPanel {
 	 */
 	public Sprzet() {
 		setLayout(null);
+		mSprzet = new SprzetAF();
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 42, 622, 285);
@@ -95,16 +109,16 @@ public class Sprzet extends JPanel {
 		txtNazwaProd.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(txtNazwaProd.getText().equals("Nazwa produktu"))
+				if(txtNazwaProd.getText().equals("Nazwa producenta"))
 					txtNazwaProd.setText(null);
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
 				if(txtNazwaProd.getText().equals(""))
-					txtNazwaProd.setText("Nazwa produktu");
+					txtNazwaProd.setText("Nazwa producenta");
 			}
 		});
-		txtNazwaProd.setText("Nazwa produktu");
+		txtNazwaProd.setText("Nazwa producenta");
 		txtNazwaProd.setBounds(202, 11, 96, 20);
 		add(txtNazwaProd);
 		txtNazwaProd.setColumns(10);
@@ -164,8 +178,52 @@ public class Sprzet extends JPanel {
 		txtSztuki.setColumns(10);
 		
 		JButton btnDodaj = new JButton("Dodaj");
+		btnDodaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				SprzetEntity sp = new SprzetEntity();
+				
+				String testDate = txtDataZakupu.getText();
+				DateFormat formatter = new SimpleDateFormat("yyyy-MM-d");
+				try {
+					sp.setDataZakupu(formatter.parse(testDate));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				
+				sp.setKategoria(txtKategoria.getText());
+				sp.setMarka(txtMarka.getText());
+				sp.setNazwa(txtNazwa.getText());
+				sp.setProducent(mSprzet.findProducent(Integer.parseInt(txtNazwaProd.getText())));
+				sp.setIlosc(Integer.parseInt(txtSztuki.getText()));
+				
+				boolean test = mSprzet.dodaj(sp);
+				if(test){
+					JOptionPane.showMessageDialog(null, "Dodano");
+					wyczysc();
+				}
+				else{
+					JOptionPane.showMessageDialog(scrollPane, "Nastapil blad, sprobuj pozniej","title", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		btnDodaj.setBounds(543, 10, 89, 23);
 		add(btnDodaj);
 
 	}
+	
+	private void wyczysc(){
+		txtDataZakupu.setText("Data zakupu");
+		txtKategoria.setText("Kategoria");
+		txtMarka.setText("Marka");
+		txtNazwa.setText("Nazwa");
+		txtNazwaProd.setText("Nazwa producenta");
+		txtSztuki.setText("Sztuk");
+	}
+	
 }
+
+
+
+
+
+
