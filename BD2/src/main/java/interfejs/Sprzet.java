@@ -6,6 +6,7 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import BazyDanychProjekt.ApplicationFunction.SprzetAF;
+import BazyDanychProjekt.BD2.ProducentEntity;
 import BazyDanychProjekt.BD2.SprzetEntity;
 
 import javax.swing.JTextField;
@@ -181,7 +182,7 @@ public class Sprzet extends JPanel {
 		btnDodaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SprzetEntity sp = new SprzetEntity();
-				
+
 				String testDate = txtDataZakupu.getText();
 				DateFormat formatter = new SimpleDateFormat("yyyy-MM-d");
 				try {
@@ -189,20 +190,30 @@ public class Sprzet extends JPanel {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-				
+
 				sp.setKategoria(txtKategoria.getText());
 				sp.setMarka(txtMarka.getText());
 				sp.setNazwa(txtNazwa.getText());
-				sp.setProducent(mSprzet.findProducent(Integer.parseInt(txtNazwaProd.getText())));
 				sp.setIlosc(Integer.parseInt(txtSztuki.getText()));
-				
-				boolean test = mSprzet.dodaj(sp);
-				if(test){
-					JOptionPane.showMessageDialog(null, "Dodano");
-					wyczysc();
+				sp.setDostepnych(Integer.parseInt(txtSztuki.getText()));
+
+				ProducentEntity pr = mSprzet.findProducent(Integer.parseInt(txtNazwaProd.getText()));
+				if (pr != null) {
+					sp.setProducent(pr);
+
+					boolean test = mSprzet.dodaj(sp);
+					if (test) {
+						JOptionPane.showMessageDialog(null, "Dodano");
+						wyczysc();
+					} else {
+						JOptionPane.showMessageDialog(scrollPane, "Nastapil blad podczas zapisu, sprobuj pozniej", "title",
+								JOptionPane.ERROR_MESSAGE);
+					}
 				}
-				else{
-					JOptionPane.showMessageDialog(scrollPane, "Nastapil blad, sprobuj pozniej","title", JOptionPane.ERROR_MESSAGE);
+				else
+				{
+					JOptionPane.showMessageDialog(scrollPane, "bledny nr producenta", "title",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
