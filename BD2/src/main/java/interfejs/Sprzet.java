@@ -102,7 +102,7 @@ public class Sprzet extends JPanel {
 			}
 		});
 		txtMarka.setText("Marka");
-		txtMarka.setBounds(106, 11, 86, 20);
+		txtMarka.setBounds(106, 11, 69, 20);
 		add(txtMarka);
 		txtMarka.setColumns(10);
 		
@@ -120,7 +120,7 @@ public class Sprzet extends JPanel {
 			}
 		});
 		txtNazwaProd.setText("Nazwa producenta");
-		txtNazwaProd.setBounds(202, 11, 96, 20);
+		txtNazwaProd.setBounds(185, 11, 119, 20);
 		add(txtNazwaProd);
 		txtNazwaProd.setColumns(10);
 		
@@ -138,7 +138,7 @@ public class Sprzet extends JPanel {
 			}
 		});
 		txtKategoria.setText("Kategoria");
-		txtKategoria.setBounds(308, 11, 86, 20);
+		txtKategoria.setBounds(315, 11, 77, 20);
 		add(txtKategoria);
 		txtKategoria.setColumns(10);
 		
@@ -156,7 +156,7 @@ public class Sprzet extends JPanel {
 			}
 		});
 		txtDataZakupu.setText("Data zakupu");
-		txtDataZakupu.setBounds(404, 11, 76, 20);
+		txtDataZakupu.setBounds(402, 11, 78, 20);
 		add(txtDataZakupu);
 		txtDataZakupu.setColumns(10);
 		
