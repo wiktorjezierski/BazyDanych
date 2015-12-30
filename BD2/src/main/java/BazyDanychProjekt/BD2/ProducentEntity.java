@@ -11,7 +11,8 @@ import java.util.List;
 @Entity
 @Table(name = "Producent")
 @NamedQueries({ 
-	@NamedQuery(name = "ProducentEntity.findAll", query = "SELECT p FROM ProducentEntity p") 
+	@NamedQuery(name = "ProducentEntity.findAll", query = "SELECT p FROM ProducentEntity p") ,
+	@NamedQuery(name = "dialog", query = "SELECT p FROM ProducentEntity p where p.nazwa Like ?1")
 	})
 public class ProducentEntity implements Serializable {
 	private static final long serialVersionUID = 1L;

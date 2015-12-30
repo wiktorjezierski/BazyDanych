@@ -21,7 +21,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 
-public class GUI {
+public class GUI extends JFrame {
 
 	JFrame frmWypoyczalniaSprztuSpotowego;
 
@@ -73,7 +73,7 @@ public class GUI {
 		tabbedPane.addTab("Klienci", null, panKlienci, null);
 
 		
-		JPanel panSprzet = new Sprzet();
+		JPanel panSprzet = new Sprzet(this);
 		tabbedPane.addTab("Sprzęt", null, panSprzet, null);
 		panSprzet.setLayout(null);
 		

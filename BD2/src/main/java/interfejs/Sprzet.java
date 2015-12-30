@@ -11,6 +11,7 @@ import BazyDanychProjekt.BD2.SprzetEntity;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import java.awt.event.FocusAdapter;
@@ -27,15 +28,18 @@ public class Sprzet extends JPanel {
 	private JTable table;
 	private JTextField txtNazwa;
 	private JTextField txtMarka;
-	private JTextField txtNazwaProd;
 	private JTextField txtKategoria;
 	private JTextField txtDataZakupu;
 	private JTextField txtSztuki;
-
+	ProducentEntity pr;
+	private JButton btnProducent;
+	
+	private JFrame frame;
 	/**
 	 * Create the panel.
 	 */
-	public Sprzet() {
+	public Sprzet(JFrame fr) {
+		frame = fr;
 		setLayout(null);
 		mSprzet = new SprzetAF();
 		
@@ -105,24 +109,6 @@ public class Sprzet extends JPanel {
 		txtMarka.setBounds(106, 11, 69, 20);
 		add(txtMarka);
 		txtMarka.setColumns(10);
-		
-		txtNazwaProd = new JTextField();
-		txtNazwaProd.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if(txtNazwaProd.getText().equals("Nazwa producenta"))
-					txtNazwaProd.setText(null);
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(txtNazwaProd.getText().equals(""))
-					txtNazwaProd.setText("Nazwa producenta");
-			}
-		});
-		txtNazwaProd.setText("Nazwa producenta");
-		txtNazwaProd.setBounds(185, 11, 119, 20);
-		add(txtNazwaProd);
-		txtNazwaProd.setColumns(10);
 		
 		txtKategoria = new JTextField();
 		txtKategoria.addFocusListener(new FocusAdapter() {
@@ -197,7 +183,7 @@ public class Sprzet extends JPanel {
 				sp.setIlosc(Integer.parseInt(txtSztuki.getText()));
 				sp.setDostepnych(Integer.parseInt(txtSztuki.getText()));
 
-				ProducentEntity pr = mSprzet.findProducent(Integer.parseInt(txtNazwaProd.getText()));
+//				ProducentEntity pr = mSprzet.wybierzProducenta();
 				if (pr != null) {
 					sp.setProducent(pr);
 
@@ -219,6 +205,16 @@ public class Sprzet extends JPanel {
 		});
 		btnDodaj.setBounds(543, 10, 89, 23);
 		add(btnDodaj);
+		
+		btnProducent = new JButton("Producent");
+		btnProducent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pr = mSprzet.wybierzProducenta(frame);
+				btnProducent.setText(pr.getNazwa());
+			}
+		});
+		btnProducent.setBounds(198, 10, 89, 23);
+		add(btnProducent);
 
 	}
 	
@@ -227,7 +223,7 @@ public class Sprzet extends JPanel {
 		txtKategoria.setText("Kategoria");
 		txtMarka.setText("Marka");
 		txtNazwa.setText("Nazwa");
-		txtNazwaProd.setText("Nazwa producenta");
+		btnProducent.setText("Producent");
 		txtSztuki.setText("Sztuk");
 	}
 	
