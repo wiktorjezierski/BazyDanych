@@ -6,6 +6,7 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 import BazyDanychProjekt.ApplicationFunction.SprzetAF;
+import BazyDanychProjekt.BD2.PracownicyEntity;
 import BazyDanychProjekt.BD2.ProducentEntity;
 import BazyDanychProjekt.BD2.SprzetEntity;
 
@@ -31,7 +32,7 @@ public class Sprzet extends JPanel {
 	private JTextField txtKategoria;
 	private JTextField txtDataZakupu;
 	private JTextField txtSztuki;
-	ProducentEntity pr;
+	private ProducentEntity pr;
 	private JButton btnProducent;
 	
 	private JFrame frame;
@@ -201,6 +202,7 @@ public class Sprzet extends JPanel {
 					JOptionPane.showMessageDialog(scrollPane, "bledny nr producenta", "title",
 							JOptionPane.ERROR_MESSAGE);
 				}
+				setContentTable();
 			}
 		});
 		btnDodaj.setBounds(543, 10, 89, 23);
@@ -215,7 +217,8 @@ public class Sprzet extends JPanel {
 		});
 		btnProducent.setBounds(198, 10, 89, 23);
 		add(btnProducent);
-
+		
+		setContentTable();
 	}
 	
 	private void wyczysc(){
@@ -225,6 +228,16 @@ public class Sprzet extends JPanel {
 		txtNazwa.setText("Nazwa");
 		btnProducent.setText("Producent");
 		txtSztuki.setText("Sztuk");
+	}
+	
+	private void setContentTable() {
+		table.setModel(new DefaultTableModel(new Object[][] {},
+				new String[] { "nazwa", "marka", "kategoria", "Data zakupu"}));
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+		for (SprzetEntity p : mSprzet.findAllDevice()) {
+			model.addRow(new Object[] {p.getNazwa(), p.getMarka(), p.getKategoria(), p.getDataZakupu() });
+		}
 	}
 	
 }
