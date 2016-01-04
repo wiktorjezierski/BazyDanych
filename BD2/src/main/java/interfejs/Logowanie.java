@@ -20,7 +20,7 @@ import java.awt.event.WindowEvent;
 
 public class Logowanie {
 	GUI window;
-	private JFrame frmZaloguj;
+	JFrame frmZaloguj;
 	private LogowanieAF logowanko;
 	private JPasswordField passwordField;
 	private JButton btnZaloguj;
@@ -113,6 +113,7 @@ public class Logowanie {
 				frmZaloguj.setVisible(false);
 				window = new GUI();
 				window.frmWypoyczalniaSprztuSpotowego.setVisible(true);
+				frmZaloguj.dispose();
 			} else
 			JOptionPane.showMessageDialog(window, "Podano niepoprawne dane.\nProszę spróbować ponownie.", "Błąd!", 0);
 				//textPane.setText(null);

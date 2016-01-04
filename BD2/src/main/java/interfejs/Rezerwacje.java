@@ -7,6 +7,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import BazyDanychProjekt.BD2.KlienciEntity;
+
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
@@ -112,14 +114,15 @@ public class Rezerwacje extends JPanel {
 				// zostanie wywołana dalsza procedura dodawania rezerwacji
 
 				/*
-				 * if( ! KlienciEntity.exists(txtPeselKlienta.getText()))
-				 * dodajRezerwacje(txtPeselKlienta.getText(),
-				 * txtIdEgzemplarza.getText() txtDataRozpoczcia.getText(),
-				 * txtDataZwrotu.getText()); else
-				 * 
+				 if( ! KlienciEntity.exists(txtPeselKlienta.getText()))
+				 dodajRezerwacje(txtPeselKlienta.getText(),
+				  txtIdEgzemplarza.getText() txtDataRozpoczcia.getText(),
+				  txtDataZwrotu.getText()); else
 				 */
+				 
 				dodajKlientaDlg.setTxtPeselKlienta(txtPeselKlienta);
 				dodajKlientaDlg.setVisible(true);
+				dodajKlientaDlg.setLocationRelativeTo(null);
 			}
 		});
 		btnDodaj.setBounds(549, 5, 86, 23);
@@ -138,29 +141,30 @@ public class Rezerwacje extends JPanel {
 		add(scrollPaneRezerwacje);
 
 		tableRezerwacje = new JTable();
+		tableRezerwacje.setFillsViewportHeight(true);
 		scrollPaneRezerwacje.setViewportView(tableRezerwacje);
 		tableRezerwacje
 				.setModel(
 						new DefaultTableModel(
-								new Object[][] {
-										{ "Narty biegowe", "32", "22.01.2016", "28.01.2016", "Piotr",
-												"\u0141awniczak" },
-										{ "Sanki", "8", "20.12.2016", "21.12.2016", "Wiktor", "Jezierski" },
-										{ "Snowboard", "1", "02.02.2017", "22.03.2017", "Wiktor", "Jezierski" },
-										{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-										{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-										{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-										{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-										{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-										{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-										{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-										{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-										{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-										{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-										{ null, null, null, null, null, null }, },
-								new String[] { "Rodzaj sprz\u0119tu", "ID Egzemplarza",
-										"Data rozpocz\u0119cia wypo\u017Cyczenia", "Data zwrotu",
-										"Imi\u0119 pracownika", "Nazwisko pracownika" }));
+			new Object[][] {
+				{"Narty biegowe", "32", "22.01.2016", "28.01.2016", "Piotr", "\u0141awniczak"},
+				{"Sanki", "8", "20.12.2016", "21.12.2016", "Wiktor", "Jezierski"},
+				{"Snowboard", "1", "02.02.2017", "22.03.2017", "Wiktor", "Jezierski"},
+			},
+			new String[] {
+				"Rodzaj sprz\u0119tu", "ID Egzemplarza", "Data rozpocz\u0119cia wypo\u017Cyczenia", "Data zwrotu", "Imi\u0119 pracownika", "Nazwisko pracownika"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		tableRezerwacje.getColumnModel().getColumn(0).setPreferredWidth(88);
+		tableRezerwacje.getColumnModel().getColumn(1).setPreferredWidth(37);
+		tableRezerwacje.getColumnModel().getColumn(2).setPreferredWidth(80);
 
 	}
 

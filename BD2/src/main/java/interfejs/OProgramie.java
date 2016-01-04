@@ -18,21 +18,23 @@ public class OProgramie extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
+	JTextArea txtrZostaNapisanyNa;
+	
 	public OProgramie() {
-		setTitle("O programie");
+		setTitle("Info");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JTextArea txtrZostaNapisanyNa = new JTextArea();
+		txtrZostaNapisanyNa = new JTextArea();
 		txtrZostaNapisanyNa.setBackground(Color.BLACK);
 		txtrZostaNapisanyNa.setWrapStyleWord(true);
 		txtrZostaNapisanyNa.setFont(new Font("Segoe UI", Font.ITALIC, 19));
 		txtrZostaNapisanyNa.setEnabled(false);
 		txtrZostaNapisanyNa.setEditable(false);
-		txtrZostaNapisanyNa.setText("Program został napisany na potrzeby projektu \r\nz przedmiotu Bazy Danych \r\nprzez Wiktora Jezierskiego i Piotra Ławniczaka");
+		txtrZostaNapisanyNa.setText("");
 		txtrZostaNapisanyNa.setBounds(10, 11, 414, 206);
 		contentPanel.add(txtrZostaNapisanyNa);
 		{

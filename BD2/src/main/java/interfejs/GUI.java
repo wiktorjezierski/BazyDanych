@@ -20,11 +20,13 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class GUI extends JFrame {
 
 	JFrame frmWypoyczalniaSprztuSpotowego;
-
+	Logowanie logowanieFrame;
 	/**
 	 * Launch the application.
 	 */
@@ -52,7 +54,14 @@ public class GUI extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		logowanieFrame = new Logowanie();
 		frmWypoyczalniaSprztuSpotowego = new JFrame();
+		frmWypoyczalniaSprztuSpotowego.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				System.exit(0);
+			}
+		});
 		frmWypoyczalniaSprztuSpotowego.getContentPane().setLayout(new BorderLayout(10, 10));
 		frmWypoyczalniaSprztuSpotowego.setTitle("Wypożyczalnia sprzętu spotowego (0.1)");
 		frmWypoyczalniaSprztuSpotowego.setBounds(100, 100, 659, 417);
@@ -112,18 +121,31 @@ public class GUI extends JFrame {
 		menuBar.add(mnSesja);
 		
 		JMenuItem mntmWyloguj = new JMenuItem("Wyloguj");
+		mntmWyloguj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				logowanieFrame.frmZaloguj.setLocationRelativeTo(null);
+				logowanieFrame.frmZaloguj.setVisible(true);
+				frmWypoyczalniaSprztuSpotowego.dispose();
+			}
+		});
 		mnSesja.add(mntmWyloguj);
 		
 		JMenu mnPomoc = new JMenu("Pomoc");
 		menuBar.add(mnPomoc);
 		
 		JMenuItem mntmPomoc = new JMenuItem("Pomoc");
+		mntmPomoc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				aboutDialog.txtrZostaNapisanyNa.setText("W przypadku błędów i uwag \r\nco do funkcjonalności aplikacji\r\nproszę kontaktować się z Piotrem:\r\ntel.: 604 322 312");
+				aboutDialog.setVisible(true);
+			}
+		});
 		mnPomoc.add(mntmPomoc);
 		
 		JMenuItem mntmOProgramie = new JMenuItem("O programie");
 		mntmOProgramie.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				aboutDialog.txtrZostaNapisanyNa.setText("Program został napisany na potrzeby projektu \r\nz przedmiotu Bazy Danych \r\nprzez Wiktora Jezierskiego i Piotra Ławniczaka");
 				aboutDialog.setVisible(true);
 			}
 		});

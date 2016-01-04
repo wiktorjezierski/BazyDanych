@@ -45,7 +45,7 @@ public class Sprzet extends JPanel {
 		mSprzet = new SprzetAF();
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 42, 622, 285);
+		scrollPane.setBounds(10, 42, 622, 266);
 		add(scrollPane);
 		
 		table = new JTable();

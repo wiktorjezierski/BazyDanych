@@ -4,6 +4,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import org.hibernate.sql.Delete;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -20,10 +23,9 @@ public class Klienci extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 620, 271);
 		add(scrollPane);
-		
+		dodajKlientaDlg = new DodajKlienta();
 		table = new JTable();
 		table.setFillsViewportHeight(true);
-		dodajKlientaDlg = new DodajKlienta();
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -46,6 +48,7 @@ public class Klienci extends JPanel {
 		JButton btnDodaj = new JButton("Dodaj");
 		btnDodaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dodajKlientaDlg.setLocationRelativeTo(null);
 				dodajKlientaDlg.setVisible(true);
 			}
 		});
