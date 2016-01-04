@@ -15,9 +15,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Logowanie {
-	GUI window = new GUI();
+	GUI window;
 	private JFrame frmZaloguj;
 	private LogowanieAF logowanko;
 	private JPasswordField passwordField;
@@ -63,33 +65,42 @@ public class Logowanie {
 	 */
 	private void initialize() {
 		frmZaloguj = new JFrame();
-		frmZaloguj.setTitle("Zaloguj się do systemu");
-		frmZaloguj.setBounds(100, 100, 357, 195);
+		frmZaloguj.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				System.exit(0);
+			}
+		});
+
+		frmZaloguj.setTitle("Zaloguj się");
+		frmZaloguj.setBounds(100, 100, 269, 195);
 		frmZaloguj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmZaloguj.getContentPane().setLayout(null);
 		
 		logowanko = new LogowanieAF();
 		
 		textPane = new JTextPane();
-		textPane.setBounds(105, 11, 124, 30);
+		textPane.setBounds(70, 15, 124, 30);
 		frmZaloguj.getContentPane().add(textPane);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(105, 56, 124, 30);
+		passwordField.setBounds(70, 56, 124, 30);
 		frmZaloguj.getContentPane().add(passwordField);
 		
 		JLabel lblLogin = new JLabel("Login:");
-		lblLogin.setBounds(66, 11, 39, 30);
+		lblLogin.setBounds(27, 15, 39, 30);
 		frmZaloguj.getContentPane().add(lblLogin);
 		
 		JLabel lblHaso = new JLabel("Hasło:");
-		lblHaso.setBounds(66, 56, 46, 30);
+		lblHaso.setBounds(27, 56, 46, 30);
 		frmZaloguj.getContentPane().add(lblHaso);
 		
 		btnZaloguj = new JButton("Zaloguj");
 		btnZaloguj.addActionListener(zaloguj);
-		btnZaloguj.setBounds(105, 97, 124, 42);
+		btnZaloguj.setBounds(70, 97, 124, 42);
 		frmZaloguj.getContentPane().add(btnZaloguj);
+		
+		frmZaloguj.setLocationRelativeTo(null);
 		
 		textPane.addKeyListener(keyAdapter);
 	}
@@ -100,10 +111,11 @@ public class Logowanie {
 			boolean logowanie = logowanko.zaloguj(textPane.getText().trim(), passwordField.getText());
 			if (logowanie){
 				frmZaloguj.setVisible(false);
+				window = new GUI();
 				window.frmWypoyczalniaSprztuSpotowego.setVisible(true);
 			} else
-			JOptionPane.showMessageDialog(null, "Podano niepoprawne dane");
-				textPane.setText(null);
+			JOptionPane.showMessageDialog(window, "Podano niepoprawne dane.\nProszę spróbować ponownie.", "Błąd!", 0);
+				//textPane.setText(null);
 				passwordField.setText(null);
 		}
 	};
