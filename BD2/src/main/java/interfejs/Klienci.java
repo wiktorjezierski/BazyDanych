@@ -22,32 +22,26 @@ public class Klienci extends JPanel {
 		add(scrollPane);
 		
 		table = new JTable();
+		table.setFillsViewportHeight(true);
 		dodajKlientaDlg = new DodajKlienta();
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
 			},
 			new String[] {
 				"Pesel", "Imi\u0119", "Nazwisko", "Nr Dowodu", "Liczba Transakcji"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		table.getColumnModel().getColumn(0).setResizable(false);
+		table.getColumnModel().getColumn(0).setPreferredWidth(69);
+		table.getColumnModel().getColumn(3).setResizable(false);
 		
 		JButton btnDodaj = new JButton("Dodaj");
 		btnDodaj.addActionListener(new ActionListener() {

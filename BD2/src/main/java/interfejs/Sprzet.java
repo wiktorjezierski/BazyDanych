@@ -49,30 +49,22 @@ public class Sprzet extends JPanel {
 		add(scrollPane);
 		
 		table = new JTable();
+		table.setFillsViewportHeight(true);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null},
+				{null, null, null, null},
 			},
 			new String[] {
-				"ID", "Nazwa", "Marka", "Nazwa producenta", "Kategoria", "Data zakupu", "Sztuk dostepnych/wszystkich"
+				"Nazwa", "Marka", "Kategoria", "Data zakupu"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
 		scrollPane.setViewportView(table);
 		
 		txtNazwa = new JTextField();
@@ -193,13 +185,13 @@ public class Sprzet extends JPanel {
 						JOptionPane.showMessageDialog(null, "Dodano");
 						wyczysc();
 					} else {
-						JOptionPane.showMessageDialog(scrollPane, "Nastapil blad podczas zapisu, sprobuj pozniej", "title",
+						JOptionPane.showMessageDialog(scrollPane, "Wystąpił błąd podczas zapisu, spróbuj później", "Błąd!",
 								JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(scrollPane, "bledny nr producenta", "title",
+					JOptionPane.showMessageDialog(scrollPane, "Błędny numer producenta.", "Błąd!",
 							JOptionPane.ERROR_MESSAGE);
 				}
 				setContentTable();
@@ -215,7 +207,7 @@ public class Sprzet extends JPanel {
 				btnProducent.setText(pr.getNazwa());
 			}
 		});
-		btnProducent.setBounds(198, 10, 89, 23);
+		btnProducent.setBounds(185, 10, 120, 23);
 		add(btnProducent);
 		
 		setContentTable();
@@ -231,8 +223,8 @@ public class Sprzet extends JPanel {
 	}
 	
 	private void setContentTable() {
-		table.setModel(new DefaultTableModel(new Object[][] {},
-				new String[] { "nazwa", "marka", "kategoria", "Data zakupu"}));
+		//table.setModel(new DefaultTableModel(new Object[][] {},
+		//		new String[] { "Nazwa", "Marka", "Kategoria", "Data zakupu"}));
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 
 		for (SprzetEntity p : mSprzet.findAllDevice()) {

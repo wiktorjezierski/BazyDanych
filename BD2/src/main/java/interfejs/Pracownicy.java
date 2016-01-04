@@ -33,6 +33,7 @@ public class Pracownicy extends JPanel {
 		add(scrollPanePracownicy);
 		
 		tablePracownicy = new JTable();
+		tablePracownicy.setFillsViewportHeight(true);
 		scrollPanePracownicy.setViewportView(tablePracownicy);
 		tablePracownicy.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tablePracownicy.setModel(new DefaultTableModel(
@@ -41,7 +42,17 @@ public class Pracownicy extends JPanel {
 			new String[] {
 				"PESEL", "Imi\u0119", "Nazwisko", "Data rozpocz\u0119cia pracy", "Zatrudniony"
 			}
-		));
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		tablePracownicy.getColumnModel().getColumn(0).setResizable(false);
+		tablePracownicy.getColumnModel().getColumn(0).setPreferredWidth(70);
+		tablePracownicy.getColumnModel().getColumn(3).setPreferredWidth(83);
 		
 		JButton btnNewButton = new JButton("Usuń");
 		btnNewButton.setBounds(10, 293, 71, 23);		
@@ -51,19 +62,6 @@ public class Pracownicy extends JPanel {
 		btnDodaj_1.addActionListener(btnAdd);
 		btnDodaj_1.setBounds(543, 293, 89, 23);
 		add(btnDodaj_1);
-		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				DefaultTableModel model = (DefaultTableModel) tablePracownicy.getModel();
-				int selectedRow = tablePracownicy.getSelectedRow();
-				Object S = model.getValueAt(selectedRow, 1);
-				JOptionPane.showMessageDialog(null, S);
-				
-			}
-		});
-		btnNewButton_1.setBounds(91, 293, 89, 23);
-		add(btnNewButton_1);
 		
 		ActionListener btnDelete = delete;
 		btnNewButton.addActionListener(btnDelete);
@@ -96,8 +94,8 @@ public class Pracownicy extends JPanel {
 		if (choice == true)
 			mPracownicy.setEmployees(mPracownicy.findAllEmployees());
 		
-		tablePracownicy.setModel(new DefaultTableModel(new Object[][] {},
-				new String[] { "PESEL", "Imi\u0119", "Nazwisko", "Data rozpocz\u0119cia pracy", "Zatrudniony" }));
+		//tablePracownicy.setModel(new DefaultTableModel(new Object[][] {},
+			//	new String[] { "PESEL", "Imi\u0119", "Nazwisko", "Data rozpocz\u0119cia pracy", "Zatrudniony" }));
 		DefaultTableModel model = (DefaultTableModel) tablePracownicy.getModel();
 
 		for (PracownicyEntity p : mPracownicy.getEmployees()) {

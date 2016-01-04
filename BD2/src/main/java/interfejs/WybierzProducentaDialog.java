@@ -28,6 +28,7 @@ import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JScrollPane;
 
 public class WybierzProducentaDialog extends JDialog {
 
@@ -37,11 +38,13 @@ public class WybierzProducentaDialog extends JDialog {
 	private DataBaseController mController;
 	public ProducentEntity mProducent;
 	private List<ProducentEntity> lista;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Create the dialog.
 	 */
 	public WybierzProducentaDialog(JFrame frame) {
+		setTitle("Wybierz Producenta");
 		mController = new DataBaseController();
 		setModal(true);
 		setBounds(100, 100, 450, 300);
@@ -50,24 +53,40 @@ public class WybierzProducentaDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			table = new JTable();
-			table.setBounds(67, 10, 300, 208);
-			table.setModel(
-					new DefaultTableModel(
-							new Object[][] { { null, null, null, null }, { null, null, null, null },
-									{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-									{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-									{ null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-									{ null, null, null, null }, { null, null, null, null } },
-							new String[] { "ID", "Nazwa", "Miasto", "Telefon" }));
-			contentPanel.add(table);
+			scrollPane = new JScrollPane();
+			scrollPane.setBounds(10, 10, 414, 208);
+			contentPanel.add(scrollPane);
+			{
+				table = new JTable();
+				scrollPane.setViewportView(table);
+				table.setModel(
+						new DefaultTableModel(
+					new Object[][] {
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+						{null, null, null, null},
+					},
+					new String[] {
+						"ID", "Nazwa", "Miasto", "Telefon"
+					}
+				));
+			}
 		}
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			buttonPane.setBounds(10, 217, 414, 33);
+			contentPanel.add(buttonPane);
 			{
 				txtMiasto = new JTextField();
+				txtMiasto.setBounds(224, 6, 126, 20);
 				txtMiasto.addKeyListener(new KeyAdapter() {
 					@Override
 					public void keyPressed(KeyEvent arg0) {
@@ -77,7 +96,7 @@ public class WybierzProducentaDialog extends JDialog {
 				txtMiasto.addFocusListener(new FocusAdapter() {
 					@Override
 					public void focusGained(FocusEvent arg0) {
-						if (txtMiasto.getText().equals("Nazwa")) {
+						if (txtMiasto.getText().equals("Szukaj po nazwie...")) {
 							txtMiasto.setText("");
 						}
 					}
@@ -85,16 +104,18 @@ public class WybierzProducentaDialog extends JDialog {
 					@Override
 					public void focusLost(FocusEvent e) {
 						if (txtMiasto.getText().equals("")) {
-							txtMiasto.setText("Nazwa");
+							txtMiasto.setText("Szukaj po nazwie...");
 						}
 					}
 				});
-				txtMiasto.setText("Nazwa");
+				buttonPane.setLayout(null);
+				txtMiasto.setText("Szukaj po nazwie...");
 				buttonPane.add(txtMiasto);
 				txtMiasto.setColumns(10);
 			}
 			{
 				JButton okButton = new JButton("OK");
+				okButton.setBounds(361, 5, 53, 23);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						DefaultTableModel model = (DefaultTableModel) table.getModel();
