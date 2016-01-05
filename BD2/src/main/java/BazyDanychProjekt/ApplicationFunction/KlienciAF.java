@@ -1,7 +1,10 @@
 package BazyDanychProjekt.ApplicationFunction;
 
+import java.util.List;
+
 import BazyDanychProjekt.BD2.DataBaseController;
 import BazyDanychProjekt.BD2.KlienciEntity;
+import BazyDanychProjekt.BD2.PracownicyEntity;
 
 public class KlienciAF {
 
@@ -20,5 +23,9 @@ public class KlienciAF {
 		} else {
 			return "Wystąpił błąd.";
 		}
+	}
+	
+	public List<KlienciEntity> findAllCustomers(){
+		return mController.findAll(KlienciEntity.class);
 	}
 }
