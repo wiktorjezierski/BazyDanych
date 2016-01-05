@@ -39,7 +39,7 @@ public class SprzetEntity implements Serializable {
 	private List<EgzemplarzEntity> egzemplarzs;
 
 	// bi-directional many-to-one association to Zestawy
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "sprzet", fetch=FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "sprzet1", fetch=FetchType.LAZY)
 	private List<ZestawyEntity> zestawies;
 
 	// bi-directional many-to-one association to ProducentEntity

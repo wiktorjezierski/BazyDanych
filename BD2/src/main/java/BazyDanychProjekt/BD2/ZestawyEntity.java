@@ -23,30 +23,29 @@ public class ZestawyEntity implements Serializable {
 	@Column(name = "DATA_END")
 	private Date dataEnd;
 	
-	@Column(name = "ID_SPRZET1")
-	private int idSprzet1;
-	
-	@Column(name = "ID_SPRZET2")
-	private int idSprzet2;
-	
 	@Column(name = "CENA")
 	private int cena;
 	
 	// bi-directional many-to-one association to SprzetEntity
-//	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
-//	@JoinColumn(name = "ID_SPRZET1")
-	private SprzetEntity sprzet;
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
+	@JoinColumn(name = "ID_SPRZET1")
+	private SprzetEntity sprzet1;
+	
+	// bi-directional many-to-one association to SprzetEntity
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false, fetch=FetchType.LAZY)
+	@JoinColumn(name = "ID_SPRZET2")
+	private SprzetEntity sprzet2;
+
 
 	public ZestawyEntity() {
 	}
 
-	public ZestawyEntity(int id, Date dataEnd, int id2, int cena, SprzetEntity sprzet) {
+	public ZestawyEntity(Date dataEnd, int cena, SprzetEntity sprzet1, SprzetEntity sprzet2) {
 		super();
-		this.idSprzet1 = id;
 		this.dataEnd = dataEnd;
-		this.idSprzet2 = id2;
 		this.cena = cena;
-		this.sprzet = sprzet;
+		this.sprzet1 = sprzet1;
+		this.sprzet2 = sprzet2;
 	}
 
 	public int getId() {
@@ -65,29 +64,32 @@ public class ZestawyEntity implements Serializable {
 		this.dataEnd = dataEnd;
 	}
 
-	public SprzetEntity getSprzet() {
-		return this.sprzet;
+	public SprzetEntity getSprzet1() {
+		return this.sprzet1;
 	}
+	
+	public SprzetEntity getSprzet2() {
+		return sprzet2;
+	}
+
 
 	public void setSprzet(SprzetEntity sprzet) {
-		this.sprzet = sprzet;
+		this.sprzet1 = sprzet;
 	}
 
-	public int getIdSprzet1() {
-		return idSprzet1;
-	}
 	
 	public int getCena() {
 		return cena;
 	}
 	
-	public int getIdSprzet2() {
-		return idSprzet2;
+	public String getNazwaSprzet1() {
+		return getSprzet1().getNazwa();
+	}
+	
+	public String getNazwaSprzet2() {
+		return getSprzet2().getNazwa();
 	}
 
-	public void setIdSprzet2(int idSprzet2) {
-		this.idSprzet2 = idSprzet2;
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -96,7 +98,7 @@ public class ZestawyEntity implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Zestawy: id=" + id + ", dataEnd=" + dataEnd + ", idZestawu=" + sprzet.getId() ;
+		return "Zestawy: id=" + id + ", dataEnd=" + dataEnd + ", idZestawu=" + sprzet1.getId() ;
 	}
 
 

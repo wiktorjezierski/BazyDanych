@@ -21,6 +21,7 @@ public class Zestawy extends JPanel {
 	 * Create the panel.
 	 */
 	public Zestawy() {
+		mZestaw = new ZestawyAF();
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -61,7 +62,7 @@ public class Zestawy extends JPanel {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 
 		for (ZestawyEntity p : allKits) {
-			model.addRow(new Object[] { p.getId(), p.getIdSprzet1(), p.getIdSprzet2(), p.getDataEnd(), p.getCena() });
+			model.addRow(new Object[] { p.getId(), p.getNazwaSprzet1(), p.getNazwaSprzet2(), p.getDataEnd(), p.getCena() });
 		}
 	}
 }
