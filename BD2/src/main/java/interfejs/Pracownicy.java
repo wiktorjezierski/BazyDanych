@@ -50,8 +50,7 @@ public class Pracownicy extends JPanel {
 				return columnEditables[column];
 			}
 		});
-		tablePracownicy.getColumnModel().getColumn(0).setResizable(false);
-		tablePracownicy.getColumnModel().getColumn(0).setPreferredWidth(70);
+		tablePracownicy.getColumnModel().getColumn(0).setPreferredWidth(53);
 		tablePracownicy.getColumnModel().getColumn(3).setPreferredWidth(83);
 		
 		JButton btnNewButton = new JButton("Usuń");
