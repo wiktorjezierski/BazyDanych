@@ -127,7 +127,7 @@ public class Sprzet extends JPanel {
 				};
 				public boolean isCellEditable(int row, int column) {
 					return columnEditables[column];
-				}
+				} 
 			});
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		
