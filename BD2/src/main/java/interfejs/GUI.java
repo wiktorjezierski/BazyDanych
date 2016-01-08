@@ -15,6 +15,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class GUI extends JFrame {
 
@@ -82,6 +84,16 @@ public class GUI extends JFrame {
 		JPanel panZestawy = new Zestawy();
 		tabbedPane.addTab("Zestawy", null, panZestawy, null);
 		
+		JPanel panRaport = new Raport();
+		tabbedPane.addTab("Raport", null, panRaport, null);
+		panRaport.setLayout(null);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Wykorzystanie Sprzętu"}));
+		comboBox.setToolTipText("Wykorzystanie Sprzętu");
+		comboBox.setBounds(21, 11, 151, 20);
+		panRaport.add(comboBox);
+		
 		frmWypoyczalniaSprztuSpotowego.getContentPane().add(tabbedPane);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -143,5 +155,8 @@ public class GUI extends JFrame {
 			}
 		});
 		mnPomoc.add(mntmOProgramie);
+		
+		tabbedPane.addTab("Raport2", null, Raport.createDemoPanel(), null);
+		
 	}
 }
