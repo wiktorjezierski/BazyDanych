@@ -121,7 +121,7 @@ public class Sprzet extends JPanel {
 				new String[] {
 					"Nazwa", "Marka", "Kategoria", "Data zakupu"
 				}
-			) {
+			) { 
 				boolean[] columnEditables = new boolean[] {
 					false, false, false, false
 				};
