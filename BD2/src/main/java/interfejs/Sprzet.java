@@ -46,6 +46,7 @@ public class Sprzet extends JPanel {
 	}
 	
 	private boolean updateSprz(){
+		try{
 		int selectedRow = table.getSelectedRow();
 		SprzetAktualizacja aktualizacja = new SprzetAktualizacja(frame);
 		aktualizacja.setSprzet(mSprzetAF.getSprzetList().get(selectedRow));
@@ -56,6 +57,11 @@ public class Sprzet extends JPanel {
 		mSprzetAF.addPosition(selectedRow, aktualizacja.getSprzet());
 		aktualizacja.dispose();
 		return aktualizacja.isReady();
+		}
+		catch(Exception e){
+			JOptionPane.showMessageDialog(null, "Wybierz rekord do edycji");
+		}
+		return false;
 	}
 	
 	/**
@@ -131,8 +137,15 @@ public class Sprzet extends JPanel {
 			});
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		for (SprzetEntity p : mSprzetAF.findAllDevice()) {
-			model.addRow(new Object[] {p.getNazwa(), p.getMarka(), p.getKategoria(), p.getDataZakupu() });
+			try{
+				
+			model.addRow(new Object[] {p.getNazwa(), p.getMarka(), p.getKategoria(), formatter.format(p.getDataZakupu())  });
+			}
+			catch(Exception e){
+				
+			}
 		}
 	}
 }

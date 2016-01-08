@@ -14,6 +14,9 @@ import BazyDanychProjekt.BD2.SprzetEntity;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 
@@ -88,7 +91,6 @@ public class SprzetAktualizacja extends JDialog {
 		textKategoria.setColumns(10);
 		
 		textDataZakupu = new JTextField();
-		textDataZakupu.setEditable(false);
 		textDataZakupu.setBounds(102, 111, 86, 20);
 		contentPanel.add(textDataZakupu);
 		textDataZakupu.setColumns(10);
@@ -100,10 +102,17 @@ public class SprzetAktualizacja extends JDialog {
 			okButton = new JButton("OK");
 			okButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					String testDate = textDataZakupu.getText();
+					DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+					try {
+						mSprzet.setDataZakupu(formatter.parse(testDate));
+					} catch (ParseException e1) {
+						e1.printStackTrace();
+					}
+					
 					mSprzet.setNazwa(textNazwa.getText());
 					mSprzet.setMarka(textMarka.getText());
 					mSprzet.setKategoria(textKategoria.getText());
-//					mSprzet.setDataZakupu(new Date(textDataZakupu.getText()));	//tu ewentualnie przerobic
 					ready = true;
 					setVisible(false);
 //					dispose();
@@ -119,7 +128,7 @@ public class SprzetAktualizacja extends JDialog {
 			cancelButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setVisible(false);
-					ready = true;
+					ready = false;
 //					dispose();
 				}
 			});
@@ -132,7 +141,10 @@ public class SprzetAktualizacja extends JDialog {
 		textNazwa.setText(mSprzet.getNazwa());
 		textMarka.setText(mSprzet.getMarka());
 		textKategoria.setText(mSprzet.getKategoria());
-		textDataZakupu.setText(mSprzet.getDataZakupu().toString());
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		
+		textDataZakupu.setText(formatter.format(mSprzet.getDataZakupu()));
 	}
 
 	public SprzetEntity getSprzet() {
