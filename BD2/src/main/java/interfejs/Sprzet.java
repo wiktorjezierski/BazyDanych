@@ -29,6 +29,13 @@ import java.awt.event.ActionEvent;
 
 public class Sprzet extends JPanel {
 	
+	SprzetAF mSprzetAF;
+	private JTable table;
+	private ProducentEntity pr;
+	
+	private JFrame frame;
+	private JButton btnDodajSprzet;
+	private JButton btnAktualizuj;
 	
 	private boolean dodawanieSprz(){
 		DodajSprzet dodajSprzetDialog = new DodajSprzet(frame);
@@ -41,20 +48,16 @@ public class Sprzet extends JPanel {
 	private boolean updateSprz(){
 		int selectedRow = table.getSelectedRow();
 		SprzetAktualizacja aktualizacja = new SprzetAktualizacja(frame);
-		aktualizacja.setSprzet(mSprzetAF.getmSprzetList().get(selectedRow));
+		aktualizacja.setSprzet(mSprzetAF.getSprzetList().get(selectedRow));
 		aktualizacja.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		aktualizacja.setVisible(true);
 		
+		mSprzetAF.deletePosition(selectedRow);
+		mSprzetAF.addPosition(selectedRow, aktualizacja.getSprzet());
+		aktualizacja.dispose();
 		return aktualizacja.isReady();
 	}
 	
-	SprzetAF mSprzetAF;
-	private JTable table;
-	private ProducentEntity pr;
-	
-	private JFrame frame;
-	private JButton btnDodajSprzet;
-	private JButton btnAktualizuj;
 	/**
 	 * Create the panel.
 	 */
@@ -98,8 +101,10 @@ public class Sprzet extends JPanel {
 		btnAktualizuj = new JButton("Aktualizuj");
 		btnAktualizuj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(updateSprz())			
-					JOptionPane.showMessageDialog(null, "siema");
+				if(updateSprz()){			
+					JOptionPane.showMessageDialog(null, "Zaktualizowano");
+					setContentTable();
+				}
 			}
 		});
 		btnAktualizuj.setBounds(83, 297, 118, 23);
@@ -110,10 +115,22 @@ public class Sprzet extends JPanel {
 	
 	
 	private void setContentTable() {
-		//table.setModel(new DefaultTableModel(new Object[][] {},
-		//		new String[] { "Nazwa", "Marka", "Kategoria", "Data zakupu"}));
+		table.setModel(new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Nazwa", "Marka", "Kategoria", "Data zakupu"
+				}
+			) {
+				boolean[] columnEditables = new boolean[] {
+					false, false, false, false
+				};
+				public boolean isCellEditable(int row, int column) {
+					return columnEditables[column];
+				}
+			});
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
-
+		
 		for (SprzetEntity p : mSprzetAF.findAllDevice()) {
 			model.addRow(new Object[] {p.getNazwa(), p.getMarka(), p.getKategoria(), p.getDataZakupu() });
 		}

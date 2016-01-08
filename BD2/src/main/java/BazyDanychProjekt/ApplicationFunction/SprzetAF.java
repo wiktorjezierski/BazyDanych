@@ -46,14 +46,20 @@ public class SprzetAF {
 		return mSprzetList;
 	}
 
-	public ArrayList<SprzetEntity> getmSprzetList() {
+	public ArrayList<SprzetEntity> getSprzetList() {
 		return mSprzetList;
 	}
 
-	public void setmSprzetList(ArrayList<SprzetEntity> mSprzetList) {
+	public void setSprzetList(ArrayList<SprzetEntity> mSprzetList) {
 		this.mSprzetList = mSprzetList;
 	}
 	
+	public void deletePosition(int position){
+		mSprzetList.remove(position);
+	}
 	
+	public void addPosition(int position, SprzetEntity sprzet){
+		mSprzetList.add(position, sprzet);
+	}
 	
 }

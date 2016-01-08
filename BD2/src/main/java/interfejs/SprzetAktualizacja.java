@@ -47,6 +47,7 @@ public class SprzetAktualizacja extends JDialog {
 	 * Create the dialog.
 	 */
 	public SprzetAktualizacja(JFrame fr) {
+		setModal(true);
 		frame = fr;
 		setTitle("Aktualizacja Sprzętu");
 		setBounds(100, 100, 267, 300);
@@ -104,7 +105,8 @@ public class SprzetAktualizacja extends JDialog {
 					mSprzet.setKategoria(textKategoria.getText());
 //					mSprzet.setDataZakupu(new Date(textDataZakupu.getText()));	//tu ewentualnie przerobic
 					ready = true;
-					dispose();
+					setVisible(false);
+//					dispose();
 				}
 			});
 
@@ -116,9 +118,9 @@ public class SprzetAktualizacja extends JDialog {
 			JButton cancelButton = new JButton("Cancel");
 			cancelButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					ready = true;
 					setVisible(false);
-					dispose();
+					ready = true;
+//					dispose();
 				}
 			});
 			cancelButton.setActionCommand("Cancel");
