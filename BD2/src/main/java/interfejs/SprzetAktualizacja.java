@@ -53,7 +53,7 @@ public class SprzetAktualizacja extends JDialog {
 		setModal(true);
 		frame = fr;
 		setTitle("Aktualizacja Sprzętu");
-		setBounds(100, 100, 267, 300);
+		setBounds(100, 100, 412, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -76,22 +76,22 @@ public class SprzetAktualizacja extends JDialog {
 		contentPanel.add(lblDataZakupu);
 		
 		textNazwa = new JTextField();
-		textNazwa.setBounds(102, 34, 86, 20);
+		textNazwa.setBounds(102, 34, 196, 20);
 		contentPanel.add(textNazwa);
 		textNazwa.setColumns(10);
 		
 		textMarka = new JTextField();
-		textMarka.setBounds(102, 61, 86, 20);
+		textMarka.setBounds(102, 61, 196, 20);
 		contentPanel.add(textMarka);
 		textMarka.setColumns(10);
 		
 		textKategoria = new JTextField();
-		textKategoria.setBounds(102, 86, 86, 20);
+		textKategoria.setBounds(102, 86, 196, 20);
 		contentPanel.add(textKategoria);
 		textKategoria.setColumns(10);
 		
 		textDataZakupu = new JTextField();
-		textDataZakupu.setBounds(102, 111, 86, 20);
+		textDataZakupu.setBounds(102, 111, 196, 20);
 		contentPanel.add(textDataZakupu);
 		textDataZakupu.setColumns(10);
 		
