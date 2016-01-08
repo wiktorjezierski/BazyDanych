@@ -38,20 +38,30 @@ public class Sprzet extends JPanel {
 		return dodajSprzetDialog.isEntryAdded();
 	}
 	
+	private boolean updateSprz(){
+		int selectedRow = table.getSelectedRow();
+		SprzetAktualizacja aktualizacja = new SprzetAktualizacja(frame);
+		aktualizacja.setSprzet(mSprzetAF.getmSprzetList().get(selectedRow));
+		aktualizacja.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		aktualizacja.setVisible(true);
+		
+		return aktualizacja.isReady();
+	}
 	
-	SprzetAF mSprzet;
+	SprzetAF mSprzetAF;
 	private JTable table;
 	private ProducentEntity pr;
 	
 	private JFrame frame;
 	private JButton btnDodajSprzet;
+	private JButton btnAktualizuj;
 	/**
 	 * Create the panel.
 	 */
 	public Sprzet(JFrame fr) {
 		frame = fr;
 		setLayout(null);
-		mSprzet = new SprzetAF();
+		mSprzetAF = new SprzetAF();
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 622, 275);
@@ -85,6 +95,16 @@ public class Sprzet extends JPanel {
 		btnDodajSprzet.setBounds(514, 297, 118, 23);
 		add(btnDodajSprzet);
 		
+		btnAktualizuj = new JButton("Aktualizuj");
+		btnAktualizuj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(updateSprz())			
+					JOptionPane.showMessageDialog(null, "siema");
+			}
+		});
+		btnAktualizuj.setBounds(83, 297, 118, 23);
+		add(btnAktualizuj);
+		
 		setContentTable();
 	}
 	
@@ -94,11 +114,10 @@ public class Sprzet extends JPanel {
 		//		new String[] { "Nazwa", "Marka", "Kategoria", "Data zakupu"}));
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-		for (SprzetEntity p : mSprzet.findAllDevice()) {
+		for (SprzetEntity p : mSprzetAF.findAllDevice()) {
 			model.addRow(new Object[] {p.getNazwa(), p.getMarka(), p.getKategoria(), p.getDataZakupu() });
 		}
 	}
-	
 }
 
 

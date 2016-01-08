@@ -8,6 +8,8 @@ import javax.swing.table.DefaultTableModel;
 import BazyDanychProjekt.ApplicationFunction.KlienciAF;
 import BazyDanychProjekt.BD2.KlienciEntity;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;

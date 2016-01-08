@@ -1,5 +1,6 @@
 package BazyDanychProjekt.ApplicationFunction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JDialog;
@@ -12,6 +13,7 @@ import interfejs.WybierzProducentaDialog;
 public class SprzetAF {
 
 	DataBaseController mController;
+	private ArrayList<SprzetEntity> mSprzetList;
 	
 	public SprzetAF() {
 		mController = new DataBaseController();
@@ -40,7 +42,18 @@ public class SprzetAF {
 	}
 	
 	public List<SprzetEntity> findAllDevice(){
-		return mController.findAll(SprzetEntity.class);
+		mSprzetList = new ArrayList<>(mController.findAll(SprzetEntity.class));
+		return mSprzetList;
 	}
+
+	public ArrayList<SprzetEntity> getmSprzetList() {
+		return mSprzetList;
+	}
+
+	public void setmSprzetList(ArrayList<SprzetEntity> mSprzetList) {
+		this.mSprzetList = mSprzetList;
+	}
+	
+	
 	
 }

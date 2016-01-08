@@ -75,7 +75,7 @@ public class GUI extends JFrame {
 		tabbedPane.addTab("Klienci", null, panKlienci, null);
 
 		
-		JPanel panSprzet = new Sprzet(this);
+		JPanel panSprzet = new Sprzet(frmWypoyczalniaSprztuSpotowego);
 		tabbedPane.addTab("Sprzęt", null, panSprzet, null);
 		panSprzet.setLayout(null);
 		

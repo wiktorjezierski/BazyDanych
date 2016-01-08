@@ -181,6 +181,7 @@ public class DodajSprzet extends JDialog {
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						setVisible(false);
+						entry_added = true;
 					}
 				});
 				cancelButton.setActionCommand("Cancel");
