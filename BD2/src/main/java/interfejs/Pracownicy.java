@@ -77,8 +77,8 @@ public class Pracownicy extends JPanel {
 			boolean rm = mPracownicy.remove(selectedRow);
 
 			if (rm == true) {
-				setContentTable(false);
-				JOptionPane.showMessageDialog(null, "Pomyślnie usunięto pracownika z bazy.");
+				DefaultTableModel model = (DefaultTableModel)tablePracownicy.getModel();
+				model.removeRow(selectedRow);
 			} else {
 				JOptionPane.showMessageDialog(null, "Wystąpił błąd podczas usuwania pracownika.");
 			}
