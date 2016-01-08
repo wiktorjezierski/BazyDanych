@@ -58,26 +58,18 @@ public class WybierzProducentaDialog extends JDialog {
 			contentPanel.add(scrollPane);
 			{
 				table = new JTable();
+				table.setFillsViewportHeight(true);
 				scrollPane.setViewportView(table);
 				table.setModel(
 						new DefaultTableModel(
 					new Object[][] {
-						{null, null, null, null},
-						{null, null, null, null},
-						{null, null, null, null},
-						{null, null, null, null},
-						{null, null, null, null},
-						{null, null, null, null},
-						{null, null, null, null},
-						{null, null, null, null},
-						{null, null, null, null},
-						{null, null, null, null},
-						{null, null, null, null},
 					},
 					new String[] {
-						"ID", "Nazwa", "Miasto", "Telefon"
+						"Numer", "Nazwa", "Adres", "Telefon"
 					}
 				));
+				table.getColumnModel().getColumn(0).setPreferredWidth(53);
+				table.getColumnModel().getColumn(1).setPreferredWidth(89);
 			}
 		}
 		{
@@ -89,14 +81,14 @@ public class WybierzProducentaDialog extends JDialog {
 				txtMiasto.setBounds(224, 6, 126, 20);
 				txtMiasto.addKeyListener(new KeyAdapter() {
 					@Override
-					public void keyPressed(KeyEvent arg0) {
+					public void keyTyped(KeyEvent arg0) {
 						setContent();
 					}
 				});
 				txtMiasto.addFocusListener(new FocusAdapter() {
 					@Override
 					public void focusGained(FocusEvent arg0) {
-						if (txtMiasto.getText().equals("Szukaj po nazwie...")) {
+						if (txtMiasto.getText().equals("Filtruj po nazwie...")) {
 							txtMiasto.setText("");
 						}
 					}
@@ -104,12 +96,12 @@ public class WybierzProducentaDialog extends JDialog {
 					@Override
 					public void focusLost(FocusEvent e) {
 						if (txtMiasto.getText().equals("")) {
-							txtMiasto.setText("Szukaj po nazwie...");
+							txtMiasto.setText("Filtruj po nazwie...");
 						}
 					}
 				});
 				buttonPane.setLayout(null);
-				txtMiasto.setText("Szukaj po nazwie...");
+				txtMiasto.setText("Filtruj po nazwie...");
 				buttonPane.add(txtMiasto);
 				txtMiasto.setColumns(10);
 			}
@@ -134,12 +126,14 @@ public class WybierzProducentaDialog extends JDialog {
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
+				setContent();
 			}
+		
 		}
 	}
 
 	private void setContent() {
-		if (txtMiasto.getText().equals("")) {
+		if (txtMiasto.getText().equals("")||txtMiasto.getText().equals("Filtruj po nazwie...")) {
 			lista = mController.findAll(ProducentEntity.class);
 		} else {
 			lista = mController.executeNamedQueryForLike(ProducentEntity.class, "dialog", txtMiasto.getText());

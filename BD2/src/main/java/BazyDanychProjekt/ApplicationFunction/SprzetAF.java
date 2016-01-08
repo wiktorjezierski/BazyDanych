@@ -4,15 +4,10 @@ import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
 import BazyDanychProjekt.BD2.DataBaseController;
-import BazyDanychProjekt.BD2.PracownicyEntity;
 import BazyDanychProjekt.BD2.ProducentEntity;
 import BazyDanychProjekt.BD2.SprzetEntity;
-import interfejs.Sprzet;
 import interfejs.WybierzProducentaDialog;
-import interfejs.WyborProducenta;
 
 public class SprzetAF {
 

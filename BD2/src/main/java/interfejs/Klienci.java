@@ -5,12 +5,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import org.hibernate.sql.Delete;
-
 import BazyDanychProjekt.ApplicationFunction.KlienciAF;
 import BazyDanychProjekt.BD2.KlienciEntity;
-import BazyDanychProjekt.BD2.PracownicyEntity;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.List;
