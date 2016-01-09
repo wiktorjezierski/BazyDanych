@@ -23,16 +23,16 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.datatools.connectivity.jdt.DRIVERLIBRARY/MySQL JDBC Driver1"/>
-	<classpathentry kind="lib" path="D:/java/BazyDanychProjekt/BD2/lib/hamcrest-core-1.3.jar"/>
-	<classpathentry kind="lib" path="D:/java/BazyDanychProjekt/BD2/lib/jcommon-1.0.23.jar"/>
-	<classpathentry kind="lib" path="D:/java/BazyDanychProjekt/BD2/lib/jfreechart-1.0.19.jar"/>
-	<classpathentry kind="lib" path="D:/java/BazyDanychProjekt/BD2/lib/jfreechart-1.0.19-experimental.jar"/>
-	<classpathentry kind="lib" path="D:/java/BazyDanychProjekt/BD2/lib/jfreechart-1.0.19-swt.jar"/>
-	<classpathentry kind="lib" path="D:/java/BazyDanychProjekt/BD2/lib/jfreesvg-2.0.jar"/>
-	<classpathentry kind="lib" path="D:/java/BazyDanychProjekt/BD2/lib/junit-4.11.jar"/>
-	<classpathentry kind="lib" path="D:/java/BazyDanychProjekt/BD2/lib/orsoncharts-1.4-eval-nofx.jar"/>
-	<classpathentry kind="lib" path="D:/java/BazyDanychProjekt/BD2/lib/orsonpdf-1.6-eval.jar"/>
-	<classpathentry kind="lib" path="D:/java/BazyDanychProjekt/BD2/lib/servlet.jar"/>
-	<classpathentry kind="lib" path="D:/java/BazyDanychProjekt/BD2/lib/swtgraphics2d.jar"/>
+	<classpathentry kind="lib" path="lib/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="lib/jfreechart-1.0.19-experimental.jar"/>
+	<classpathentry kind="lib" path="lib/jfreechart-1.0.19-swt.jar"/>
+	<classpathentry kind="lib" path="lib/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="lib/jfreesvg-2.0.jar"/>
+	<classpathentry kind="lib" path="lib/junit-4.11.jar"/>
+	<classpathentry kind="lib" path="lib/orsoncharts-1.4-eval-nofx.jar"/>
+	<classpathentry kind="lib" path="lib/orsonpdf-1.6-eval.jar"/>
+	<classpathentry kind="lib" path="lib/servlet.jar"/>
+	<classpathentry kind="lib" path="lib/swtgraphics2d.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
