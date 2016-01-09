@@ -89,16 +89,6 @@ public class GUI extends JFrame {
 		tabbedPane.addTab("Raport", null, panRaport, null);
 		panRaport.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Wykorzystanie Sprzętu"}));
-		comboBox.setToolTipText("Wykorzystanie Sprzętu");
-		comboBox.setBounds(21, 11, 256, 20);
-		panRaport.add(comboBox);
-		
-		JButton btnPokaz = new JButton("Pokaż");
-		btnPokaz.setBounds(287, 10, 108, 23);
-		panRaport.add(btnPokaz);
-		
 		frmWypoyczalniaSprztuSpotowego.getContentPane().add(tabbedPane);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -148,8 +138,5 @@ public class GUI extends JFrame {
 			}
 		});
 		mnPomoc.add(mntmOProgramie);
-		
-		tabbedPane.addTab("Raport2", null, Raport.createDemoPanel(), null);
-		
 	}
 }
