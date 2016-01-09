@@ -36,7 +36,7 @@ public class Pracownicy extends JPanel {
 			new Object[][] {
 			},
 			new String[] {
-				"PESEL", "Imi\u0119", "Nazwisko", "Data rozpocz\u0119cia pracy", "Zatrudniony"
+				"PESEL", "Imi\u0119", "Nazwisko", "Data rozpocz\u0119cia pracy", "Zatrudniony od"
 			}
 		) {
 			boolean[] columnEditables = new boolean[] {
@@ -67,7 +67,7 @@ public class Pracownicy extends JPanel {
 	
 	ActionListener btnAdd = new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
-			
+			JOptionPane.showMessageDialog(null, "To jest wersja demonstracyjna, która nie przewiduje tej funkcjonalności.", "DEMO", 1);
 		}
 	};
 	
@@ -89,8 +89,6 @@ public class Pracownicy extends JPanel {
 		if (choice == true)
 			mPracownicy.setEmployees(mPracownicy.findAllEmployees());
 		
-		//tablePracownicy.setModel(new DefaultTableModel(new Object[][] {},
-			//	new String[] { "PESEL", "Imi\u0119", "Nazwisko", "Data rozpocz\u0119cia pracy", "Zatrudniony" }));
 		DefaultTableModel model = (DefaultTableModel) tablePracownicy.getModel();
 
 		for (PracownicyEntity p : mPracownicy.getEmployees()) {

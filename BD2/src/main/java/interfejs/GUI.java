@@ -17,6 +17,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 
 public class GUI extends JFrame {
 
@@ -91,8 +92,12 @@ public class GUI extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Wykorzystanie Sprzętu"}));
 		comboBox.setToolTipText("Wykorzystanie Sprzętu");
-		comboBox.setBounds(21, 11, 151, 20);
+		comboBox.setBounds(21, 11, 256, 20);
 		panRaport.add(comboBox);
+		
+		JButton btnPokaz = new JButton("Pokaż");
+		btnPokaz.setBounds(287, 10, 108, 23);
+		panRaport.add(btnPokaz);
 		
 		frmWypoyczalniaSprztuSpotowego.getContentPane().add(tabbedPane);
 		
@@ -109,18 +114,6 @@ public class GUI extends JFrame {
 			}
 		});
 		mnFsd.add(mntmWyjcie);
-		
-		JMenu mnEdycja = new JMenu("Edycja");
-		menuBar.add(mnEdycja);
-		
-		JMenuItem mntmWytnij = new JMenuItem("Wytnij");
-		mnEdycja.add(mntmWytnij);
-		
-		JMenuItem mntmKopiuj = new JMenuItem("Kopiuj");
-		mnEdycja.add(mntmKopiuj);
-		
-		JMenuItem mntmWklej = new JMenuItem("Wklej");
-		mnEdycja.add(mntmWklej);
 		
 		JMenu mnSesja = new JMenu("Sesja");
 		menuBar.add(mnSesja);

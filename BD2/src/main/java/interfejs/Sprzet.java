@@ -104,7 +104,7 @@ public class Sprzet extends JPanel {
 		btnDodajSprzet.setBounds(514, 297, 118, 23);
 		add(btnDodajSprzet);
 		
-		btnAktualizuj = new JButton("Aktualizuj");
+		btnAktualizuj = new JButton("Edytuj");
 		btnAktualizuj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(updateSprz()){			
@@ -113,7 +113,7 @@ public class Sprzet extends JPanel {
 				}
 			}
 		});
-		btnAktualizuj.setBounds(83, 297, 118, 23);
+		btnAktualizuj.setBounds(10, 297, 118, 23);
 		add(btnAktualizuj);
 		
 		setContentTable();

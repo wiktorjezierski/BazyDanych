@@ -1,6 +1,7 @@
 package interfejs;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -13,6 +14,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JSeparator;
 
 public class Rezerwacje extends JPanel {
 
@@ -44,7 +46,7 @@ public class Rezerwacje extends JPanel {
 					txtPeselKlienta.setText("PESEL Klienta");
 			}
 		});
-		txtPeselKlienta.setBounds(10, 6, 124, 20);
+		txtPeselKlienta.setBounds(10, 289, 124, 20);
 		txtPeselKlienta.setText("PESEL Klienta");
 		add(txtPeselKlienta);
 		txtPeselKlienta.setColumns(10);
@@ -63,7 +65,7 @@ public class Rezerwacje extends JPanel {
 					txtIdEgzemplarza.setText("ID Egzemplarza");
 			}
 		});
-		txtIdEgzemplarza.setBounds(144, 6, 127, 20);
+		txtIdEgzemplarza.setBounds(144, 289, 127, 20);
 		txtIdEgzemplarza.setText("ID Egzemplarza");
 		add(txtIdEgzemplarza);
 		txtIdEgzemplarza.setColumns(10);
@@ -83,7 +85,7 @@ public class Rezerwacje extends JPanel {
 					txtDataRozpoczcia.setText("Data rozpoczęcia");
 			}
 		});
-		txtDataRozpoczcia.setBounds(281, 6, 124, 20);
+		txtDataRozpoczcia.setBounds(281, 289, 124, 20);
 		txtDataRozpoczcia.setText("Data rozpoczęcia");
 		add(txtDataRozpoczcia);
 		txtDataRozpoczcia.setColumns(10);
@@ -101,7 +103,7 @@ public class Rezerwacje extends JPanel {
 					txtDataZwrotu.setText("Data zwrotu");
 			}
 		});
-		txtDataZwrotu.setBounds(415, 6, 124, 20);
+		txtDataZwrotu.setBounds(415, 289, 124, 20);
 		txtDataZwrotu.setText("Data zwrotu");
 		add(txtDataZwrotu);
 		txtDataZwrotu.setColumns(10);
@@ -120,24 +122,18 @@ public class Rezerwacje extends JPanel {
 				  txtDataZwrotu.getText()); else
 				 */
 				 
-				dodajKlientaDlg.setTxtPeselKlienta(txtPeselKlienta);
-				dodajKlientaDlg.setVisible(true);
-				dodajKlientaDlg.setLocationRelativeTo(null);
+				//dodajKlientaDlg.setTxtPeselKlienta(txtPeselKlienta);
+				//dodajKlientaDlg.setVisible(true);
+				//dodajKlientaDlg.setLocationRelativeTo(null);
+				
+				JOptionPane.showMessageDialog(null, "To jest wersja demonstracyjna, która nie przewiduje tej funkcjonalności.", "DEMO", 1);
 			}
 		});
-		btnDodaj.setBounds(549, 5, 86, 23);
+		btnDodaj.setBounds(549, 288, 86, 23);
 		add(btnDodaj);
 
-		JButton btnNewButton_1 = new JButton("Cofnij rezerwację");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_1.setBounds(492, 291, 143, 23);
-		add(btnNewButton_1);
-
 		JScrollPane scrollPaneRezerwacje = new JScrollPane();
-		scrollPaneRezerwacje.setBounds(10, 34, 625, 246);
+		scrollPaneRezerwacje.setBounds(10, 11, 625, 255);
 		add(scrollPaneRezerwacje);
 
 		tableRezerwacje = new JTable();
@@ -150,6 +146,11 @@ public class Rezerwacje extends JPanel {
 				{"Narty biegowe", "32", "22.01.2016", "28.01.2016", "Piotr", "\u0141awniczak"},
 				{"Sanki", "8", "20.12.2016", "21.12.2016", "Wiktor", "Jezierski"},
 				{"Snowboard", "1", "02.02.2017", "22.03.2017", "Wiktor", "Jezierski"},
+				{"Deska do krojenia", "99", "22.01.2016", "28.01.2016", "Jacek", "Placek"},
+				{"Sanki z turbodo\u0142adowaniem", "33", "09.01.2016", "03.12.2023", "Turbodymomen", "Rakietowy"},
+				{"Urz\u0105dzenie do rzucania \u015Bnie\u017Cek", "42", "01.05.2004", "31.03.2016", "Marek", "Kondrat"},
+				{"Taczka na zimowej oponie", "45", "04.05.2004", "21.04.2016", "Zbyszek", "Chytry"},
+				{"Sanki", "9", "20.12.2016", "21.12.2016", "Wanda", "Coniechcia\u0142aniemca"},
 			},
 			new String[] {
 				"Rodzaj sprz\u0119tu", "ID Egzemplarza", "Data rozpocz\u0119cia wypo\u017Cyczenia", "Data zwrotu", "Imi\u0119 pracownika", "Nazwisko pracownika"
@@ -162,10 +163,17 @@ public class Rezerwacje extends JPanel {
 				return columnEditables[column];
 			}
 		});
-		tableRezerwacje.getColumnModel().getColumn(0).setPreferredWidth(88);
-		tableRezerwacje.getColumnModel().getColumn(1).setPreferredWidth(37);
-		tableRezerwacje.getColumnModel().getColumn(2).setPreferredWidth(80);
+		tableRezerwacje.getColumnModel().getColumn(0).setPreferredWidth(135);
+		tableRezerwacje.getColumnModel().getColumn(1).setPreferredWidth(15);
+		tableRezerwacje.getColumnModel().getColumn(1).setMinWidth(7);
+		tableRezerwacje.getColumnModel().getColumn(2).setPreferredWidth(50);
+		tableRezerwacje.getColumnModel().getColumn(3).setPreferredWidth(50);
+		tableRezerwacje.getColumnModel().getColumn(4).setPreferredWidth(70);
+		tableRezerwacje.getColumnModel().getColumn(5).setPreferredWidth(81);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(10, 276, 625, 2);
+		add(separator);
 
 	}
-
 }
