@@ -40,6 +40,8 @@ public class Raport extends JPanel {
 		setLayout(null);
 		Y = this;
 		mController = new DataBaseController();
+		raport = null;
+		
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 11, 430, 40);
 		add(panel);
@@ -59,7 +61,7 @@ public class Raport extends JPanel {
 				
 				ArrayList<String> nazwiska = new ArrayList<>();
 				ArrayList<Long> ilosci = new ArrayList<>();
-				List<Object> nazwiskaList = (List<Object>)mController.executeQuery("select k.nazwisko, count(w.id) from WypozyczeniaEntity w, KlienciEntity k where w.klienci.pesel = k.pesel group by k.nazwisko");
+				List<Object> nazwiskaList = (List<Object>)mController.executeQuery("select k.nazwisko from WypozyczeniaEntity w, KlienciEntity k where w.klienci.pesel = k.pesel group by k.nazwisko");
 				List<Object> ilosciList = (List<Object>)mController.executeQuery("select count(w.id) from WypozyczeniaEntity w, KlienciEntity k where w.klienci.pesel = k.pesel group by k.nazwisko");
 				
 				for (Object o : nazwiskaList) {
@@ -69,9 +71,14 @@ public class Raport extends JPanel {
 					ilosci.add((long)o);
 				}
 				
-				raport = createDemoPanel();
+				if(raport != null){
+					remove(raport);
+				}
+				
+				raport = createDemoPanel(nazwiska, ilosci, "Aktywnosc klientow");
 				raport.setBounds(10, 60, 600, 500);
 				add(raport);
+				repaint();
 				
 //				if(!x){
 //					remove(raport);
@@ -89,22 +96,25 @@ public class Raport extends JPanel {
 		panel.add(btnNewButton);
 	}
 
-	private static PieDataset createDataset() {
+	private static PieDataset createDataset(List String, List Long) {
         DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue("One", new Double(43.2));
-        dataset.setValue("Two", new Double(10.0));
-        dataset.setValue("Three", new Double(27.5));
+        for(int i=0; i<String.size();i++){
+        	dataset.setValue((Comparable) (String.get(i)) + " " + Long.get(i).toString(), (Number) Long.get(i));
+        }
+        return dataset;  
+//        dataset.setValue("One", new Double(43.2));
+//        dataset.setValue("Two", new Double(10.0));
+//        dataset.setValue("Three", new Double(27.5));
 //        dataset.setValue("Four", new Double(17.5));
 //        dataset.setValue("Five", new Double(11.0));
 //        dataset.setValue("Six", new Double(19.4));
-        return dataset;  
         
     }
 	
-private static JFreeChart createChart(PieDataset dataset) {
+private static JFreeChart createChart(PieDataset dataset, String title) {
         
         JFreeChart chart = ChartFactory.createPieChart(
-            "Pie Chart",  // chart title
+            title,  // chart title
             dataset,             // data
             true,               // include legend
             true,
@@ -121,8 +131,8 @@ private static JFreeChart createChart(PieDataset dataset) {
         
     }
 
-	public static JPanel createDemoPanel() {
-		JFreeChart chart = createChart(createDataset());
+	public static JPanel createDemoPanel(List String, List Long, String title) {
+		JFreeChart chart = createChart(createDataset(String, Long), title);
 		return new ChartPanel(chart);
 	}
 }
