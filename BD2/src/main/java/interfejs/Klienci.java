@@ -62,6 +62,15 @@ public class Klienci extends JPanel {
 				// nie wiem czy ID klientów w tabeli zgadzają się z ID klientów
 				// w Hibernacie, ale myślę że to nie bedzie ogółem trudne do
 				// zaimplementowania
+				int selectedRow = table.getSelectedRow();
+				boolean rm = mKlient.remove(selectedRow);
+				
+				if (rm == true){
+					DefaultTableModel model = (DefaultTableModel)table.getModel();
+					model.removeRow(selectedRow);
+				} else {
+					JOptionPane.showMessageDialog(null, "Wystąpił błąd podczas usuwania pracownika.");
+				}
 			}
 		});
 		btnUsun.setBounds(10, 293, 89, 23);
@@ -70,11 +79,11 @@ public class Klienci extends JPanel {
 	}
 
 	private void setContentTable() {
-		allCustomers = mKlient.findAllCustomers();
+		mKlient.setClients(mKlient.findAllCustomers());
 
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 
-		for (KlienciEntity p : allCustomers) {
+		for (KlienciEntity p : mKlient.getClients()) {
 			model.addRow(new Object[] { p.getPesel(), p.getImie(), p.getNazwisko(), p.getNrDowodu(), p.getNrTelefonu(),
 					p.getIloscTransakcji() });
 		}
