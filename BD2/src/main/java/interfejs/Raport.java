@@ -55,20 +55,13 @@ public class Raport extends JPanel {
 		JButton btnNewButton = new JButton("Pokaż");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//select count(w.id), k.nazwisko from Wypozyczenia w inner join Klienci k ON w.pesel_klienta = k.pesel group by k.nazwisko;
-//				List<Object> lista = (List<Object>)mController.executeQuery("select count(k.pesel), k.nazwisko from KlienciEntity k group by k.nazwisko");
-//				List<Object> lista2 = (List<Object>)mController.executeQuery("select w.id, w.klienci.pesel from WypozyczeniaEntity w group by w.klienci.pesel");
-				
 				ArrayList<String> nazwiska = new ArrayList<>();
 				ArrayList<Long> ilosci = new ArrayList<>();
-				List<Object> nazwiskaList = (List<Object>)mController.executeQuery("select k.nazwisko from WypozyczeniaEntity w, KlienciEntity k where w.klienci.pesel = k.pesel group by k.nazwisko");
-				List<Object> ilosciList = (List<Object>)mController.executeQuery("select count(w.id) from WypozyczeniaEntity w, KlienciEntity k where w.klienci.pesel = k.pesel group by k.nazwisko");
+				List<Object[]> test = (List<Object[]>)mController.executeQuery("select k.nazwisko, count(w.id) from WypozyczeniaEntity w, KlienciEntity k where w.klienci.pesel = k.pesel group by k.nazwisko");
 				
-				for (Object o : nazwiskaList) {
-					nazwiska.add((String)o);
-				}
-				for (Object o : ilosciList) {
-					ilosci.add((long)o);
+				for (Object[] o : test) {
+					nazwiska.add((String)o[0]);
+					ilosci.add((Long)o[1]);
 				}
 				
 				if(raport != null){
@@ -80,16 +73,6 @@ public class Raport extends JPanel {
 				add(raport);
 				repaint();
 				
-//				if(!x){
-//					remove(raport);
-//					repaint();
-//					x=!x; 
-//				}
-//				else{
-//					add(raport);
-//					repaint();
-//					x=!x;
-//				}
 			}
 		});
 		btnNewButton.setBounds(237, 10, 89, 23);
@@ -102,20 +85,13 @@ public class Raport extends JPanel {
         	dataset.setValue((Comparable) (String.get(i)) + " " + Long.get(i).toString(), (Number) Long.get(i));
         }
         return dataset;  
-//        dataset.setValue("One", new Double(43.2));
-//        dataset.setValue("Two", new Double(10.0));
-//        dataset.setValue("Three", new Double(27.5));
-//        dataset.setValue("Four", new Double(17.5));
-//        dataset.setValue("Five", new Double(11.0));
-//        dataset.setValue("Six", new Double(19.4));
-        
     }
 	
 private static JFreeChart createChart(PieDataset dataset, String title) {
         
         JFreeChart chart = ChartFactory.createPieChart(
-            title,  // chart title
-            dataset,             // data
+            title,  			// chart title
+            dataset,            // data
             true,               // include legend
             true,
             false
