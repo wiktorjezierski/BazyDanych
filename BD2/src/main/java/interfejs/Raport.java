@@ -43,13 +43,13 @@ public class Raport extends JPanel {
 		raport = null;
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 430, 40);
+		panel.setBounds(10, 11, 620, 25);
 		add(panel);
 		panel.setLayout(null);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Raport 1"}));
-		comboBox.setBounds(10, 11, 163, 20);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Aktywność Klientów"}));
+		comboBox.setBounds(0, 2, 519, 20);
 		panel.add(comboBox);
 		
 		JButton btnNewButton = new JButton("Pokaż");
@@ -68,14 +68,14 @@ public class Raport extends JPanel {
 					remove(raport);
 				}
 				
-				raport = createDemoPanel(nazwiska, ilosci, "Aktywnosc klientow");
-				raport.setBounds(10, 60, 600, 500);
+				raport = createDemoPanel(nazwiska, ilosci, null);
+				raport.setBounds(10, 38, 620, 460);
 				add(raport);
 				repaint();
 				
 			}
 		});
-		btnNewButton.setBounds(237, 10, 89, 23);
+		btnNewButton.setBounds(529, 1, 89, 23);
 		panel.add(btnNewButton);
 	}
 

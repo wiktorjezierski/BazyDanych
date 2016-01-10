@@ -73,7 +73,7 @@ public class Sprzet extends JPanel {
 		mSprzetAF = new SprzetAF();
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 622, 275);
+		scrollPane.setBounds(10, 11, 622, 354);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -101,7 +101,7 @@ public class Sprzet extends JPanel {
 					setContentTable();
 			}
 		});
-		btnDodajSprzet.setBounds(514, 297, 118, 23);
+		btnDodajSprzet.setBounds(517, 376, 118, 23);
 		add(btnDodajSprzet);
 		
 		btnAktualizuj = new JButton("Edytuj");
@@ -113,7 +113,7 @@ public class Sprzet extends JPanel {
 				}
 			}
 		});
-		btnAktualizuj.setBounds(10, 297, 118, 23);
+		btnAktualizuj.setBounds(10, 376, 91, 23);
 		add(btnAktualizuj);
 		
 		setContentTable();

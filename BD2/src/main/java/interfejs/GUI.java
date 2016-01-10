@@ -60,7 +60,7 @@ public class GUI extends JFrame {
 		});
 		frmWypoyczalniaSprztuSpotowego.getContentPane().setLayout(new BorderLayout(10, 10));
 		frmWypoyczalniaSprztuSpotowego.setTitle("Wypożyczalnia sprzętu spotowego (0.1)");
-		frmWypoyczalniaSprztuSpotowego.setBounds(100, 100, 659, 417);
+		frmWypoyczalniaSprztuSpotowego.setBounds(100, 100, 659, 500);
 		frmWypoyczalniaSprztuSpotowego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		OProgramie aboutDialog = new OProgramie();
 		

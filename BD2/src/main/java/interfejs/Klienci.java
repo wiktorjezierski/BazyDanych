@@ -26,7 +26,7 @@ public class Klienci extends JPanel {
 		setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 620, 271);
+		scrollPane.setBounds(10, 11, 620, 352);
 		add(scrollPane);
 		dodajKlientaDlg = new DodajKlienta();
 		table = new JTable();
@@ -51,7 +51,7 @@ public class Klienci extends JPanel {
 				dodajKlientaDlg.setVisible(true);
 			}
 		});
-		btnDodaj.setBounds(541, 293, 89, 23);
+		btnDodaj.setBounds(541, 374, 89, 23);
 		add(btnDodaj);
 
 		JButton btnUsun = new JButton("Usuń");
@@ -73,7 +73,7 @@ public class Klienci extends JPanel {
 				}
 			}
 		});
-		btnUsun.setBounds(10, 293, 89, 23);
+		btnUsun.setBounds(10, 374, 89, 23);
 		add(btnUsun);
 		setContentTable();
 	}

@@ -25,7 +25,7 @@ public class Pracownicy extends JPanel {
 		mPracownicy = new PracownicyAF();
 		
 		JScrollPane scrollPanePracownicy = new JScrollPane();
-		scrollPanePracownicy.setBounds(10, 9, 622, 273);
+		scrollPanePracownicy.setBounds(10, 9, 622, 356);
 		add(scrollPanePracownicy);
 		
 		tablePracownicy = new JTable();
@@ -50,12 +50,12 @@ public class Pracownicy extends JPanel {
 		tablePracownicy.getColumnModel().getColumn(3).setPreferredWidth(83);
 		
 		JButton btnNewButton = new JButton("Usuń");
-		btnNewButton.setBounds(10, 293, 71, 23);		
+		btnNewButton.setBounds(10, 376, 71, 23);		
 		add(btnNewButton);
 		
 		JButton btnDodaj_1 = new JButton("Dodaj");
 		btnDodaj_1.addActionListener(btnAdd);
-		btnDodaj_1.setBounds(543, 293, 89, 23);
+		btnDodaj_1.setBounds(543, 376, 89, 23);
 		add(btnDodaj_1);
 		
 		ActionListener btnDelete = delete;

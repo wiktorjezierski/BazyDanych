@@ -46,7 +46,7 @@ public class Rezerwacje extends JPanel {
 					txtPeselKlienta.setText("PESEL Klienta");
 			}
 		});
-		txtPeselKlienta.setBounds(10, 289, 124, 20);
+		txtPeselKlienta.setBounds(10, 377, 124, 20);
 		txtPeselKlienta.setText("PESEL Klienta");
 		add(txtPeselKlienta);
 		txtPeselKlienta.setColumns(10);
@@ -65,7 +65,7 @@ public class Rezerwacje extends JPanel {
 					txtIdEgzemplarza.setText("ID Egzemplarza");
 			}
 		});
-		txtIdEgzemplarza.setBounds(144, 289, 127, 20);
+		txtIdEgzemplarza.setBounds(144, 377, 127, 20);
 		txtIdEgzemplarza.setText("ID Egzemplarza");
 		add(txtIdEgzemplarza);
 		txtIdEgzemplarza.setColumns(10);
@@ -85,7 +85,7 @@ public class Rezerwacje extends JPanel {
 					txtDataRozpoczcia.setText("Data rozpoczęcia");
 			}
 		});
-		txtDataRozpoczcia.setBounds(281, 289, 124, 20);
+		txtDataRozpoczcia.setBounds(281, 377, 124, 20);
 		txtDataRozpoczcia.setText("Data rozpoczęcia");
 		add(txtDataRozpoczcia);
 		txtDataRozpoczcia.setColumns(10);
@@ -103,7 +103,7 @@ public class Rezerwacje extends JPanel {
 					txtDataZwrotu.setText("Data zwrotu");
 			}
 		});
-		txtDataZwrotu.setBounds(415, 289, 124, 20);
+		txtDataZwrotu.setBounds(415, 377, 124, 20);
 		txtDataZwrotu.setText("Data zwrotu");
 		add(txtDataZwrotu);
 		txtDataZwrotu.setColumns(10);
@@ -129,11 +129,11 @@ public class Rezerwacje extends JPanel {
 				JOptionPane.showMessageDialog(null, "To jest wersja demonstracyjna, która nie przewiduje tej funkcjonalności.", "DEMO", 1);
 			}
 		});
-		btnDodaj.setBounds(549, 288, 86, 23);
+		btnDodaj.setBounds(549, 376, 86, 23);
 		add(btnDodaj);
 
 		JScrollPane scrollPaneRezerwacje = new JScrollPane();
-		scrollPaneRezerwacje.setBounds(10, 11, 625, 255);
+		scrollPaneRezerwacje.setBounds(10, 11, 625, 342);
 		add(scrollPaneRezerwacje);
 
 		tableRezerwacje = new JTable();
@@ -172,7 +172,7 @@ public class Rezerwacje extends JPanel {
 		tableRezerwacje.getColumnModel().getColumn(5).setPreferredWidth(81);
 		
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 276, 625, 2);
+		separator.setBounds(10, 364, 625, 2);
 		add(separator);
 
 	}
