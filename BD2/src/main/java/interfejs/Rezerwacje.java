@@ -120,7 +120,7 @@ public class Rezerwacje extends JPanel {
 				 dodajRezerwacje(txtPeselKlienta.getText(),
 				  txtIdEgzemplarza.getText() txtDataRozpoczcia.getText(),
 				  txtDataZwrotu.getText()); else
-				 */
+				 */ 
 				 
 				//dodajKlientaDlg.setTxtPeselKlienta(txtPeselKlienta);
 				//dodajKlientaDlg.setVisible(true);
