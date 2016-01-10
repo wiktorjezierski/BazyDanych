@@ -28,7 +28,7 @@ import java.awt.event.ActionEvent;
 
 public class Raport extends JPanel {
 
-	boolean x = false;
+	boolean x = false; 
 	private JPanel Y;
 	private JPanel raport;
 	private DataBaseController mController;
