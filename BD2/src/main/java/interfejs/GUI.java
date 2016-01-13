@@ -18,6 +18,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import java.awt.Window.Type;
 
 public class GUI extends JFrame {
 
@@ -52,6 +53,8 @@ public class GUI extends JFrame {
 	private void initialize() {
 		logowanieFrame = new Logowanie();
 		frmWypoyczalniaSprztuSpotowego = new JFrame();
+		frmWypoyczalniaSprztuSpotowego.setType(Type.UTILITY);
+		frmWypoyczalniaSprztuSpotowego.setResizable(false);
 		frmWypoyczalniaSprztuSpotowego.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -60,7 +63,7 @@ public class GUI extends JFrame {
 		});
 		frmWypoyczalniaSprztuSpotowego.getContentPane().setLayout(new BorderLayout(10, 10));
 		frmWypoyczalniaSprztuSpotowego.setTitle("Wypożyczalnia sprzętu spotowego (0.1)");
-		frmWypoyczalniaSprztuSpotowego.setBounds(100, 100, 659, 500);
+		frmWypoyczalniaSprztuSpotowego.setBounds(100, 100, 653, 485);
 		frmWypoyczalniaSprztuSpotowego.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		OProgramie aboutDialog = new OProgramie();
 		

@@ -25,7 +25,7 @@ public class Zestawy extends JPanel {
 		setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 621, 294);
+		scrollPane.setBounds(10, 11, 621, 388);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -33,8 +33,6 @@ public class Zestawy extends JPanel {
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"1", "Narty zjazdowe", "Google", "20", "01.01.2016"},
-				{"2", "Rower g\u00F3rski", "Buty zatrzaskowe", "70", "30.06.2016"},
 			},
 			new String[] {
 				"ID Zestawu", "Sprz\u0119t 1.", "Sprz\u0119t 2.", "Cena za dzie\u0144", "Aktualne do"
